@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <form class="form-signin" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <h2 class="form-signin-heading">Please login</h2>
+    <input type="text" class="form-control" name="email" placeholder="Email Address" ngModel required="" autofocus="" />
+    <br>
+    <input type="password" class="form-control" name="password" placeholder="Password" ngModel required=""/>
+    <label class="checkbox">
+      <input type="checkbox" value="remember-me" id="rememberMe" ngModel name="rememberMe"> Remember me
+    </label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+  </form>
+</div>

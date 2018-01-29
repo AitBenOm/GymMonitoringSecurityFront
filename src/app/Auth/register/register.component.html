@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <h2 class="form-signin-heading">Please Register</h2>
+    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Your First Name" required="" autofocus="" />
+    <br>
+    <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Your Last Name" required="" autofocus="" />
+    <br>
+    <input type="text" class="form-control" name="email" formControlName="email" placeholder="Email Address" required="" autofocus="" />
+    <span style="color: red; " class="help-block" *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">Please entre a valid Email</span>
+    <br>
+    <div formGroupName="pwdGroup">
+      <input type="password" class="form-control" name="pwd1" formControlName="pwd1" placeholder="Password" required=""/>
+
+      <input type="password"  class="form-control" name="pwd2" formControlName="pwd2" placeholder="Repeat Password" required=""/>
+    </div>
+
+
+    <span style="color: red; " class="help-block" *ngIf="!registerForm.get('pwdGroup').valid && registerForm.get('pwdGroup').touched" >Passwords Mismatch</span>
+    <!--<span style="color: red; " class="help-block" *ngIf="!registerForm.get('pwd1').valid && registerForm.get('pwd1').touched" >Please entre a valid password with min 6 charachters</span>-->
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!registerForm.valid" >Register</button>
+  </form>
+</div>

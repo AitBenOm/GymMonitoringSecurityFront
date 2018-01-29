@@ -1,0 +1,21 @@
+<div class="wrapper" *ngIf="exercise!=null " >
+  <div id="tasksPanel" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">My progression </h3>
+      <br>
+      <div >
+        <h5 class="list-group-item disabled">
+          {{exercise.name}}
+        </h5>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let load of exercise.loads">
+            <span class="badge">{{load.dateModification}}</span>
+            {{load.load}}
+          </li>
+        </ul>
+      </div>
+      <app-add-load [exercise]="exercise"></app-add-load>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="input-group  bas">
+
+  <input type="text" [(ngModel)]="load" name="load" (keyup.enter)="alert(test)" class="form-control" placeholder="New Load...">
+
+</div>
+
+<div class="input-group  col-md-5" *ngIf="load!=''">
+  <button (click)="onSaveLoad()" class="btn btn-secondary" type="button">Add Exercise</button>
+
+</div>

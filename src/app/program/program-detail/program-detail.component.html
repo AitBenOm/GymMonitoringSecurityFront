@@ -1,0 +1,32 @@
+<div class="wrapper">
+  <div id="tasksPanel" class="panel panel-default">
+    <div class="panel-heading" *ngIf="program.exercises!=null;">
+      <h3 class="panel-title">My Execrcises         {{   program.name| uppercase}}</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Exercise</th>
+          <th scope="col">Loads</th>
+          <!--<th scope="col">Last Modification</th>-->
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr   *ngFor="let exercise of program.exercises; let i=index">
+
+          <th scope="row">{{exercise.id}}</th>
+          <td>{{exercise.name}}</td>
+          <td>{{exercise.loads[exercise.loads.length-1].load}} <a class="glyphicon glyphicon-list" (click)="onShowDetail(exercise)"></a></td>
+
+        </tr>
+        </tbody>
+      </table>
+
+      <app-add-exercise [exercises]="program.exercises"></app-add-exercise>
+
+      </div>
+     </div>
+
+  </div>
+

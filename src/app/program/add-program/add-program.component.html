@@ -1,0 +1,39 @@
+<!--
+<div class="form-inline">
+  <div class="form-group">
+
+    <input type="text" [(ngModel)]="programTitle" name="program" class="form-control" id="program" placeholder="Program" required>
+    <a (click)="onAddProgram()" class=" glyphicon glyphicon-plus"></a>
+  </div>
+
+</div>
+-->
+<div class="input-group col-md-5 bas">
+
+  <input type="text" [(ngModel)]="programTitle" name="program" class="form-control" placeholder="New Program...">
+  <span class="input-group-btn ">
+        <button (click)="onAddProgram()" (keyup.enter)="onAddProgram()"  class="btn btn-secondary glyphicon glyphicon-chevron-right droite" type="button"
+                [disabled]="programTitle===''"  style="margin-left: 2px;"></button>
+      </span>
+</div>
+<div class="input-group  col-md-5 bas" *ngIf="programAdded && programTitle!=''">
+
+  <input type="text" [(ngModel)]="exerciseTitle" name="exercise" class="form-control" placeholder="New Exercise...">
+  <span class="input-group-btn">
+        <button (click)="onAddExercise()" (keyup.enter)="onAddExercise()"  class="btn btn-secondary glyphicon  glyphicon-chevron-right droite" type="button"
+                    [disabled]="exerciseTitle===''" style="margin-left: 2px;"></button>
+      </span>
+</div>
+<div class="input-group  col-md-5 bas" *ngIf="exerciseAdded && exerciseTitle!=''">
+
+  <input type="text" [(ngModel)]="load" (keyup.enter)="onSaveProgram()"  name="load" class="form-control" placeholder="New Load...">
+
+</div>
+
+<div class="input-group  col-md-5" *ngIf="exerciseAdded && programAdded && load!=''">
+  <button (click)="onSaveProgram()" class="btn btn-secondary" type="button">Add Program</button>
+
+</div>
+
+
+
