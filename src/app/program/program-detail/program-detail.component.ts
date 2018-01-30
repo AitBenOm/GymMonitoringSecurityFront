@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ProgramService} from "../program.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ProgramModel} from "../program-model";
-import {ExerciseModel} from "../../exercise/exercise-model";
-import {ExerciseService} from "../../exercise/exercise.service";
-import {Subject} from "rxjs/Subject";
-import {Subscription} from "rxjs/Subscription";
+import {ProgramService} from '../program.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ProgramModel} from '../program-model';
+import {ExerciseModel} from '../../exercise/exercise-model';
+import {ExerciseService} from '../../exercise/exercise.service';
+import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {LoadsModel} from "../../exercise/loads-model";
 
 @Component({
   selector: 'app-program-detail',
@@ -16,9 +17,8 @@ export class ProgramDetailComponent implements OnInit {
 
   id: number;
   program: ProgramModel;
+  exercises: ExerciseModel[];
 
-  showDetail: boolean = false;
-subscription: Subscription;
 
 
   constructor(private programService: ProgramService,
@@ -32,7 +32,30 @@ subscription: Subscription;
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
-          this.program = this.programService.getProgramById(this.id);
+           this.programService.getProgramById(this.id).subscribe(
+            (data: ProgramModel)=> {
+              this.program = data;
+            }
+          );
+
+         this.exerciseService.gerMyExercise(this.id).subscribe(
+           (data: ExerciseModel[]) => {
+             this.exercises = data;
+
+           //  console.log((this.exercises));
+             console.log("******************************************");
+             for ( let exercise of this.exercises){
+               console.log(exercise.idExercise);
+               this.exerciseService.gerMyLoads(exercise.idExercise).subscribe(
+                 (loads: LoadsModel[]) => {
+                   exercise.charges= loads;
+                 }
+               );
+               }
+
+             console.log("******************************************");
+           }
+         );
 
           this.programService.exerciseToShow.next(null);
         }
@@ -43,10 +66,9 @@ subscription: Subscription;
   }
 )*/
 
-
   }
-  onShowDetail(exercise:ExerciseModel){
-    console.log("program-detail "+exercise.name);
+  onShowDetail(exercise: ExerciseModel) {
+    console.log('program-detail ' + exercise.exerciseName);
    this.programService.showDetailExercise(exercise);
   }
 

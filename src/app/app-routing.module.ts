@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'program', component: ProgramComponent, children: [
     { path: ':id', component: ProgramDetailComponent },
-  ]},
+  ], canActivate : [AuthGuard]},
 /*  {path: 'exercise', component: ExerciseComponent, children: [
     { path: ':id', component: ExerciseListComponent },
   ]},*/

@@ -19,7 +19,7 @@ export class ProgramService {
   getToDayString() {
     let toDay = new Date();
     let dd: any = toDay.getDay();
-    let mm: any = toDay.getMonth() + 1;
+    let mm: any = toDay.getMonth() ;
     let yyyy: any = toDay.getFullYear();
 
     if (dd < 10) {
@@ -32,30 +32,27 @@ export class ProgramService {
     return mm + '/' + dd + '/' + yyyy;
   }
 
-  programs: ProgramModel[] = [
 
-  ];
 
-  getProgramById(id: number) {
-    console.log("l'id du programme "+ id);
-    console.log("le nombre de program "+ this.programs.length);
-    console.log("la liste des programmes "+ this.programs);
-    console.log("le programme "+ this.programs[id]);
-    return this.programs[id];
-  }
+
 
   showDetailExercise(exercise: ExerciseModel) {
     this.exerciseToShow.next(exercise);
   }
 addProgram(program: ProgramModel){
-    this.programs.push(program);
-    //this.onProgramAdded.emit(this.programs);
-  console.log(this.programs);
+
+return this.http.post("http://localhost:8080/MyProgram" , program);
 }
 
 getPrograms(){
   return this.http.get("http://localhost:8080/Programs");
 }
+
+getProgramById(idProgram: number){
+  return this.http.get("http://localhost:8080/MyProgram?idProgram="+ idProgram);
+}
+
+
 getMyPrograms(){
   return this.http.get("http://localhost:8080/MyPrograms?idUser=1");
 }

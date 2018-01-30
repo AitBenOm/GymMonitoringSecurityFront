@@ -5,12 +5,12 @@
       <br>
       <div >
         <h5 class="list-group-item disabled">
-          {{exercise.name}}
+          {{exercise.exerciseName}}
         </h5>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let load of exercise.loads">
-            <span class="badge">{{load.dateModification}}</span>
-            {{load.load}}
+          <li class="list-group-item" *ngFor="let load of exercise.charges">
+            <span class="badge">{{load.lastModification}}</span>
+            {{load.charge}}
           </li>
         </ul>
       </div>

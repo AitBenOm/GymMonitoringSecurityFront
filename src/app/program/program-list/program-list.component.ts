@@ -14,6 +14,7 @@ export class ProgramListComponent implements OnInit {
   constructor(private programService: ProgramService) { }
 
   ngOnInit() {
+
     this.programService.getPrograms().subscribe(
       (data: ProgramModel[]) =>{
      console.log(data);

@@ -12,7 +12,7 @@
 
   <input type="text" [(ngModel)]="programTitle" name="program" class="form-control" placeholder="New Program...">
   <span class="input-group-btn ">
-        <button (click)="onAddProgram()" (keyup.enter)="onAddProgram()"  class="btn btn-secondary glyphicon glyphicon-chevron-right droite" type="button"
+        <button  (click)="onAddProgram()" (keyup.enter)="onAddProgram()"  class="btn btn-secondary glyphicon glyphicon-chevron-down droite" type="button"
                 [disabled]="programTitle===''"  style="margin-left: 2px;"></button>
       </span>
 </div>

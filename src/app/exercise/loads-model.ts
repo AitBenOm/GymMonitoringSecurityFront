@@ -1,12 +1,11 @@
 export class LoadsModel {
-public id: number;
-public load: string;
-public dateModification: string;
+public idLoad: number;
+public charge: string;
+public lastModification: string;
 
 
-  constructor(id: number, load: string, dateModification: string) {
-    this.id = id;
-    this.load = load;
-    this.dateModification = dateModification;
+  constructor(charge: string, lastModification: string) {
+    this.charge = charge;
+    this.lastModification = lastModification;
   }
 }

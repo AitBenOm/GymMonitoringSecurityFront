@@ -13,14 +13,14 @@
       </div>
       <div   id="hide" class="navbar-collapse collapse in" aria-expanded="false" style>
         <ul class="nav navbar-nav navbar-right">
-          <ng-template [ngIf]="true">
+          <ng-template [ngIf]="!authServise.isAuthenticated()">
             <li><a style="cursor: pointer;" routerLink="/register"  ><span class="glyphicon glyphicon-floppy-save"></span> Register</a></li>
             <li><a style="cursor: pointer;" routerLink="/login"  ><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
           </ng-template>
 
         </ul>
         <ul class="nav navbar-nav navbar-left">
-          <ng-template [ngIf]="true">
+          <ng-template [ngIf]="authServise.isAuthenticated()">
             <li class="dropdown" appDropdown  >
 
               <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage<span class="caret"></span></a>

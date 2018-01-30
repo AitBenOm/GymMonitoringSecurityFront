@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div id="tasksPanel" class="panel panel-default">
-    <div class="panel-heading" *ngIf="program.exercises!=null;">
-      <h3 class="panel-title">My Execrcises         {{   program.name| uppercase}}</h3>
+    <div class="panel-heading" *ngIf="exercises!=null;">
+      <h3 class="panel-title">My Execrcises         {{   program.programName| uppercase}}</h3>
       <table class="table">
         <thead>
         <tr>
@@ -13,17 +13,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr   *ngFor="let exercise of program.exercises; let i=index">
+        <tr   *ngFor="let exercise of exercises">
 
-          <th scope="row">{{exercise.id}}</th>
-          <td>{{exercise.name}}</td>
-          <td>{{exercise.loads[exercise.loads.length-1].load}} <a class="glyphicon glyphicon-list" (click)="onShowDetail(exercise)"></a></td>
+          <th scope="row">{{exercise.idExercise}}</th>
+          <td>{{exercise.exerciseName}}</td>
+          <!--<td>{{exercise.exerciseName}}</td>-->
+          <td>{{exercise.charges[exercise.charges.length-1].charge}} <a class="glyphicon glyphicon-list" (click)="onShowDetail(exercise)"></a></td>
 
         </tr>
         </tbody>
       </table>
 
-      <app-add-exercise [exercises]="program.exercises"></app-add-exercise>
+      <app-add-exercise [exercises]="exercises"></app-add-exercise>
 
       </div>
      </div>
