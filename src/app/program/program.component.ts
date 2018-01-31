@@ -12,7 +12,7 @@ export class ProgramComponent implements OnInit {
 
 
   ngOnInit() {
-console.log("init Program");
+
     this.programService.exerciseToShow.next(null);
   }
 

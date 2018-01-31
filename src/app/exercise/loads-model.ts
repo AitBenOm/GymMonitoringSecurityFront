@@ -1,10 +1,10 @@
 export class LoadsModel {
 public idLoad: number;
 public charge: string;
-public lastModification: string;
+public lastModification: Date;
 
 
-  constructor(charge: string, lastModification: string) {
+  constructor(charge: string, lastModification: Date) {
     this.charge = charge;
     this.lastModification = lastModification;
   }

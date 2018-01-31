@@ -26,7 +26,7 @@ login(email: string, pwd: string){
             }
           );
 
-        console.log(response);
+
       }
     ).catch(
       error=>console.log(error)

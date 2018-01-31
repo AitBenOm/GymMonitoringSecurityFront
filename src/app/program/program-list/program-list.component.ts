@@ -15,16 +15,14 @@ export class ProgramListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.programService.getPrograms().subscribe(
+    this.programService.getMyPrograms().subscribe(
       (data: ProgramModel[]) =>{
-     console.log(data);
-     this.programs=data;
-     console.log(this.programs);
-      }
+     this.programs = data;
+   }
     );
-    this.programs=this.programService.programs;
+//    this.programs=this.programService.programs;
     this.programService.onProgramAdded.subscribe(
-    (program: ProgramModel)=>{
+    (program: ProgramModel) => {
       this.programs.push(program);
     }
     );
@@ -33,7 +31,7 @@ export class ProgramListComponent implements OnInit {
        this.programs=programs;
      }
    );*/
-    console.log(this.programs);
+
   }
 
   onShowDetail(id: number){

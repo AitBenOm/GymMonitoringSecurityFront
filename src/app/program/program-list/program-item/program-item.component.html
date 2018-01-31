@@ -18,8 +18,8 @@
         <tr style="cursor: pointer" *ngFor="let program of programs; let i=index">
           <th scope="row">{{program.idProgram}}</th>
           <td><a [routerLink]="[program.idProgram]">{{program.programName}}</a></td>
-          <td>{{program.dateOfCreation}}</td>
-          <td>{{program.lastModification}}</td>
+          <td>{{program.dateOfCreation | date:'shortDate'}}  </td>
+          <td>{{program.lastModification  | date:'shortDate'}}</td>
 
         </tr>
         </tbody>

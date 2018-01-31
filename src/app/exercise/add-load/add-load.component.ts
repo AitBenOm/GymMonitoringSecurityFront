@@ -12,29 +12,14 @@ export class AddLoadComponent implements OnInit {
   constructor() { }
   @Input() exercise: ExerciseModel;
   load: string='';
-  getToDayString(){
-    let toDay = new Date();
-    let dd: any = toDay.getDay();
-    let mm: any= toDay.getMonth()+1;
-    let yyyy: any= toDay.getFullYear();
-
-    if(dd<10){
-      dd='0'+dd;
-    }
-    if (mm<10){
-      mm='0'+mm;
-    }
-    console.log( mm+'/'+dd+'/'+yyyy);
-    return mm+'/'+dd+'/'+yyyy;
-  }
 
   onSaveLoad(){
-    this.exercise.loads.push(
+    this.exercise.charges.push(
 
-        new LoadsModel(this.exercise.loads.length,this.load,this.getToDayString())
+        new LoadsModel(this.load,new Date())
       );
-//this.exerciseServise.onExerciseAdded.next(this.exercises);
-    this.load='';
+
+    this.load = '';
    }
 
   ngOnInit() {

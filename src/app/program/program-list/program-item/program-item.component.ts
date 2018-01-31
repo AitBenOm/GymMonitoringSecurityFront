@@ -16,8 +16,7 @@ export class ProgramItemComponent implements OnInit {
   @Input() index: number;
   ngOnInit() {
    /* this.programService.exerciseToShow.emit(null);*/
-   console.log("init program-item");
-    console.log(this.authService.isAuthenticated());
+
   }
 
 }

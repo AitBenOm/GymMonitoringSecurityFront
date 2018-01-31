@@ -12,26 +12,9 @@ export class ProgramService {
   constructor(private http: HttpClient) {
   }
 
-  onProgramAdded= new EventEmitter<ProgramModel[]>();
+  onProgramAdded= new EventEmitter<ProgramModel>();
   onProgramChosen= new EventEmitter<ProgramModel>();
   exerciseToShow = new EventEmitter<ExerciseModel>();
-
-  getToDayString() {
-    let toDay = new Date();
-    let dd: any = toDay.getDay();
-    let mm: any = toDay.getMonth() ;
-    let yyyy: any = toDay.getFullYear();
-
-    if (dd < 10) {
-      dd = '0' + dd;
-    }
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
-
-    return mm + '/' + dd + '/' + yyyy;
-  }
-
 
 
 
@@ -40,8 +23,9 @@ export class ProgramService {
     this.exerciseToShow.next(exercise);
   }
 addProgram(program: ProgramModel){
-
+console.log(program);
 return this.http.post("http://localhost:8080/MyProgram" , program);
+
 }
 
 getPrograms(){

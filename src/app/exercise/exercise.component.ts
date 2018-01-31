@@ -19,7 +19,7 @@ export class ExerciseComponent implements OnInit {
      (exercise: ExerciseModel) =>{
 
        this.exercise=exercise;
-       console.log(this.exercise);
+
      }
    )
 
