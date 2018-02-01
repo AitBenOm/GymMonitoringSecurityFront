@@ -21,6 +21,7 @@ export class ProgramDetailComponent implements OnInit {
 
 
 
+
   constructor(private programService: ProgramService,
               private exerciseService: ExerciseService,
               private route: ActivatedRoute,
@@ -28,12 +29,19 @@ export class ProgramDetailComponent implements OnInit {
              ) {}
 
   ngOnInit() {
+    this.exerciseService.onExerciseAdded.subscribe(
+      (data: ExerciseModel) => {
+       this.exercises.push(data);
+      }
+    );
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
            this.programService.getProgramById(this.id).subscribe(
             (data: ProgramModel)=> {
+              console.log(data);
+              this.programService.onProgramChosen.next(data);
               this.program = data;
             }
           );
@@ -41,19 +49,13 @@ export class ProgramDetailComponent implements OnInit {
          this.exerciseService.gerMyExercise(this.id).subscribe(
            (data: ExerciseModel[]) => {
              this.exercises = data;
-
-           //  console.log((this.exercises));
-             console.log("******************************************");
-             for ( let exercise of this.exercises){
-               console.log(exercise.idExercise);
+             for ( const exercise of this.exercises){
                this.exerciseService.gerMyLoads(exercise.idExercise).subscribe(
                  (loads: LoadsModel[]) => {
                    exercise.charges= loads;
                  }
                );
                }
-
-             console.log("******************************************");
            }
          );
 

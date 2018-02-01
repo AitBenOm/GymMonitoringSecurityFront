@@ -27,6 +27,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngOnInit() {
+
 this.exerciseService.onLoadAdded.subscribe(
   (data: LoadsModel) => {
     this.exercise.charges.push(data);
