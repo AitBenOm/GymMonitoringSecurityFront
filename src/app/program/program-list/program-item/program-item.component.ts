@@ -29,6 +29,9 @@ onShowOption(){
     this.showOption = false;
   }
 }
+alert(){
+  console.log("test");
+}
   ngOnInit() {
    /* this.programService.exerciseToShow.emit(null);*/
 

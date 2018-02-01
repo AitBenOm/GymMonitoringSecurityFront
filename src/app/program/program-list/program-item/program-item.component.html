@@ -16,13 +16,13 @@
         </thead>
         <tbody>
 
-        <tr style="cursor: pointer" *ngFor="let program of programs; let i=index" [routerLink]="[program.idProgram]">
+        <tr style="cursor: pointer" *ngFor="let program of programs; let i=index" >
 
-          <td>{{program.programName}}</td>
+          <td> <a [routerLink]="[program.idProgram]"><span class="glyphicon glyphicon-log-in pull-right"></span> </a>{{program.programName}}</td>
           <td>{{program.dateOfCreation | date:'MM/dd/yy'}}  </td>
           <td>{{program.lastModification  | date:'MM/dd/yy'}}</td>
-          <td *ngIf="showOption"><a><span class="glyphicon glyphicon-trash text-danger "></span></a>
-            <a style="margin-left: 5px;"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
+          <td *ngIf="showOption"><a (click)="alert()"><span class="glyphicon glyphicon-trash text-danger "></span></a>
+            <a (click)="alert()" style="margin-left: 5px;"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
 
         </tr>
         </tbody>
