@@ -1,30 +1,35 @@
 
-<div class="input-group col-md-5 bas">
 
-  <input type="text" [(ngModel)]="programName" name="program" class="form-control" placeholder="New Program...">
-  <span class="input-group-btn ">
-        <button  (click)="onAddProgram()" (keyup.enter)="onAddProgram()"  class="btn btn-secondary glyphicon glyphicon-chevron-down droite" type="button"
-                [disabled]="programName===''"  style="margin-left: 2px;"></button>
-      </span>
-</div>
-<div class="input-group  col-md-5 bas" *ngIf="programAdded && exerciseName!=''">
+<form >
+  <div class="input-group col-md-6 bas form-group">
 
-  <input type="text" [(ngModel)]="exerciseName" name="exercise" class="form-control" placeholder="New Exercise...">
-  <span class="input-group-btn">
-        <button (click)="onAddExercise()" (keyup.enter)="onAddExercise()"  class="btn btn-secondary glyphicon  glyphicon-chevron-right droite" type="button"
-                    [disabled]="exerciseName===''" style="margin-left: 2px;"></button>
-      </span>
-</div>
-<div class="input-group  col-md-5 bas" *ngIf="exerciseAdded && exerciseName!=''">
+    <label class="control-label" for="programName">Program Name</label>
+    <input type="text" [(ngModel)]="programName" id="programName" name="programName" class="form-control" placeholder="New Program..." required>
 
-  <input type="text" [(ngModel)]="loadName" (keyup.enter)="onSaveProgram()"  name="load" class="form-control" placeholder="New Load...">
+  </div>
+  <div class="input-group  col-md-6 bas form-group" >
+    <label class="control-label" for="exerciseName">Exercise Name</label>
+    <input type="text" [(ngModel)]="exerciseName" id="exerciseName" name="exerciseName" class="form-control" placeholder="New Exercise..." required>
+    <!-- <span class="input-group-btn">
+           <button (click)="onAddExercise()" (keyup.enter)="onAddExercise()"  class="btn btn-secondary glyphicon  glyphicon-chevron-right droite" type="button"
+                       [disabled]="exerciseName===''" style="margin-left: 2px;"></button>
+         </span>-->
+  </div>
+  <div class="input-group  col-md-6 bas form-group" >
+    <label class="control-label" for="exerciseName">Loads / Duration</label>
+    <br>
+    <label class="radio-inline">
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time (min)
+    </label>
+    <label class="radio-inline">
+      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight (kg)
+    </label>
+    <input type="text" [(ngModel)]="loadName" (keyup.enter)="onSaveProgram()"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
 
-</div>
+  </div>
 
-<div class="input-group  col-md-5" *ngIf="exerciseAdded && programAdded && loadName!=''">
-  <button (click)="onSaveProgram()" class="btn btn-secondary" type="button">Add Program</button>
+  <div class="input-group  col-md-5">
+    <button [disabled]="programName==='' || exerciseName==='' || loadName==='' "  (click)="onSaveProgram()" class="btn btn-secondary" type="button">Add Program</button>
 
-</div>
-
-
-
+  </div>
+</form>

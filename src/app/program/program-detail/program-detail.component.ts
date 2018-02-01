@@ -22,6 +22,7 @@ export class ProgramDetailComponent implements OnInit {
 
 
 
+
   constructor(private programService: ProgramService,
               private exerciseService: ExerciseService,
               private route: ActivatedRoute,

@@ -9,7 +9,7 @@
         </h5>
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let load of exercise.charges">
-            <span class="badge">{{load.lastModification |  date:'E, LLL, d, y, h:mm'}}</span>
+            <span class="badge">{{load.lastModification |  date:'MM/dd/yy'}}</span>
             {{load.charge}}
           </li>
         </ul>

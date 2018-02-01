@@ -3,29 +3,48 @@
     <div class="panel-heading">
       <h3 class="panel-title">My Programs</h3>
 
-      <table class="table">
+      <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">#</th>
+
           <th scope="col">Progrm Name</th>
           <th scope="col">Creation Date</th>
           <th scope="col">Last Modification</th>
+          <th *ngIf="showOption" scope="col">Option</th>
 
         </tr>
         </thead>
         <tbody>
 
-        <tr style="cursor: pointer" *ngFor="let program of programs; let i=index">
-          <th scope="row">{{program.idProgram}}</th>
-          <td><a [routerLink]="[program.idProgram]">{{program.programName}}</a></td>
-          <td>{{program.dateOfCreation | date:'E, LLL, d, y, h:mm'}}  </td>
-          <td>{{program.lastModification  | date:'E, LLL, d, y, h:mm'}}</td>
+        <tr style="cursor: pointer" *ngFor="let program of programs; let i=index" [routerLink]="[program.idProgram]">
+
+          <td>{{program.programName}}</td>
+          <td>{{program.dateOfCreation | date:'MM/dd/yy'}}  </td>
+          <td>{{program.lastModification  | date:'MM/dd/yy'}}</td>
+          <td *ngIf="showOption"><a><span class="glyphicon glyphicon-trash text-danger "></span></a>
+            <a style="margin-left: 5px;"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
 
         </tr>
         </tbody>
       </table>
-
-      <app-add-program *ngIf="true"></app-add-program>
+      <a *ngIf="!showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
+        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info"></span>
+        Add
+      </a>
+      <a *ngIf="showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
+        <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
+        Cancel
+      </a>
+      <a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
+        <span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>
+        Hide Option
+      </a>
+      <a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
+        <span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>
+        More Options
+      </a>
+<!--<a class="glyphicon glyphicon-list" (click)="onShowForm()">  Add Program</a>-->
+      <app-add-program *ngIf="showForm"></app-add-program>
 
     </div>
   </div>

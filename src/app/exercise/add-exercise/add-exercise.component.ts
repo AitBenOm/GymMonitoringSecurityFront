@@ -30,6 +30,7 @@ program: ProgramModel;
 
     const exercise = new ExerciseModel(this.exerciseName, []);
     const load = new LoadsModel(this.loadName, new Date());
+
     this.exerciseService.addExercise(exercise, this.program.idProgram.toString())
       .subscribe(
         (exerciseData: ExerciseModel) => {
@@ -39,6 +40,7 @@ program: ProgramModel;
             .subscribe(
               (loadData: LoadsModel) => {
                 console.log(loadData);
+                this.exerciseService.onLoadAdded.next(loadData);
               }, error2 => {console.log(error2); }
             );
         }, error2 => {
@@ -48,7 +50,7 @@ program: ProgramModel;
     this.exerciseName = '';
     this.loadName = '';
     this.exerciseAdded = false;
-    this.exerciseService.onExerciseAdded.next(exercise);
+//    this.exerciseService.onExerciseAdded.next(exercise);
   }
   ngOnInit() {
     console.log("********** INITILIZE ADD-EXERCISE **************");

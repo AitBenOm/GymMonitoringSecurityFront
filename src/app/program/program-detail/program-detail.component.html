@@ -2,7 +2,7 @@
   <div id="tasksPanel" class="panel panel-default">
     <div class="panel-heading" *ngIf="exercises!=null;">
       <h3 class="panel-title">My Execrcises         {{   program.programName| uppercase}}</h3>
-      <table class="table">
+      <table class="table table-striped">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -18,12 +18,12 @@
           <th scope="row">{{exercise.idExercise}}</th>
           <td>{{exercise.exerciseName}}</td>
           <!--<td>{{exercise.exerciseName}}</td>-->
-          <td>{{exercise.charges[exercise.charges.length-1].charge}} <a class="glyphicon glyphicon-list" (click)="onShowDetail(exercise)"></a></td>
+          <td class="pull-right">{{exercise.charges[exercise.charges.length-1].charge}} <a class="glyphicon glyphicon-list" (click)="onShowDetail(exercise)"></a></td>
 
         </tr>
         </tbody>
       </table>
-
+      <div class="col-md-2"></div>
       <app-add-exercise [exercises]="exercises"></app-add-exercise>
 
       </div>
