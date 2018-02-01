@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ExerciseModel} from "../exercise-model";
 import {LoadsModel} from "../loads-model";
+import {ExerciseService} from '../exercise.service';
 
 @Component({
   selector: 'app-add-load',
@@ -9,17 +10,24 @@ import {LoadsModel} from "../loads-model";
 })
 export class AddLoadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private exerciseService: ExerciseService) { }
   @Input() exercise: ExerciseModel;
-  load: string='';
+  load: string = '';
 
   onSaveLoad(){
-    this.exercise.charges.push(
+    const load = new LoadsModel(this.load, new Date());
+    this.exerciseService.addLoad(load, this.exercise.idExercise.toString())
+      .subscribe(
+        (data: LoadsModel) => {
 
-        new LoadsModel(this.load,new Date())
+          console.log(data);
+        }, error =>{
+          console.log(error);
+        }
       );
 
     this.load = '';
+    this.exerciseService.onLoadAdded.next(load);
    }
 
   ngOnInit() {

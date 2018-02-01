@@ -1,18 +1,18 @@
 <div class="input-group  bas">
 
-  <input type="text" [(ngModel)]="exerciseTitle" name="exercise" class="form-control" placeholder="New Exercise...">
+  <input type="text" [(ngModel)]="exerciseName" name="exercise" class="form-control" placeholder="New Exercise...">
   <span class="input-group-btn">
         <button (click)="onAddExercise()" (keyup.enter)="onAddExercise()"  class="btn btn-secondary glyphicon  glyphicon-chevron-right droite" type="button"
-                [disabled]="exerciseTitle===''" style="margin-left: 2px;"></button>
+                [disabled]="exerciseName===''" style="margin-left: 2px;"></button>
       </span>
 </div>
-<div class="input-group bas" *ngIf="exerciseAdded && exerciseTitle!=''">
+<div class="input-group bas" *ngIf="exerciseAdded && exerciseName!=''">
 
-  <input type="text" [(ngModel)]="load" (keyup.enter)="onSaveProgram()"  name="load" class="form-control" placeholder="New Load...">
+  <input type="text" [(ngModel)]="loadName" (keyup.enter)="onSaveProgram()"  name="load" class="form-control" placeholder="New Load...">
 
 </div>
 
-<div class="input-group  col-md-5" *ngIf="exerciseAdded && load!=''">
+<div class="input-group  col-md-5" *ngIf="exerciseAdded && loadName!=''">
   <button (click)="onSaveExercise()" class="btn btn-secondary" type="button">Add Exercise</button>
 
 </div>

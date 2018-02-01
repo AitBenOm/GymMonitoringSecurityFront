@@ -11,6 +11,7 @@ export class ExerciseService {
   constructor(private http: HttpClient) { }
   exercise: ExerciseModel;
   onExerciseAdded= new Subject();
+  onLoadAdded= new Subject();
 
 
 
@@ -28,6 +29,10 @@ return this.http.get("http://localhost:8080/MyLoads?idExercise="+idExercise);
     return this.http.post("http://localhost:8080/MyExercise" , exercise, {
       params : new HttpParams().set('idProgram', idProgram)
     } );
+
+  }
+
+  addLoadToExercise(){
 
   }
 

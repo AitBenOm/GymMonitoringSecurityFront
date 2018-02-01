@@ -10,18 +10,35 @@ import {ExerciseService} from "../exercise.service";
 })
 export class AddExerciseComponent implements OnInit {
 
-  constructor(private exerciseServise: ExerciseService) { }
+  constructor(private exerciseService: ExerciseService) { }
 
   @Input() exercises: ExerciseModel[];
 
-  exerciseTitle: string='';
-  load: string='';
+  exerciseName: string='';
+  loadName: string='';
   exerciseAdded: boolean=false;
 
   getToDayString(){
 
   }
   onAddExercise(){
+    const exercise = new ExerciseModel(this.exerciseName, []);
+    const load = new LoadsModel(this.loadName, new Date());
+    this.exerciseService.addExercise(exercise, this.exercises[0].)
+      .subscribe(
+        (exerciseData: ExerciseModel) => {
+          exercise.idExercise = exerciseData.idExercise;
+          console.log(exerciseData);
+          this.exerciseService.addLoad(load, exercise.idExercise.toString())
+            .subscribe(
+              (loadData: LoadsModel) => {
+                console.log(loadData);
+              }, error2 => {console.log(error2);}
+            );
+        }, error2 => {
+          console.log(error2);
+        }
+      );
     this.exerciseAdded=true;
   }
   onSaveExercise(){
