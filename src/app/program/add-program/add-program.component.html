@@ -16,20 +16,20 @@
          </span>-->
   </div>
   <div class="input-group  col-md-6 bas form-group" >
-    <label class="control-label" for="exerciseName">Loads / Duration</label>
+    <label class="control-label" for="exerciseName">Load (kg) / Duration (min)</label>
     <br>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time (min)
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)" required> Time
     </label>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight (kg)
+      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)" required> Weight
     </label>
     <input type="text" [(ngModel)]="loadName" (keyup.enter)="onSaveProgram()"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
 
   </div>
 
   <div class="input-group  col-md-5">
-    <button [disabled]="programName==='' || exerciseName==='' || loadName==='' "  (click)="onSaveProgram()" class="btn btn-secondary" type="button">Add Program</button>
+    <button [disabled]="programName==='' || exerciseName==='' || loadName===''"  (click)="onSaveProgram()" class="btn btn-info" type="submit">Add Program</button>
 
   </div>
 </form>

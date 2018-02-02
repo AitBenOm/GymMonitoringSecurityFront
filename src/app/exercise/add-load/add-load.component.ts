@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ExerciseModel} from "../exercise-model";
 import {LoadsModel} from "../loads-model";
 import {ExerciseService} from '../exercise.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-load',
@@ -10,12 +11,13 @@ import {ExerciseService} from '../exercise.service';
 })
 export class AddLoadComponent implements OnInit {
 
-  constructor(private exerciseService: ExerciseService) { }
+  constructor(private exerciseService: ExerciseService, private router: Router) { }
   @Input() exercise: ExerciseModel;
   load: string = '';
+  loadType: string ='';
 
   onSaveLoad(){
-    const load = new LoadsModel(this.load, new Date());
+    const load = new LoadsModel(this.load+" "+this.loadType, new Date());
     this.exerciseService.addLoad(load, this.exercise.idExercise.toString())
       .subscribe(
         (data: LoadsModel) => {
@@ -28,6 +30,7 @@ export class AddLoadComponent implements OnInit {
 
     this.load = '';
     this.exerciseService.onLoadAdded.next(load);
+    this.router.navigate(['/program']);
    }
 
   ngOnInit() {

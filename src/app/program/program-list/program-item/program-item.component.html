@@ -1,28 +1,27 @@
 <div class="wrapper">
-  <div id="tasksPanel" class="panel panel-default">
+  <div id="tasksPanel" class="panel panel-default alert-info">
     <div class="panel-heading">
       <h3 class="panel-title">My Programs</h3>
 
-      <table class="table table-striped">
+      <table class="table table-striped text-center">
         <thead>
         <tr>
 
-          <th scope="col">Progrm Name</th>
-          <th scope="col">Creation Date</th>
-          <th scope="col">Last Modification</th>
+          <th scope="col">Progrm</th>
+          <th scope="col">Created</th>
+          <th scope="col">Modificated</th>
           <th *ngIf="showOption" scope="col">Option</th>
 
         </tr>
         </thead>
         <tbody>
 
-        <tr style="cursor: pointer" *ngFor="let program of programs; let i=index" >
-
-          <td> <a [routerLink]="[program.idProgram]"><span class="glyphicon glyphicon-log-in pull-right"></span> </a>{{program.programName}}</td>
+        <tr style="cursor: pointer"  *ngFor="let program of programs;"  [routerLink]="[program.idProgram]">
+          <td>{{program.programName}}</td>
           <td>{{program.dateOfCreation | date:'MM/dd/yy'}}  </td>
           <td>{{program.lastModification  | date:'MM/dd/yy'}}</td>
-          <td *ngIf="showOption"><a (click)="alert()"><span class="glyphicon glyphicon-trash text-danger "></span></a>
-            <a (click)="alert()" style="margin-left: 5px;"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
+          <td *ngIf="showOption"><a style="cursor: pointer" (click)="alert()"><span class="glyphicon glyphicon-trash text-danger pull-right "></span></a>
+            <a  (click)="alert()" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary pull-right"></span></a></td>
 
         </tr>
         </tbody>
@@ -37,11 +36,11 @@
       </a>
       <a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
         <span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>
-        Hide Option
+        Option
       </a>
       <a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
         <span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>
-        More Options
+        Options
       </a>
 <!--<a class="glyphicon glyphicon-list" (click)="onShowForm()">  Add Program</a>-->
       <app-add-program *ngIf="showForm"></app-add-program>

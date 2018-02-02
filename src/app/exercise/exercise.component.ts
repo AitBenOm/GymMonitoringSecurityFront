@@ -13,23 +13,30 @@ import {LoadsModel} from './loads-model';
 export class ExerciseComponent implements OnInit {
 
   exercise: ExerciseModel;
-  subsrciption: Subscription;
+  showForm: boolean=false;
+  showOption: boolean = false;
+
   constructor(private programService: ProgramService, private exerciseService: ExerciseService) {
-
-   this.programService.exerciseToShow.subscribe(
-     (exercise: ExerciseModel) =>{
-
-       this.exercise=exercise;
-
-     }
-   );
-
+    this.programService.onProgramChanged.subscribe(
+      (data)=> {
+        this.exercise = null;
+      }
+    );
   }
 
+
+
   ngOnInit() {
+    this.programService.exerciseToShow.subscribe(
+      (exercise: ExerciseModel) =>{
+// console.log(exercise);
+        this.exercise = exercise;
+
+      }
+    );
     this.exerciseService.onExerciseAdded.subscribe(
       (data: ExerciseModel) => {
-        console.log(data);
+        // console.log(data);
       }
     );
 this.exerciseService.onLoadAdded.subscribe(
@@ -37,11 +44,28 @@ this.exerciseService.onLoadAdded.subscribe(
     this.exercise.charges.push(data);
   }
 );
-this.programService.onProgramChosen.subscribe(
+this.exerciseService.onProgramLoaded.subscribe(
   () =>{
+    // console.log(this.exercise!=null);
     this.exercise=null;
     }
-)
+);
+  }
+
+
+  onShowForm() {
+    if (this.showForm === false ) {
+      this.showForm = true;
+    } else {
+      this.showForm = false;
+    }
+  }
+  onShowOption(){
+    if (this.showOption === false ) {
+      this.showOption = true;
+    } else {
+      this.showOption = false;
+    }
   }
 
 }

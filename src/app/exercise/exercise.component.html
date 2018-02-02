@@ -8,13 +8,34 @@
           {{exercise.exerciseName}}
         </h5>
         <ul class="list-group">
+
           <li class="list-group-item" *ngFor="let load of exercise.charges">
-            <span class="badge">{{load.lastModification |  date:'MM/dd/yy'}}</span>
-            {{load.charge}}
+            {{load.charge}} <span style="background-color: lightblue; color: #635d5d" class="badge ">{{load.lastModification |  date:'MM/dd/yy'  }} {{" "}}   <span *ngIf="showOption">
+              <a style="cursor: pointer" (click)="alert()" class="glyphicon glyphicon-trash text-danger "></a>
+            <a class="glyphicon glyphicon-edit text-primary "  (click)="alert()" style="padding-left: 10px; cursor: pointer"> </a>
+            </span></span>
+
+
+
           </li>
         </ul>
       </div>
-      <app-add-load [exercise]="exercise"></app-add-load>
+<div class="row">
+
+  <a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
+    <span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>
+    Options
+  </a>
+  <a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
+    <span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>
+    Options
+  </a>
+
+</div>
+
+
+        <app-add-load [exercise]="exercise"></app-add-load>
+
     </div>
 
   </div>

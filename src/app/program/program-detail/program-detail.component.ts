@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ProgramService} from '../program.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ProgramModel} from '../program-model';
@@ -18,30 +18,39 @@ export class ProgramDetailComponent implements OnInit {
   id: number;
   program: ProgramModel;
   exercises: ExerciseModel[];
+  myLastLoad: string;
+  showForm: boolean=false;
+  showOption: boolean = false;
 
 
 
 
 
   constructor(private programService: ProgramService,
+              private router: Router,
               private exerciseService: ExerciseService,
               private route: ActivatedRoute,
 
              ) {}
 
   ngOnInit() {
+
     this.exerciseService.onExerciseAdded.subscribe(
       (data: ExerciseModel) => {
+     //   console.log(data);
        this.exercises.push(data);
+      // console.log(data.charges[data.charges.length-1]);
       }
     );
     this.route.params
       .subscribe(
         (params: Params) => {
+          console.log("Details Changed");
+          this.programService.onProgramChanged.next(null);
           this.id = +params['id'];
            this.programService.getProgramById(this.id).subscribe(
             (data: ProgramModel)=> {
-              console.log(data);
+           //   console.log(data);
               this.programService.onProgramChosen.next(data);
               this.program = data;
             }
@@ -53,14 +62,15 @@ export class ProgramDetailComponent implements OnInit {
              for ( const exercise of this.exercises){
                this.exerciseService.gerMyLoads(exercise.idExercise).subscribe(
                  (loads: LoadsModel[]) => {
-                   exercise.charges= loads;
+                   exercise.charges = loads;
+                   this.myLastLoad = loads[loads.length - 1].charge;
                  }
                );
                }
            }
          );
 
-          this.programService.exerciseToShow.next(null);
+
         }
       );
 /*this.subscription= this.exerciseService.onExerciseAdded.subscribe(
@@ -68,11 +78,28 @@ export class ProgramDetailComponent implements OnInit {
     this.program.exercises.push(exercises[exercises.length-1]);
   }
 )*/
-
+this.router.navigate(['/program', this.id]);
   }
   onShowDetail(exercise: ExerciseModel) {
-    console.log('program-detail ' + exercise.exerciseName);
+ //   console.log('program-detail ' + exercise.exerciseName);
    this.programService.showDetailExercise(exercise);
   }
+
+
+  onShowForm() {
+    if (this.showForm === false ) {
+      this.showForm = true;
+    } else {
+      this.showForm = false;
+    }
+  }
+  onShowOption(){
+    if (this.showOption === false ) {
+      this.showOption = true;
+    } else {
+      this.showOption = false;
+    }
+  }
+
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ProgramModel} from "../../program-model";
 import {ProgramService} from "../../program.service";
 import {AuthService} from "../../../Auth/auth.service";
@@ -12,7 +12,7 @@ export class ProgramItemComponent implements OnInit {
   @Input() programs: ProgramModel;
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private programService:ProgramService) { }
 showForm: boolean=false;
   showOption: boolean = false;
   onShowForm() {
@@ -29,12 +29,14 @@ onShowOption(){
     this.showOption = false;
   }
 }
-alert(){
-  console.log("test");
-}
-  ngOnInit() {
+  ngOnInit(){
    /* this.programService.exerciseToShow.emit(null);*/
-
+this.programService.onProgramAdded.subscribe(
+  (data:any) =>{
+    this.showForm = false;
   }
+);
+  }
+
 
 }

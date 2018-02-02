@@ -1,10 +1,19 @@
-<div class="input-group  bas">
+<form >
+  <div class="input-group    form-group" >
+    <label class="control-label">Loads (kg) / Duration (min)</label>
+    <br>
+    <label class="radio-inline">
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time
+    </label>
+    <label class="radio-inline">
+      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight
+    </label>
+    <input type="text" [(ngModel)]="load"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
 
-  <input type="text" [(ngModel)]="load" name="load" (keyup.enter)="alert(test)" class="form-control" placeholder="New Load...">
+  </div>
+  <div class="input-group  col-md-5">
+    <button [disabled]="load==='' || loadType==='' "  (click)="onSaveLoad()" class="btn btn-info" type="button">Add Program</button>
 
-</div>
+  </div>
+</form>
 
-<div class="input-group  col-md-5" *ngIf="load!=''">
-  <button (click)="onSaveLoad()" class="btn btn-secondary" type="button">Add Exercise</button>
-
-</div>

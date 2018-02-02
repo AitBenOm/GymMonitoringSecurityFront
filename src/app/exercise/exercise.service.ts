@@ -10,7 +10,8 @@ export class ExerciseService {
 
   constructor(private http: HttpClient) { }
   exercise: ExerciseModel;
-  onExerciseAdded= new Subject();
+  onExerciseAdded= new EventEmitter<ExerciseModel>();
+  onProgramLoaded = new EventEmitter<null>();
   onLoadAdded= new Subject();
 
 

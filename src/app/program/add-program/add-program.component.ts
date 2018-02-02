@@ -16,10 +16,10 @@ export class AddProgramComponent implements OnInit {
   constructor(
     private programService: ProgramService,
     private exerciseService: ExerciseService) { }
-  programName: string;
-  exerciseName: string;
-  loadName: string;
-  loadType: string
+  programName: string='';
+  exerciseName: string ='';
+  loadName: string ='';
+  loadType: string =''
 
   programAdded = false;
   exerciseAdded = false;
@@ -44,7 +44,7 @@ onSaveProgram () {
 
     const program = new ProgramModel(this.programName, new Date(),  new Date(), []);
     const exercise = new ExerciseModel(this.exerciseName, []);
-    const load = new LoadsModel(this.loadName + " " + this.loadType , new Date());
+    const load = new LoadsModel(this.loadName + "*" + this.loadType , new Date());
    this.programService.addProgram(program)
      .subscribe(
       (programData: ProgramModel) => {
@@ -73,10 +73,10 @@ onSaveProgram () {
   this.programName = '';
   this.loadName = '';
   this.exerciseName = '';
-
   this.programAdded = false;
   this.exerciseAdded = false;
 
   this.programService.onProgramAdded.next(program);
+
   }
 }

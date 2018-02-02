@@ -14,6 +14,7 @@ export class ProgramService {
 
   onProgramAdded= new EventEmitter<ProgramModel>();
   onProgramChosen= new EventEmitter<ProgramModel>();
+  onProgramChanged= new EventEmitter<ProgramModel>();
   exerciseToShow = new EventEmitter<ExerciseModel>();
 
 

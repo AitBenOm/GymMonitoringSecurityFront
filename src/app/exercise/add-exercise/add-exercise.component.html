@@ -1,18 +1,31 @@
-<div class="input-group  bas">
 
-  <input type="text" [(ngModel)]="exerciseName" name="exercise" class="form-control" placeholder="New Exercise...">
-  <span class="input-group-btn">
-        <button (click)="onAddExercise()" (keyup.enter)="onAddExercise()"  class="btn btn-secondary glyphicon  glyphicon-chevron-right droite" type="button"
-                [disabled]="exerciseName===''" style="margin-left: 2px;"></button>
-      </span>
-</div>
-<div class="input-group bas" *ngIf="exerciseAdded && exerciseName!=''">
 
-  <input type="text" [(ngModel)]="loadName" (keyup.enter)="onSaveProgram()"  name="load" class="form-control" placeholder="New Load...">
+<form >
 
-</div>
+  <div class="input-group   form-group" >
+    <label class="control-label" for="exerciseName">Exercise Name</label>
+    <input type="text" [(ngModel)]="exerciseName" id="exerciseName" name="exerciseName" class="form-control" placeholder="New Exercise..." required>
+    <!-- <span class="input-group-btn">
+           <button (click)="onAddExercise()" (keyup.enter)="onAddExercise()"  class="btn btn-secondary glyphicon  glyphicon-chevron-right droite" type="button"
+                       [disabled]="exerciseName===''" style="margin-left: 2px;"></button>
+         </span>-->
+  </div>
+  <div class="input-group    form-group" >
+    <label class="control-label" for="exerciseName">Loads / Duration</label>
+    <br>
+    <label class="radio-inline">
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time (min)
+    </label>
+    <label class="radio-inline">
+      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight (kg)
+    </label>
+    <input type="text" [(ngModel)]="loadName"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
 
-<div class="input-group  col-md-5" *ngIf="exerciseAdded && loadName!=''">
-  <button (click)="onSaveExercise()" class="btn btn-secondary" type="button">Add Exercise</button>
+  </div>
 
-</div>
+  <div class="input-group  col-md-5">
+    <button [disabled]="exerciseName==='' || loadName==='' "  (click)="onSaveExercise()" class="btn btn-info" type="button">Add Program</button>
+
+  </div>
+</form>
+

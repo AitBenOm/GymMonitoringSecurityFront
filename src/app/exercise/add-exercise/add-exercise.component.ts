@@ -4,6 +4,7 @@ import {LoadsModel} from '../loads-model';
 import {ExerciseService} from '../exercise.service';
 import {ProgramService} from '../../program/program.service';
 import {ProgramModel} from '../../program/program-model';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-exercise',
@@ -12,26 +13,25 @@ import {ProgramModel} from '../../program/program-model';
 })
 export class AddExerciseComponent implements OnInit {
 
-  constructor(private exerciseService: ExerciseService, private programService: ProgramService) { }
+  constructor(private exerciseService: ExerciseService, private router: Router) { }
 
   @Input() exercises: ExerciseModel[];
+  @Input() idProgram: number;
 program: ProgramModel;
   exerciseName = '';
   loadName = '';
+  loadType: string = '';
   exerciseAdded = false;
 
-  getToDayString() {
 
-  }
   onAddExercise() {
    this.exerciseAdded = true;
   }
   onSaveExercise() {
 
     const exercise = new ExerciseModel(this.exerciseName, []);
-    const load = new LoadsModel(this.loadName, new Date());
-
-    this.exerciseService.addExercise(exercise, this.program.idProgram.toString())
+    const load = new LoadsModel(this.loadName+" "+this.loadType, new Date());
+    this.exerciseService.addExercise(exercise, this.idProgram.toString())
       .subscribe(
         (exerciseData: ExerciseModel) => {
           exercise.idExercise = exerciseData.idExercise;
@@ -50,16 +50,11 @@ program: ProgramModel;
     this.exerciseName = '';
     this.loadName = '';
     this.exerciseAdded = false;
-//    this.exerciseService.onExerciseAdded.next(exercise);
+   this.exerciseService.onExerciseAdded.next(exercise);
+   this.router.navigate(['/program', this.idProgram]);
   }
   ngOnInit() {
-    console.log("********** INITILIZE ADD-EXERCISE **************");
-    this.programService.onProgramChosen.subscribe(
-      (data: ProgramModel) => {
-        this.program = data;
-        console.log(this.program.programName);
-      }
-    );
+
   }
 
 }
