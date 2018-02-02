@@ -22,6 +22,9 @@ return this.http.get("http://localhost:8080/MyExercises?idProgram="+idProgram);
 gerMyLoads(idExercise: number){
 return this.http.get("http://localhost:8080/MyLoads?idExercise="+idExercise);
 }
+gerLoadById(idLoad: number){
+return this.http.get("http://localhost:8080/MyLoad/"+idLoad);
+}
 
   addExercise(exercise: ExerciseModel, programId: string){
     console.log(programId);

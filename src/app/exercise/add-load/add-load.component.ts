@@ -16,6 +16,9 @@ export class AddLoadComponent implements OnInit {
   load: string = '';
   loadType: string ='';
 
+  @Input()   loadToUpdate: LoadsModel;
+  @Input()   updateMode: boolean;
+
   onSaveLoad(){
     const load = new LoadsModel(this.load+" "+this.loadType, new Date());
     this.exerciseService.addLoad(load, this.exercise.idExercise.toString())
@@ -31,6 +34,10 @@ export class AddLoadComponent implements OnInit {
     this.load = '';
     this.exerciseService.onLoadAdded.next(load);
     this.router.navigate(['/program']);
+   }
+
+   onUpdateLoad(load: LoadsModel){
+
    }
 
   ngOnInit() {

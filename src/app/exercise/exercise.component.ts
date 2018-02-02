@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ExerciseService} from "./exercise.service";
 import {ExerciseModel} from "./exercise-model";
 import {ProgramService} from "../program/program.service";
@@ -15,6 +15,9 @@ export class ExerciseComponent implements OnInit {
   exercise: ExerciseModel;
   showForm: boolean=false;
   showOption: boolean = false;
+  loadToUpdate: LoadsModel;
+  updateMode: boolean;
+
 
   constructor(private programService: ProgramService, private exerciseService: ExerciseService) {
     this.programService.onProgramChanged.subscribe(
@@ -53,12 +56,18 @@ this.exerciseService.onProgramLoaded.subscribe(
   }
 
 
-  onShowForm() {
+
+  onEditLoad(idLoad: number){
+    console.log(idLoad);
     if (this.showForm === false ) {
       this.showForm = true;
-    } else {
-      this.showForm = false;
     }
+    this.exerciseService.gerLoadById(idLoad).subscribe(
+      (data: LoadsModel) =>{
+        this.loadToUpdate=data;
+        this.updateMode=true
+      }
+    );
   }
   onShowOption(){
     if (this.showOption === false ) {
