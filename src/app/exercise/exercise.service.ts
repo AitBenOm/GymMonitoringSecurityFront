@@ -42,9 +42,7 @@ return this.http.get("http://localhost:8080/MyLoad/"+idLoad);
     return this.http.put("http://localhost:8080/MyLoad", load);
   }
   deleteLoad(idLoad: number){
-    return this.http.delete("http://localhost:8080/MyLoad",{
-      params : new HttpParams().set('idLoad', idLoad.toString())
-    });
+    return this.http.delete("http://localhost:8080/MyLoads/" + idLoad);
   }
 
   addLoad(load: LoadsModel, exerciseId: string){
