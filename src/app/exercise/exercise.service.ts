@@ -12,7 +12,9 @@ export class ExerciseService {
   exercise: ExerciseModel;
   onExerciseAdded= new EventEmitter<ExerciseModel>();
   onProgramLoaded = new EventEmitter<null>();
-  onLoadAdded= new Subject();
+  onLoadUpdated= new EventEmitter<LoadsModel>();
+  onLoadAdded= new EventEmitter<LoadsModel>();
+  onLoadDeleted= new EventEmitter<null>();
 
 
 
@@ -36,8 +38,13 @@ return this.http.get("http://localhost:8080/MyLoad/"+idLoad);
 
   }
 
-  addLoadToExercise(){
-
+  updateLoad(load: LoadsModel){
+    return this.http.put("http://localhost:8080/MyLoad", load);
+  }
+  deleteLoad(idLoad: number){
+    return this.http.delete("http://localhost:8080/MyLoad",{
+      params : new HttpParams().set('idLoad', idLoad.toString())
+    });
   }
 
   addLoad(load: LoadsModel, exerciseId: string){

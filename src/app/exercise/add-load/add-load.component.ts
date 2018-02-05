@@ -33,11 +33,19 @@ export class AddLoadComponent implements OnInit {
 
     this.load = '';
     this.exerciseService.onLoadAdded.next(load);
-    this.router.navigate(['/program']);
+
    }
 
    onUpdateLoad(load: LoadsModel){
-
+    load.charge = load.charge + " " + this.loadType;
+    load.lastModification= new Date();
+  this.exerciseService.updateLoad(load)
+    .subscribe(
+      (data: LoadsModel) => {
+        this.exerciseService.onLoadUpdated.next(data);
+        console.log(data);
+      }, error2 => console.log(error2)
+    );
    }
 
   ngOnInit() {

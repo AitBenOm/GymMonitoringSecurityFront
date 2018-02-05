@@ -40,7 +40,7 @@ program: ProgramModel;
             .subscribe(
               (loadData: LoadsModel) => {
                 console.log(loadData);
-                this.exerciseService.onLoadAdded.next(loadData);
+                this.exerciseService.onLoadUpdated.next(loadData);
               }, error2 => {console.log(error2); }
             );
         }, error2 => {

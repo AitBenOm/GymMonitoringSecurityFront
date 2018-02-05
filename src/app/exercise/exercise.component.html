@@ -11,7 +11,7 @@
 
           <li class="list-group-item" *ngFor="let load of exercise.charges">
             {{load.charge}} <span style="background-color: lightblue; color: #635d5d" class="badge ">{{load.lastModification |  date:'MM/dd/yy'  }} {{" "}}   <span *ngIf="showOption">
-              <a style="cursor: pointer" (click)="alert()" class="glyphicon glyphicon-trash text-danger "></a>
+              <a style="cursor: pointer" (click)="onDeleteLoad(load)" class="glyphicon glyphicon-trash text-danger "></a>
             <a class="glyphicon glyphicon-edit text-primary "  (click)="onEditLoad(load.idLoad)" style="padding-left: 5px; cursor: pointer"> </a>
             </span></span>
 

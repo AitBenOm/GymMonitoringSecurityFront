@@ -13,9 +13,8 @@ import {LoadsModel} from './loads-model';
 export class ExerciseComponent implements OnInit {
 
   exercise: ExerciseModel;
-  showForm: boolean=false;
   showOption: boolean = false;
-  loadToUpdate: LoadsModel;
+  loadToUpdate: LoadsModel=null;
   updateMode: boolean;
 
 
@@ -23,6 +22,8 @@ export class ExerciseComponent implements OnInit {
     this.programService.onProgramChanged.subscribe(
       (data)=> {
         this.exercise = null;
+        this.updateMode=false;
+        this.loadToUpdate=null;
       }
     );
   }
@@ -42,9 +43,25 @@ export class ExerciseComponent implements OnInit {
         // console.log(data);
       }
     );
+
 this.exerciseService.onLoadAdded.subscribe(
   (data: LoadsModel) => {
     this.exercise.charges.push(data);
+  }
+);
+this.exerciseService.onLoadUpdated.subscribe(
+  (data: LoadsModel) => {
+    this.exerciseService.gerMyLoads(this.exercise.idExercise)
+      .subscribe(
+        (dataLoad: LoadsModel[]) => {
+          this.exercise.charges= dataLoad;
+        }
+      );
+
+    this.loadToUpdate=null;
+    this.updateMode=false;
+    this.showOption=false;
+
   }
 );
 this.exerciseService.onProgramLoaded.subscribe(
@@ -59,9 +76,7 @@ this.exerciseService.onProgramLoaded.subscribe(
 
   onEditLoad(idLoad: number){
     console.log(idLoad);
-    if (this.showForm === false ) {
-      this.showForm = true;
-    }
+
     this.exerciseService.gerLoadById(idLoad).subscribe(
       (data: LoadsModel) =>{
         this.loadToUpdate=data;
@@ -69,10 +84,25 @@ this.exerciseService.onProgramLoaded.subscribe(
       }
     );
   }
+
+  onDeleteLoad(load: LoadsModel){
+
+    this.exerciseService.deleteLoad(load.idLoad).subscribe(
+      (data) => {
+        const n =    this.exercise.charges.indexOf(load);
+        this.exercise.charges.slice(n, 1);
+      }
+
+    );
+
+  }
   onShowOption(){
     if (this.showOption === false ) {
+
       this.showOption = true;
     } else {
+      this.loadToUpdate=null;
+      this.updateMode=false;
       this.showOption = false;
     }
   }

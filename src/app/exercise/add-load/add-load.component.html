@@ -19,6 +19,7 @@
 
 <form *ngIf="updateMode" >
 <h4>Updating  Mode</h4>
+  <h4>{{loadToUpdate.idLoad}}</h4>
   <div class="input-group    form-group" >
     <label class="control-label">Loads (kg) / Duration (min)</label>
     <br>
@@ -32,7 +33,7 @@
 
   </div>
   <div class="input-group  col-md-5">
-    <button [disabled]="load==='' || loadType==='' "  (click)="onSaveLoad()" class="btn btn-info" type="button">Update</button>
+    <button [disabled]="loadToUpdate.charge==='' || loadType==='' "  (click)="onUpdateLoad(loadToUpdate)" class="btn btn-info" type="button">Update</button>
 
   </div>
 </form>
