@@ -12,10 +12,11 @@ export class ProgramService {
   constructor(private http: HttpClient) {
   }
 
-  onProgramAdded= new EventEmitter<ProgramModel>();
-  onProgramChosen= new EventEmitter<ProgramModel>();
-  onProgramChanged= new EventEmitter<ProgramModel>();
-  exerciseToShow = new EventEmitter<ExerciseModel>();
+  onProgramAdded= new Subject<ProgramModel>();
+  onProgramChosen= new Subject<ProgramModel>();
+  onProgramChanged= new Subject<ProgramModel>();
+  onProgramUpdated= new Subject<ProgramModel>();
+  exerciseToShow = new Subject<ExerciseModel>();
 
 
 
@@ -26,6 +27,11 @@ export class ProgramService {
 addProgram(program: ProgramModel){
 console.log(program);
 return this.http.post("http://localhost:8080/MyProgram" , program);
+
+}
+updateProgram(program: ProgramModel){
+console.log(program);
+return this.http.put("http://localhost:8080/MyProgram" , program);
 
 }
 

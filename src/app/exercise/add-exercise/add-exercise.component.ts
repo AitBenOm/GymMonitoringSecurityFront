@@ -13,24 +13,23 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AddExerciseComponent implements OnInit {
 
-  constructor(private exerciseService: ExerciseService, private router: Router) { }
+  constructor(private exerciseService: ExerciseService, private router: Router, private programService: ProgramService) {
+  }
 
   @Input() exercises: ExerciseModel[];
   @Input() idProgram: number;
-program: ProgramModel;
+  @Input() exerciseToUpdate: ExerciseModel;
+  @Input() updateMode: boolean;
+  program: ProgramModel;
   exerciseName = '';
   loadName = '';
   loadType: string = '';
   exerciseAdded = false;
 
-
-  onAddExercise() {
-   this.exerciseAdded = true;
-  }
   onSaveExercise() {
 
     const exercise = new ExerciseModel(this.exerciseName, []);
-    const load = new LoadsModel(this.loadName+" "+this.loadType, new Date());
+    const load = new LoadsModel(this.loadName + " " + this.loadType, new Date());
     this.exerciseService.addExercise(exercise, this.idProgram.toString())
       .subscribe(
         (exerciseData: ExerciseModel) => {
@@ -41,7 +40,9 @@ program: ProgramModel;
               (loadData: LoadsModel) => {
                 console.log(loadData);
                 this.exerciseService.onLoadUpdated.next(loadData);
-              }, error2 => {console.log(error2); }
+              }, error2 => {
+                console.log(error2);
+              }
             );
         }, error2 => {
           console.log(error2);
@@ -50,11 +51,36 @@ program: ProgramModel;
     this.exerciseName = '';
     this.loadName = '';
     this.exerciseAdded = false;
-   this.exerciseService.onExerciseAdded.next(exercise);
-   this.router.navigate(['/program', this.idProgram]);
+    this.exerciseService.onExerciseAdded.next(exercise);
+    this.router.navigate(['/program', this.idProgram]);
   }
+
   ngOnInit() {
 
   }
 
+  onUpdateExercise(exercise: ExerciseModel) {
+
+    this.exerciseService.updateExercise(exercise)
+      .subscribe(
+        (data: ExerciseModel) => {
+          console.log(data);
+          this.exerciseService.onExerciseUpdated.next(exercise);
+          this.programService.getProgramById(this.idProgram).subscribe(
+            (program: ProgramModel)=> {
+              program.lastModification= new Date();
+              this.programService.onProgramUpdated.next(program);
+              this.programService.updateProgram(program).subscribe(
+                (dataN) => {
+                  console.log(program);
+                  this.program = program;
+                }
+              );
+
+            }
+          );
+        }, error2 => console.log(error2)
+      );
+    this.router.navigate(['/program']);
+  }
 }

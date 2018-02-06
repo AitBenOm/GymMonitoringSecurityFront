@@ -64,6 +64,7 @@ this.exerciseService.onLoadUpdated.subscribe(
 
   }
 );
+
 this.exerciseService.onProgramLoaded.subscribe(
   () =>{
     // console.log(this.exercise!=null);
@@ -88,9 +89,9 @@ this.exerciseService.onProgramLoaded.subscribe(
   onDeleteLoad(load: LoadsModel){
 
     this.exerciseService.deleteLoad(load.idLoad).subscribe(
-      (data) => {
+      data => {
         const n =    this.exercise.charges.indexOf(load);
-        this.exercise.charges.slice(n, 1);
+        this.exercise.charges.splice(n, 1);
       }
 
     );

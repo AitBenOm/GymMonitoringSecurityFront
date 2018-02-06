@@ -11,7 +11,9 @@ import {ProgramModel} from "../program-model";
 export class ProgramListComponent implements OnInit {
 
   programs: ProgramModel[];
-  constructor(private programService: ProgramService) { }
+  constructor(private programService: ProgramService) {
+
+  }
 
   ngOnInit() {
 
@@ -25,6 +27,23 @@ export class ProgramListComponent implements OnInit {
     (program: ProgramModel) => {
       this.programs.push(program);
     }
+    );
+    this.programService.onProgramUpdated.subscribe(
+      (programData) =>{
+        let n = 0;
+        console.log("*************************");
+        for ( const program of this.programs){
+            if ( program.idProgram === programData.idProgram){
+              break;
+            }
+            n++;
+        }
+        console.log(this.programs);
+        this.programs.splice(n,1);
+        console.log(this.programs.push(programData));
+        console.log(programData);
+        console.log(programData + " Index " + n);
+      }
     );
   /* this.programs=this.programService.onProgramAdded.subscribe(
      (programs: ProgramModel[])=>{

@@ -2,7 +2,10 @@
   <div class="wrapper">
     <div id="tasksPanel" class="panel panel-default alert-info">
       <div class="panel-heading" *ngIf="exercises!=null;">
-        <h3 class="panel-title">My Execrcises        <span class="pull-right "> {{program.programName| uppercase}}</span></h3>
+        <h2 class="panel-title">My Execrcises
+          <span class="pull-right badge"
+                style="background-color:lightblue; color:  #635d5d;">
+            {{program.programName| uppercase}}</span></h2>
         <table class="table table-striped text-center">
           <thead>
           <tr>
@@ -19,12 +22,11 @@
 
 
             <td>{{exercise.exerciseName}}</td>
-            <!--<td>{{exercise.exerciseName}}</td>-->
             <td>{{exercise.charges[exercise.charges.length-1].charge}}
               <a class="glyphicon glyphicon-list pull-right" (click)="onShowDetail(exercise)"></a>
             </td>
             <td *ngIf="showOption"><a style="cursor: pointer" (click)="alert()"><span class="glyphicon glyphicon-trash text-danger "></span></a>
-              <a  (click)="alert()" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
+              <a  (click)="onEditExercise(exercise.idExercise)" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
 
           </tr>
           </tbody>
@@ -46,7 +48,7 @@
            Options
         </a>
 
-        <app-add-exercise *ngIf="showForm" [exercises]="exercises" [idProgram]="program.idProgram"></app-add-exercise>
+        <app-add-exercise *ngIf="showForm" [updateMode]="updateMode" [exerciseToUpdate]="exerciseToUpdate"  [exercises]="exercises" [idProgram]="program.idProgram"></app-add-exercise>
 
       </div>
     </div>

@@ -10,11 +10,12 @@ export class ExerciseService {
 
   constructor(private http: HttpClient) { }
   exercise: ExerciseModel;
-  onExerciseAdded= new EventEmitter<ExerciseModel>();
-  onProgramLoaded = new EventEmitter<null>();
-  onLoadUpdated= new EventEmitter<LoadsModel>();
-  onLoadAdded= new EventEmitter<LoadsModel>();
-  onLoadDeleted= new EventEmitter<null>();
+  onExerciseAdded= new Subject <ExerciseModel>();
+  onExerciseUpdated= new Subject<ExerciseModel>();
+  onProgramLoaded = new Subject<null>();
+  onLoadUpdated= new Subject<LoadsModel>();
+  onLoadAdded= new Subject<LoadsModel>();
+  onLoadDeleted= new Subject<null>();
 
 
 
@@ -23,6 +24,9 @@ return this.http.get("http://localhost:8080/MyExercises?idProgram="+idProgram);
 }
 gerMyLoads(idExercise: number){
 return this.http.get("http://localhost:8080/MyLoads?idExercise="+idExercise);
+}
+getExerciseById(idExercise: number){
+return this.http.get("http://localhost:8080/MyExercises/"+idExercise);
 }
 gerLoadById(idLoad: number){
 return this.http.get("http://localhost:8080/MyLoad/"+idLoad);
@@ -40,6 +44,10 @@ return this.http.get("http://localhost:8080/MyLoad/"+idLoad);
 
   updateLoad(load: LoadsModel){
     return this.http.put("http://localhost:8080/MyLoad", load);
+  }
+
+  updateExercise(exercise: ExerciseModel){
+    return this.http.put("http://localhost:8080/MyExercise", exercise);
   }
   deleteLoad(idLoad: number){
     return this.http.delete("http://localhost:8080/MyLoads/" + idLoad);

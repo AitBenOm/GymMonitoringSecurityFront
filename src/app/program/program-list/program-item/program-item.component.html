@@ -18,8 +18,8 @@
 
         <tr style="cursor: pointer"  *ngFor="let program of programs;"  [routerLink]="[program.idProgram]">
           <td>{{program.programName}}</td>
-          <td>{{program.dateOfCreation | date:'MM/dd/yy'}}  </td>
-          <td>{{program.lastModification  | date:'MM/dd/yy'}}</td>
+          <td>{{program.dateOfCreation | date:'MM/dd/yyyy hh:mm'}}  </td>
+          <td>{{program.lastModification  | date:'MM/dd/yyyy hh:mm'}}</td>
           <td *ngIf="showOption"><a style="cursor: pointer" (click)="alert()"><span class="glyphicon glyphicon-trash text-danger pull-right "></span></a>
             <a  (click)="alert()" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary pull-right"></span></a></td>
 

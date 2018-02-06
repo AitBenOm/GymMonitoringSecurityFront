@@ -21,6 +21,8 @@ export class ProgramDetailComponent implements OnInit {
   myLastLoad: string;
   showForm: boolean=false;
   showOption: boolean = false;
+  exerciseToUpdate: ExerciseModel=null;
+  updateMode: boolean;
 
 
 
@@ -34,6 +36,7 @@ export class ProgramDetailComponent implements OnInit {
              ) {}
 
   ngOnInit() {
+
 
     this.exerciseService.onExerciseAdded.subscribe(
       (data: ExerciseModel) => {
@@ -73,12 +76,17 @@ export class ProgramDetailComponent implements OnInit {
 
         }
       );
-/*this.subscription= this.exerciseService.onExerciseAdded.subscribe(
-  (exercises: ExerciseModel[])=>{
-    this.program.exercises.push(exercises[exercises.length-1]);
-  }
-)*/
-this.router.navigate(['/program', this.id]);
+    console.log(this.exercises);
+
+    this.exerciseService.onExerciseUpdated.subscribe(
+      (data: ExerciseModel) => {
+        this.updateMode=false;
+        this.showForm=false;
+        this.router.navigate(['/program/'+this.id]);
+
+      }
+    );
+//
   }
   onShowDetail(exercise: ExerciseModel) {
  //   console.log('program-detail ' + exercise.exerciseName);
@@ -86,8 +94,24 @@ this.router.navigate(['/program', this.id]);
   }
 
 
+  onEditExercise(idExercise: number){
+    console.log(idExercise);
+
+    this.exerciseService.getExerciseById(idExercise).subscribe(
+      (data: ExerciseModel) =>{
+        this.exerciseToUpdate=data;
+        console.log(this.exerciseToUpdate);
+        this.showForm=true;
+        this.updateMode=true;
+        this.showOption=false;
+      }
+    );
+  }
+
+
   onShowForm() {
     if (this.showForm === false ) {
+      this.updateMode=false;
       this.showForm = true;
     } else {
       this.showForm = false;
