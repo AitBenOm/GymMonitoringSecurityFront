@@ -17,11 +17,17 @@ export class ProgramListComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.programService.getMyPrograms().subscribe(
       (data: ProgramModel[]) =>{
+        console.log(this.programService.sortProgramsByLastModification(data, ''));
+        console.log("************************")
+        data.sort();
+        console.log(data);
      this.programs = data;
    }
     );
+
 //    this.programs=this.programService.programs;
     this.programService.onProgramAdded.subscribe(
     (program: ProgramModel) => {
@@ -40,7 +46,8 @@ export class ProgramListComponent implements OnInit {
         }
         console.log(this.programs);
         this.programs.splice(n,1);
-        console.log(this.programs.push(programData));
+        this.programs.push(programData);
+        this.programs=this.programService.sortProgramsByLastModification(this.programs, '');
         console.log(programData);
         console.log(programData + " Index " + n);
       }

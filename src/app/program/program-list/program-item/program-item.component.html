@@ -3,25 +3,36 @@
     <div class="panel-heading">
       <h3 class="panel-title">My Programs</h3>
 
-      <table class="table table-striped text-center">
-        <thead>
+      <table class="table table-striped pull-left">
+        <thead class="">
         <tr>
 
-          <th scope="col">Progrm</th>
-          <th scope="col">Created</th>
-          <th scope="col">Modificated</th>
-          <th *ngIf="showOption" scope="col">Option</th>
+          <th scope="col">Progrm  <span  class="glyphicon glyphicon-sort"
+                                         style="transform: rotate(180deg); cursor: pointer; color:#646568"
+                                         (click)="sort('name')"></span> </th>
+          <!--<th scope="col">Created  <span  class="glyphicon glyphicon-sort"-->
+                                          <!--style="transform: rotate(180deg); cursor: pointer; color:#646568"-->
+                                          <!--(click)="-->
+                                          <!--sort('creation')"></span> </th>-->
+          <th scope="col">Modificated
+              <span  class="glyphicon glyphicon-sort"
+                     style="transform: rotate(180deg); cursor: pointer; color:#646568"
+                     (click)="sort('modification')"></span>   </th>
+          <th  scope="col">Option</th>
 
         </tr>
         </thead>
         <tbody>
 
-        <tr style="cursor: pointer"  *ngFor="let program of programs;"  [routerLink]="[program.idProgram]">
-          <td>{{program.programName}}</td>
-          <td>{{program.dateOfCreation | date:'MM/dd/yyyy hh:mm'}}  </td>
-          <td>{{program.lastModification  | date:'MM/dd/yyyy hh:mm'}}</td>
-          <td *ngIf="showOption"><a style="cursor: pointer" (click)="alert()"><span class="glyphicon glyphicon-trash text-danger pull-right "></span></a>
-            <a  (click)="alert()" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary pull-right"></span></a></td>
+        <tr style="cursor: pointer"  *ngFor="let program of programs "  >
+
+          <td [routerLink]="[program.idProgram]" width="100px">{{program.programName}} <a data-toggle="tooltip" title="{{program.dateOfCreation | date:'MM/dd/yy HH:mm'}} " class="glyphicon glyphicon-info-sign tooltip pull-right"></a></td>
+          <!--<td>{{program.dateOfCreation | date:'MM/dd/yy HH:mm'}}  </td>-->
+          <td [routerLink]="[program.idProgram]">{{program.lastModification  | date:'MM/dd/yy HH:mm'}}</td>
+          <td>
+            <a style="cursor: pointer" (click)="deleteProgram(program)"><span class="glyphicon glyphicon-trash text-danger pull-left "></span></a>
+            <a  (click)="alert()" style="cursor: pointer"><span class="glyphicon glyphicon-edit text-primary pull-right"></span></a>
+           </td>
 
         </tr>
         </tbody>
@@ -34,14 +45,14 @@
         <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
         Cancel
       </a>
-      <a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
-        <span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>
-        Option
-      </a>
-      <a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
-        <span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>
-        Options
-      </a>
+      <!--<a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">-->
+        <!--<span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>-->
+        <!--Option-->
+      <!--</a>-->
+      <!--<a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">-->
+        <!--<span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>-->
+        <!--Options-->
+      <!--</a>-->
 <!--<a class="glyphicon glyphicon-list" (click)="onShowForm()">  Add Program</a>-->
       <app-add-program *ngIf="showForm"></app-add-program>
 

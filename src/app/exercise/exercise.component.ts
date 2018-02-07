@@ -1,9 +1,11 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ExerciseService} from "./exercise.service";
 import {ExerciseModel} from "./exercise-model";
 import {ProgramService} from "../program/program.service";
 import {Subscription} from "rxjs/Subscription";
 import {LoadsModel} from './loads-model';
+import {ProgramModel} from "../program/program-model";
+import {Data} from "@angular/router";
 
 @Component({
   selector: 'app-exercise',
@@ -16,6 +18,8 @@ export class ExerciseComponent implements OnInit {
   showOption: boolean = false;
   loadToUpdate: LoadsModel=null;
   updateMode: boolean;
+
+  @Input() idProgram: number;
 
 
   constructor(private programService: ProgramService, private exerciseService: ExerciseService) {
@@ -51,6 +55,17 @@ this.exerciseService.onLoadAdded.subscribe(
 );
 this.exerciseService.onLoadUpdated.subscribe(
   (data: LoadsModel) => {
+    this.programService.getProgramById(this.idProgram).subscribe(
+      (program: ProgramModel)=>{
+        let n = 0;
+        program.lastModification = new Date();
+        this.programService.updateProgram(program).subscribe(
+          (programUpdated) =>{
+            this.programService.onProgramUpdated.next(program);
+          }
+        );
+      }
+    );
     this.exerciseService.gerMyLoads(this.exercise.idExercise)
       .subscribe(
         (dataLoad: LoadsModel[]) => {

@@ -52,6 +52,9 @@ return this.http.get("http://localhost:8080/MyLoad/"+idLoad);
   deleteLoad(idLoad: number){
     return this.http.delete("http://localhost:8080/MyLoads/" + idLoad);
   }
+  deleteExercise(exercise: ExerciseModel){
+    return this.http.delete("http://localhost:8080/MyExercises/" + exercise.idExercise);
+  }
 
   addLoad(load: LoadsModel, exerciseId: string){
         const idExercise = exerciseId;

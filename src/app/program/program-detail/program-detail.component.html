@@ -25,7 +25,7 @@
             <td>{{exercise.charges[exercise.charges.length-1].charge}}
               <a class="glyphicon glyphicon-list pull-right" (click)="onShowDetail(exercise)"></a>
             </td>
-            <td *ngIf="showOption"><a style="cursor: pointer" (click)="alert()"><span class="glyphicon glyphicon-trash text-danger "></span></a>
+            <td *ngIf="showOption"><a style="cursor: pointer" (click)="onDeleteExercise(exercise)"><span class="glyphicon glyphicon-trash text-danger "></span></a>
               <a  (click)="onEditExercise(exercise.idExercise)" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
 
           </tr>
@@ -57,7 +57,7 @@
 </div>
 
 <div class="col-md-5">
-  <app-exercise  ></app-exercise>
+  <app-exercise [idProgram]="program.idProgram"></app-exercise>
 
 </div>
 

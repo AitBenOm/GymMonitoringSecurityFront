@@ -90,6 +90,7 @@ export class ProgramDetailComponent implements OnInit {
   }
   onShowDetail(exercise: ExerciseModel) {
  //   console.log('program-detail ' + exercise.exerciseName);
+    this.showOption=false;
    this.programService.showDetailExercise(exercise);
   }
 
@@ -106,6 +107,23 @@ export class ProgramDetailComponent implements OnInit {
         this.showOption=false;
       }
     );
+  }
+
+  onDeleteExercise( exerciseToDelete : ExerciseModel){
+    this.exerciseService.deleteExercise(exerciseToDelete).subscribe(
+      (data) => {
+        let n = 0;
+        console.log("*************************");
+        for ( const exercise of this.exercises){
+          if ( exercise.idExercise === exerciseToDelete.idExercise){
+            break;
+          }
+          n++;
+        }
+        this.exercises.splice(n,1);
+        console.log(data);
+      }
+      );
   }
 
 
