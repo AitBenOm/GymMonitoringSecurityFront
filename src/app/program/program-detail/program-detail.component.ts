@@ -22,6 +22,7 @@ export class ProgramDetailComponent implements OnInit {
   showForm: boolean=false;
   showOption: boolean = false;
   exerciseToUpdate: ExerciseModel=null;
+  exerciseToDelete: ExerciseModel=null;
   updateMode: boolean;
 
 
@@ -109,13 +110,13 @@ export class ProgramDetailComponent implements OnInit {
     );
   }
 
-  onDeleteExercise( exerciseToDelete : ExerciseModel){
-    this.exerciseService.deleteExercise(exerciseToDelete).subscribe(
+  onDeleteExercise( ){
+    this.exerciseService.deleteExercise(this.exerciseToDelete).subscribe(
       (data) => {
         let n = 0;
         console.log("*************************");
         for ( const exercise of this.exercises){
-          if ( exercise.idExercise === exerciseToDelete.idExercise){
+          if ( exercise.idExercise === this.exerciseToDelete.idExercise){
             break;
           }
           n++;
@@ -141,6 +142,9 @@ export class ProgramDetailComponent implements OnInit {
     } else {
       this.showOption = false;
     }
+  }
+  onShowModal(exercise: ExerciseModel){
+  this.exerciseToDelete = exercise;
   }
 
 

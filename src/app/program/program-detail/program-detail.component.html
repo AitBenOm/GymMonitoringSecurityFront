@@ -25,8 +25,13 @@
             <td>{{exercise.charges[exercise.charges.length-1].charge}}
               <a class="glyphicon glyphicon-list pull-right" (click)="onShowDetail(exercise)"></a>
             </td>
-            <td *ngIf="showOption"><a style="cursor: pointer" (click)="onDeleteExercise(exercise)"><span class="glyphicon glyphicon-trash text-danger "></span></a>
-              <a  (click)="onEditExercise(exercise.idExercise)" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></td>
+            <td *ngIf="showOption">
+              <ul class="list-inline">
+                <li>     <a style="cursor: pointer" data-toggle="modal" data-target="#myModalE" (click)="onShowModal(exercise)"><span class="glyphicon glyphicon-trash text-danger "></span></a></li>
+                <li> <a  (click)="onEditExercise(exercise.idExercise)" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></li>
+              </ul>
+            </td>
+
 
           </tr>
           </tbody>
@@ -55,7 +60,28 @@
 
   </div>
 </div>
+<div *ngIf="exerciseToDelete!=null" class="modal fade" id="myModalE" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-danger font-weight-bold">Deleting Exercise : <span class="badge">{{exerciseToDelete.exerciseName | uppercase}}</span>  </h4>
+      </div>
+      <div class="modal-body ">
+        <p class="font-weight-bold">
+          You are about to delete the Exercise.<br>
+          Are you sure of your choice?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="onDeleteExercise()" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <div class="col-md-5">
   <app-exercise [idProgram]="program.idProgram"></app-exercise>
 

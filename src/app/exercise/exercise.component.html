@@ -11,7 +11,7 @@
 
           <li class="list-group-item" *ngFor="let load of exercise.charges">
             {{load.charge}} <span style="background-color: lightblue; color: #635d5d" class="badge ">{{load.lastModification |  date:'MM/dd/yy'  }} {{" "}}   <span *ngIf="showOption">
-              <a style="cursor: pointer" (click)="onDeleteLoad(load)" class="glyphicon glyphicon-trash text-danger "></a>
+              <a style="cursor: pointer" data-toggle="modal" data-target="#myModalL" (click)="onShowModal(load)" class="glyphicon glyphicon-trash text-danger "></a>
             <a class="glyphicon glyphicon-edit text-primary "  (click)="onEditLoad(load.idLoad)" style="padding-left: 5px; cursor: pointer"> </a>
             </span></span>
 
@@ -32,7 +32,28 @@
   </a>
 
 </div>
+      <div *ngIf="loadToDelete!=null" class="modal fade" id="myModalL" role="dialog">
+        <div class="modal-dialog">
 
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title text-danger font-weight-bold">Deleting Load : <span class="badge">{{loadToDelete.charge | uppercase}}</span>  </h4>
+            </div>
+            <div class="modal-body ">
+              <p class="font-weight-bold">
+                You are about to delete the Load.<br>
+                Are you sure of your choice?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="onDeleteLoad()" data-dismiss="modal">Delete</button>
+              <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
         <app-add-load [updateMode]="updateMode" [loadToUpdate]="loadToUpdate" [exercise]="exercise"></app-add-load>
 

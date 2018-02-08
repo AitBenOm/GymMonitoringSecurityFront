@@ -16,6 +16,7 @@ export class ProgramItemComponent implements OnInit {
 showForm: boolean=false;
   showOption: boolean = false;
   sorted: boolean;
+  programToDelete: ProgramModel;
   onShowForm() {
     if (this.showForm === false ) {
       this.showForm = true;
@@ -23,12 +24,8 @@ showForm: boolean=false;
       this.showForm = false;
     }
   }
-onShowOption(){
-  if (this.showOption === false ) {
-    this.showOption = true;
-  } else {
-    this.showOption = false;
-  }
+onShowOption(prog: ProgramModel){
+this.programToDelete= prog;
 }
 sort(order: string){
   if(!this.sorted){
@@ -50,13 +47,14 @@ this.programService.onProgramAdded.subscribe(
 );
   }
 
-  deleteProgram(programToDelete: ProgramModel){
-this.programService.deleteProgram(programToDelete).subscribe(
+  deleteProgram(){
+    console.log(this.programToDelete.programName);
+this.programService.deleteProgram(this.programToDelete).subscribe(
   (data) => {
     let n = 0;
     console.log("*************************");
     for ( const program of this.programs){
-      if ( program.idProgram === programToDelete.idProgram){
+      if ( program.idProgram === this.programToDelete.idProgram){
         break;
       }
       n++;

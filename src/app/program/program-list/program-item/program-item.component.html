@@ -24,17 +24,18 @@
         </thead>
         <tbody>
 
-        <tr style="cursor: pointer"  *ngFor="let program of programs "  >
-
-          <td [routerLink]="[program.idProgram]" width="100px">{{program.programName}} <a data-toggle="tooltip" title="{{program.dateOfCreation | date:'MM/dd/yy HH:mm'}} " class="glyphicon glyphicon-info-sign tooltip pull-right"></a></td>
+        <tr  *ngFor="let program of programs " >
+          <td  style="cursor: pointer;" [routerLink]="[program.idProgram]" width="100px">{{program.programName}} <a data-toggle="popover" title="Created at {{program.dateOfCreation | date:'MM/dd/yy HH:mm'}} " class="glyphicon glyphicon-info-sign pull-right active"></a></td>
           <!--<td>{{program.dateOfCreation | date:'MM/dd/yy HH:mm'}}  </td>-->
-          <td [routerLink]="[program.idProgram]">{{program.lastModification  | date:'MM/dd/yy HH:mm'}}</td>
+          <td >{{program.lastModification  | date:'MM/dd/yy HH:mm'}}</td>
           <td>
-            <a style="cursor: pointer" (click)="deleteProgram(program)"><span class="glyphicon glyphicon-trash text-danger pull-left "></span></a>
-            <a  (click)="alert()" style="cursor: pointer"><span class="glyphicon glyphicon-edit text-primary pull-right"></span></a>
-           </td>
+            <ul class="list-inline">
+              <li>  <a style="cursor: pointer" data-toggle="modal" data-target="#myModalP" (click)="onShowOption(program)"  ><span class="glyphicon glyphicon-trash text-danger pull-left "></span></a></li>
+              <li> <a  (click)="alert()" style="cursor: pointer; margin-left: 10px;"><span class="glyphicon glyphicon-edit text-primary pull-left"></span></a></li>
+            </ul> </td>
 
         </tr>
+
         </tbody>
       </table>
       <a *ngIf="!showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
@@ -57,6 +58,34 @@
       <app-add-program *ngIf="showForm"></app-add-program>
 
     </div>
+  </div>
+  <div class="container">
+
+
+    <!-- Modal -->
+    <div *ngIf="programToDelete!=null" class="modal fade" id="myModalP" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-danger font-weight-bold">Deleting Program : <span class="badge">{{programToDelete.programName | uppercase}}</span>  </h4>
+          </div>
+          <div class="modal-body ">
+            <p class="font-weight-bold">
+              You are about to delete the program.<br>
+             Are you sure of your choice?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="deleteProgram()" data-dismiss="modal">Delete</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
 

@@ -17,6 +17,7 @@ export class ExerciseComponent implements OnInit {
   exercise: ExerciseModel;
   showOption: boolean = false;
   loadToUpdate: LoadsModel=null;
+  loadToDelete: LoadsModel=null;
   updateMode: boolean;
 
   @Input() idProgram: number;
@@ -101,11 +102,11 @@ this.exerciseService.onProgramLoaded.subscribe(
     );
   }
 
-  onDeleteLoad(load: LoadsModel){
+  onDeleteLoad(){
 
-    this.exerciseService.deleteLoad(load.idLoad).subscribe(
+    this.exerciseService.deleteLoad(this.loadToDelete.idLoad).subscribe(
       data => {
-        const n =    this.exercise.charges.indexOf(load);
+        const n =    this.exercise.charges.indexOf(this.loadToDelete);
         this.exercise.charges.splice(n, 1);
       }
 
@@ -121,6 +122,9 @@ this.exerciseService.onProgramLoaded.subscribe(
       this.updateMode=false;
       this.showOption = false;
     }
+  }
+  onShowModal(load: LoadsModel){
+  this.loadToDelete=load;
   }
 
 }
