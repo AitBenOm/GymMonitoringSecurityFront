@@ -4,11 +4,18 @@ import {UserService} from "../../user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 
+
+interface authToken {
+  token: string;
+
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
 
   constructor( private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
@@ -21,7 +28,12 @@ export class LoginComponent implements OnInit {
 
 /*console.log(form.controls['email'].value);
 let userPwd =form.controls['password'].value;*/
-this.authService.login(form.value.email,form.value.password);
+this.authService.login(form.value.email,form.value.password).subscribe(
+  (data: authToken)=>{
+
+    console.log("Authentication "+data.token);
+  }
+);
 /*  this.userService.login(form.controls['email'].value,form.controls['password'].value);
    if(this.userService.isAuthenticated){
   console.log("is authenticated");

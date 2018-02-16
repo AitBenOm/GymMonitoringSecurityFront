@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class AuthService {
 token: string=null;
 
-  constructor(private router: Router, private route: ActivatedRoute ) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient ) { }
 
   register(email: string, pwd: string){
 firebase.auth().createUserWithEmailAndPassword(email, pwd).catch(
@@ -14,6 +15,16 @@ firebase.auth().createUserWithEmailAndPassword(email, pwd).catch(
 )  }
 
 login(email: string, pwd: string){
+  let user =JSON.stringify({ email: email, pwd: pwd });
+
+  let headers= new HttpHeaders();
+  headers.append('responseType', '*');
+   return this.http.post("http://localhost:8080/login",user);
+
+}
+
+
+/*login(email: string, pwd: string){
     firebase.auth().signInWithEmailAndPassword(email,pwd).then(
       (response: Response)=>{
         this.router.navigate(['program']);
@@ -31,7 +42,7 @@ login(email: string, pwd: string){
     ).catch(
       error=>console.log(error)
     );
-}
+}*/
 
 logout(){
   firebase.auth().signOut();

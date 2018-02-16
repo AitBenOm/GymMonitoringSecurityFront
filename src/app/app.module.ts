@@ -28,7 +28,7 @@ import {AuthService} from "./Auth/auth.service";
 import {AuthGuard} from "./Auth/auth.guard";
 import { HomeComponent } from './home/home.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { ConfirmDirective } from './shared/confirm.directive';
+
 
 
 
@@ -53,8 +53,7 @@ import { ConfirmDirective } from './shared/confirm.directive';
     ProgramItemComponent,
     AddExerciseComponent,
     AddLoadComponent,
-    HomeComponent,
-    ConfirmDirective
+    HomeComponent
 
 
   ],

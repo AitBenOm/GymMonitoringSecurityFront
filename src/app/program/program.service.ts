@@ -27,28 +27,28 @@ export class ProgramService {
   }
 addProgram(program: ProgramModel) {
 console.log(program);
-return this.http.post('http://localhost:8080/MyProgram' , program);
+return this.http.post('http://localhost:8080/Programs/Myprogram' , program);
 
 }
 updateProgram(program: ProgramModel) {
 console.log(program);
-return this.http.put('http://localhost:8080/MyProgram' , program);
+return this.http.put('http://localhost:8080/Programs/Myprogram' , program);
 
 }
 deleteProgram(program: ProgramModel) {
 console.log(program);
-return this.http.delete('http://localhost:8080/MyProgram/'+program.idProgram);
+return this.http.delete('http://localhost:8080/Programs/Myprogram/'+program.idProgram);
 
 }
 
 
 getProgramById(idProgram: number) {
-  return this.http.get('http://localhost:8080/MyProgram?idProgram=' + idProgram);
+  return this.http.get('http://localhost:8080/Programs/Myprogram?idProgram=' + idProgram);
 }
 
 
 getMyPrograms() {
-  return this.http.get('http://localhost:8080/MyPrograms?idUser=1');
+  return this.http.get('http://localhost:8080/Programs/Myprograms?idUser=1');
 }
 
 sortProgramsByLastModification(programs: ProgramModel[], order: string) {
