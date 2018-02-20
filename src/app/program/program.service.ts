@@ -4,7 +4,7 @@ import {ProgramModel} from './program-model';
 import {ExerciseModel} from '../exercise/exercise-model';
 import {LoadsModel} from '../exercise/loads-model';
 import {Subject} from 'rxjs/Subject';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {headersToString} from "selenium-webdriver/http";
 import {AuthService} from "../Auth/auth.service";
 import {log} from "util";
@@ -32,7 +32,8 @@ export class ProgramService {
 addProgram(program: ProgramModel) {
 console.log(program);
 return this.http.post('http://localhost:8080/Programs/MyProgram' , program, {
-  headers: this.authService.getHeaders()
+  params : new HttpParams().set('idUser', this.userService.getUserFromToken().idUser.toString()),headers: this.authService.getHeaders()
+
 });
 
 }
