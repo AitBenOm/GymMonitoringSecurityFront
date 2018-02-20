@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProgramService} from "../program.service";
 import {ProgramModel} from "../program-model";
+import {UserService} from "../../user/user.service";
+import {UserModel} from "../../user/user.model";
 
 @Component({
   selector: 'app-program-list',
@@ -11,24 +13,23 @@ import {ProgramModel} from "../program-model";
 export class ProgramListComponent implements OnInit {
 
   programs: ProgramModel[];
-  constructor(private programService: ProgramService) {
-
+  user: UserModel;
+  constructor(private programService: ProgramService, private userService:UserService) {
+    this.user=(this.userService.getUserFromToken());
   }
 
   ngOnInit() {
-
-
-    this.programService.getMyPrograms().subscribe(
+console.log(this.user.email);
+    this.programService.getMyPrograms(this.user.idUser.toString()).subscribe(
       (data: ProgramModel[]) =>{
         console.log(this.programService.sortProgramsByLastModification(data, ''));
-        console.log("************************")
+        console.log("************************");
         data.sort();
         console.log(data);
      this.programs = data;
    }
     );
 
-//    this.programs=this.programService.programs;
     this.programService.onProgramAdded.subscribe(
     (program: ProgramModel) => {
       this.programs.push(program);

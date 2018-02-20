@@ -4,12 +4,16 @@ import {ProgramModel} from './program-model';
 import {ExerciseModel} from '../exercise/exercise-model';
 import {LoadsModel} from '../exercise/loads-model';
 import {Subject} from 'rxjs/Subject';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {headersToString} from "selenium-webdriver/http";
+import {AuthService} from "../Auth/auth.service";
+import {log} from "util";
+import {UserService} from "../user/user.service";
 
 @Injectable()
 export class ProgramService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService) {
   }
 
   onProgramAdded = new Subject<ProgramModel>();
@@ -27,28 +31,39 @@ export class ProgramService {
   }
 addProgram(program: ProgramModel) {
 console.log(program);
-return this.http.post('http://localhost:8080/Programs/Myprogram' , program);
+return this.http.post('http://localhost:8080/Programs/MyProgram' , program, {
+  headers: this.authService.getHeaders()
+});
 
 }
 updateProgram(program: ProgramModel) {
 console.log(program);
-return this.http.put('http://localhost:8080/Programs/Myprogram' , program);
+return this.http.put('http://localhost:8080/Programs/MyProgram' , program, {
+  headers: this.authService.getHeaders()
+});
 
 }
 deleteProgram(program: ProgramModel) {
 console.log(program);
-return this.http.delete('http://localhost:8080/Programs/Myprogram/'+program.idProgram);
+return this.http.delete('http://localhost:8080/Programs/MyProgram/'+program.idProgram, {
+  headers: this.authService.getHeaders()
+});
 
 }
 
 
 getProgramById(idProgram: number) {
-  return this.http.get('http://localhost:8080/Programs/Myprogram?idProgram=' + idProgram);
+  return this.http.get('http://localhost:8080/Programs/MyProgram?idProgram=' + idProgram, {
+    headers: this.authService.getHeaders()
+  });
 }
 
 
-getMyPrograms() {
-  return this.http.get('http://localhost:8080/Programs/Myprograms?idUser=1');
+getMyPrograms(idUser: string) {
+
+  return this.http.get('http://localhost:8080/Programs/MyPrograms?idUser='+idUser, {
+    headers: this.authService.getHeaders()
+  });
 }
 
 sortProgramsByLastModification(programs: ProgramModel[], order: string) {

@@ -42,10 +42,10 @@ console.log(this.registerForm);
   /*this.userService.addUser(new UserModel(this.userService.users.length+1,this.registerForm.get('firstName').value,
     this.registerForm.get('lastName').value,this.registerForm.get('email').value,
     this.registerForm.get('pwdGroup').get("pwd1").value));*/
-this.newUser= new UserModel(this.userService.users.length+1,this.registerForm.get('firstName').value,
+/*this.newUser= new UserModel(this.userService.users.length+1,this.registerForm.get('firstName').value,
     this.registerForm.get('lastName').value,this.registerForm.get('email').value,
     this.registerForm.get('pwdGroup').get("pwd1").value);
-    this.authService.register(this.newUser.email, this.newUser.pwd);
+    this.authService.register(this.newUser.email, this.newUser.pwd);*/
 this.registerForm.reset();
   }
 
