@@ -1,0 +1,10 @@
+.backgroundTransparent{
+  background-color: rgba(96, 108, 132,0.7);
+}
+.navStyle{
+  background-color: whitesmoke;
+  font: normal 13px Arial, sans-serif;
+  color: #333;
+  text-shadow: 1px 1px 1px #ccc;
+  font-weight: bold;
+}

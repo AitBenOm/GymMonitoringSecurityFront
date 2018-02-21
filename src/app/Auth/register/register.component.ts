@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   newUser: UserModel;
+  userExiste: boolean= false;
 
   ngOnInit() {
     this.registerForm= new FormGroup({
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
           'pwd2': new FormControl('',Validators.minLength(6)),
         }, this.passwordMatchValidator.bind(this))
     });
-    console.log(this.registerForm);
+
   }
   passwordMatchValidator(g: FormGroup) {
     if(g.get('pwd1').value != g.get('pwd2').value){
@@ -36,17 +37,27 @@ export class RegisterComponent implements OnInit {
     }return  null ;
   }
   onRegister(){
-    console.log("Registering User");
-console.log(this.registerForm);
 
-  /*this.userService.addUser(new UserModel(this.userService.users.length+1,this.registerForm.get('firstName').value,
-    this.registerForm.get('lastName').value,this.registerForm.get('email').value,
-    this.registerForm.get('pwdGroup').get("pwd1").value));*/
-/*this.newUser= new UserModel(this.userService.users.length+1,this.registerForm.get('firstName').value,
+let Nuser= new UserModel(this.registerForm.get('firstName').value,
     this.registerForm.get('lastName').value,this.registerForm.get('email').value,
     this.registerForm.get('pwdGroup').get("pwd1").value);
-    this.authService.register(this.newUser.email, this.newUser.pwd);*/
-this.registerForm.reset();
+console.log(Nuser);
+    this.authService.register(Nuser).subscribe(
+      (user: UserModel) => {
+        console.log(user);
+        if(user!=null){
+          this.userExiste=true;
+          return;
+        }else {
+          this.authService.login(Nuser.email, Nuser.pwd).subscribe(
+            (data: any) => {
+              console.log(data);
+          }
+          );
+        }
+    }
+    );
+
   }
 
 }

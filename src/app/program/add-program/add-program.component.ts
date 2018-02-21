@@ -44,7 +44,7 @@ onSaveProgram () {
 
     const program = new ProgramModel(this.programName, new Date(),  new Date(), []);
     const exercise = new ExerciseModel(this.exerciseName, []);
-    const load = new LoadsModel(this.loadName + "*" + this.loadType , new Date());
+    const load = new LoadsModel(this.loadName + " " + this.loadType , new Date());
    this.programService.addProgram(program)
      .subscribe(
       (programData: ProgramModel) => {

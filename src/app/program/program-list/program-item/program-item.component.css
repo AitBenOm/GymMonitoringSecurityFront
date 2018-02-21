@@ -7,3 +7,59 @@
   padding: 1px 15px 3px 2px;
   border-radius:50px;
 }
+
+.gym-table {
+  border: solid 2px #1a5093;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: normal 13px Arial, sans-serif;
+  font-weight: bold;
+}
+.gym-table thead th {
+  background-color: lightgray;
+  border: solid 2px #1a5093;
+  color: #336B6B;
+  padding: 10px;
+  text-align: left;
+  text-shadow: 1px 1px 1px #fff;
+}
+.gym-table tbody td {
+  border: solid 2px #1a5093;
+  color: #333;
+  padding: 10px;
+  text-shadow: 1px 1px 1px #fff;
+}
+.gym-table-rounded {
+  border: none;
+}
+.gym-table-rounded thead th {
+  background-color: whitesmoke;
+  border: none;
+  text-shadow: 1px 1px 1px #ccc;
+  color: #333;
+}
+.gym-table-rounded thead th:first-child {
+  border-radius: 10px 0 0 0;
+}
+.gym-table-rounded thead th:last-child {
+  border-radius: 0 10px 0 0;
+}
+.gym-table-rounded tbody td {
+  border: none;
+  border-top: solid 2px #114584;
+  background-color: lightgray;
+}
+.gym-table-rounded tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 10px;
+}
+.gym-table-rounded tbody tr:last-child td:last-child {
+  border-radius: 0 0 10px 0;
+}
+.backgroundTransparent{
+  background-color: rgba(96, 108, 132,0.85);
+}
+.title{
+  font: normal 20px Arial, sans-serif;
+  color: whitesmoke;
+  text-shadow: 1px 1px 1px #ccc;
+}

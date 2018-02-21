@@ -97,6 +97,7 @@ this.exerciseService.onProgramLoaded.subscribe(
     this.exerciseService.gerLoadById(idLoad).subscribe(
       (data: LoadsModel) =>{
         this.loadToUpdate=data;
+        this.loadToUpdate.charge= this.loadToUpdate.charge.split('(')[0];
         this.updateMode=true
       }
     );

@@ -48,4 +48,6 @@ input[type="password"] {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+.backgroundTransparent{
+  background-color: rgba(232, 233, 237,1);
+}

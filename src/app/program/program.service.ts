@@ -30,7 +30,7 @@ export class ProgramService {
     this.exerciseToShow.next(exercise);
   }
 addProgram(program: ProgramModel) {
-console.log(program);
+//console.log(program);
 return this.http.post('http://localhost:8080/Programs/MyProgram' , program, {
   params : new HttpParams().set('idUser', this.userService.getUserFromToken().idUser.toString()),headers: this.authService.getHeaders()
 
@@ -38,14 +38,14 @@ return this.http.post('http://localhost:8080/Programs/MyProgram' , program, {
 
 }
 updateProgram(program: ProgramModel) {
-console.log(program);
+//console.log(program);
 return this.http.put('http://localhost:8080/Programs/MyProgram' , program, {
   headers: this.authService.getHeaders()
 });
 
 }
 deleteProgram(program: ProgramModel) {
-console.log(program);
+//console.log(program);
 return this.http.delete('http://localhost:8080/Programs/MyProgram/'+program.idProgram, {
   headers: this.authService.getHeaders()
 });
@@ -69,10 +69,10 @@ getMyPrograms(idUser: string) {
 
 sortProgramsByLastModification(programs: ProgramModel[], order: string) {
 
-  console.log(programs);
+  //console.log(programs);
   programs.sort((prog1: ProgramModel, prog2: ProgramModel) => {
     if (order === 'name' || order=== '') {
-      console.log("name");
+      //console.log("name");
       if (prog1.programName > prog2.programName) {
         return 1;
       }
@@ -81,7 +81,7 @@ sortProgramsByLastModification(programs: ProgramModel[], order: string) {
       } return 0;
     }
    if (order === 'modification') {
-     console.log("modification");
+     //console.log("modification");
      if (prog1.lastModification > prog2.lastModification) {
        return 1;
      }
@@ -90,7 +90,7 @@ sortProgramsByLastModification(programs: ProgramModel[], order: string) {
      } return 0;
    }
     if (order === 'creation') {
-      console.log("reation");
+      //console.log("reation");
       if (prog1.dateOfCreation > prog2.dateOfCreation) {
         return 1;
       }
@@ -99,7 +99,7 @@ sortProgramsByLastModification(programs: ProgramModel[], order: string) {
       } return 0;
     }
   });
-  console.log(programs);
+  //console.log(programs);
   return programs;
 }
 }

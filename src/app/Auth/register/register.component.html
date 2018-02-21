@@ -1,5 +1,5 @@
-<div class="wrapper">
-  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+<div class="wrapper ">
+  <form class="form-signin backgroundTransparent" [formGroup]="registerForm" (ngSubmit)="onRegister()">
     <h2 class="form-signin-heading">Please Register</h2>
     <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Your First Name" required="" autofocus="" />
     <br>
@@ -18,7 +18,9 @@
     <span style="color: red; " class="help-block" *ngIf="!registerForm.get('pwdGroup').valid && registerForm.get('pwdGroup').touched" >Passwords Mismatch</span>
     <!--<span style="color: red; " class="help-block" *ngIf="!registerForm.get('pwd1').valid && registerForm.get('pwd1').touched" >Please entre a valid password with min 6 charachters</span>-->
 
-
+    <span  style="color: red; " class="help-block" *ngIf="userExiste" >User Already exist !!</span>
     <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!registerForm.valid" >Register</button>
+
+
   </form>
 </div>

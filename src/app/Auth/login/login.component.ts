@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
   }
 
  onSubmit(form: NgForm){
-
+    console.log(form.value.rememberMe);
+if(form.value.rememberMe){
+  this.authService.rememberMe=365;
+}
 this.authService.login(form.value.email,form.value.password).subscribe(
   (token: authToken)=>{
 let user: UserModel;
