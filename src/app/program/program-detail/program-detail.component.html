@@ -1,4 +1,4 @@
-<div class="col-md-5">
+<div class="col-md-6">
   <div class="wrapper">
     <div id="tasksPanel" class="panel backgroundTransparent ">
       <div class="panel-heading" *ngIf="exercises!=null;">
@@ -13,7 +13,7 @@
 
             <th scope="col">Exercise</th>
             <th scope="col">Loads</th>
-            <th *ngIf="showOption" scope="col">Option</th>
+            <th  scope="col">Option</th>
             <!--<th scope="col">Last Modification</th>-->
 
           </tr>
@@ -24,12 +24,13 @@
 
             <td>{{exercise.exerciseName}}</td>
             <td>{{exercise.charges[exercise.charges.length-1].charge}}
-              <a class="glyphicon glyphicon-list pull-right" (click)="onShowDetail(exercise)"></a>
+
             </td>
-            <td *ngIf="showOption">
-              <ul class="list-inline">
-                <li>     <a style="cursor: pointer" data-toggle="modal" data-target="#myModalE" (click)="onShowModal(exercise)"><span class="glyphicon glyphicon-trash text-danger "></span></a></li>
-                <li> <a  (click)="onEditExercise(exercise.idExercise)" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></li>
+            <td >
+              <ul class="list-inline pull-right">
+                <li>      <a  *ngIf="!showOption" class="glyphicon glyphicon-list pull-right" (click)="onShowDetail(exercise)"></a></li>
+                <li *ngIf="showOption">     <a style="cursor: pointer" data-toggle="modal" data-target="#myModalE" (click)="onShowModal(exercise)"><span class="glyphicon glyphicon-trash text-danger "></span></a></li>
+                <li *ngIf="showOption"> <a  (click)="onEditExercise(exercise.idExercise)" style="margin-left: 5px; cursor: pointer"><span class="glyphicon glyphicon-edit text-primary"></span></a></li>
               </ul>
             </td>
 

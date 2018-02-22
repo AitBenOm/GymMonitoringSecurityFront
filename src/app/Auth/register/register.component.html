@@ -18,7 +18,7 @@
     <span style="color: red; " class="help-block" *ngIf="!registerForm.get('pwdGroup').valid && registerForm.get('pwdGroup').touched" >Passwords Mismatch</span>
     <!--<span style="color: red; " class="help-block" *ngIf="!registerForm.get('pwd1').valid && registerForm.get('pwd1').touched" >Please entre a valid password with min 6 charachters</span>-->
 
-    <span  style="color: red; " class="help-block" *ngIf="userExiste" >User Already exist !!</span>
+    <span  style="color: red; " class="help-block" *ngIf="!userExiste" >User Already exist !!</span>
     <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!registerForm.valid" >Register</button>
 
 

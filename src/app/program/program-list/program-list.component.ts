@@ -27,6 +27,7 @@ console.log(this.user.email);
         data.sort();
         console.log(data);
      this.programs = data;
+     this.programService.onProgramsLoaded.next(this.programs);
    }
     );
 

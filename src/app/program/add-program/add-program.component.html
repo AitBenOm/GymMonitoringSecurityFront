@@ -15,17 +15,19 @@
                        [disabled]="exerciseName===''" style="margin-left: 2px;"></button>
          </span>-->
   </div>
-  <div class="input-group  col-md-6 bas form-group" >
-    <label class="control-label" for="exerciseName">Load (kg) / Duration (min)</label>
+  <div class="input-group    form-group" >
+    <label class="control-label">Loads (kg) / Duration (min)</label>
     <br>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)" required> Time
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min:sec)"> Time
     </label>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)" required> Weight
+      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight
     </label>
-    <input type="text" [(ngModel)]="loadName" (keyup.enter)="onSaveProgram()"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
-
+    <div style="padding-top: 3mm">
+      <input *ngIf="loadType==='(kg)'" type="number"  [(ngModel)]="loadName"  name="loadName" class="form-control" placeholder="Load ...." required>
+      <input *ngIf="loadType==='(min:sec)'" type="time"   [(ngModel)]="loadName"  name="loadName" class="form-control small" placeholder="Load ...." required>
+    </div>
   </div>
 
   <div class="input-group  col-md-5">

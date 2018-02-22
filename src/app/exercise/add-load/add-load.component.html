@@ -3,13 +3,15 @@
     <label class="control-label">Loads (kg) / Duration (min)</label>
     <br>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min:sec)"> Time (min:sec)
     </label>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight
+      <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight (Kg)
     </label>
-    <input type="text" [(ngModel)]="load"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
-
+    <div style="padding-top: 3mm">
+      <input *ngIf="loadType==='(kg)'" type="number"  [(ngModel)]="load"  name="loadName" class="form-control" placeholder="Load ...." required>
+      <input *ngIf="loadType==='(min:sec)'" type="time"   [(ngModel)]="load"  name="loadName" class="form-control small" placeholder="Load ...." required min="0">
+    </div>
   </div>
   <div class="input-group  col-md-5">
     <button [disabled]="load==='' || loadType==='' "  (click)="onSaveLoad()" class="btn btn-info" type="button">Add Program</button>
@@ -19,12 +21,12 @@
 
 <form *ngIf="updateMode" >
 <h4>Updating  Mode</h4>
-  <h4>{{loadToUpdate.idLoad}}</h4>
+
   <div class="input-group    form-group" >
     <label class="control-label">Loads (kg) / Duration (min)</label>
     <br>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min:sec)"> Time (min:sec)
     </label>
     <label class="radio-inline">
       <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight

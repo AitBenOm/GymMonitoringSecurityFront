@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   newUser: UserModel;
-  userExiste: boolean= false;
+  userExiste: boolean= true;
 
   ngOnInit() {
     this.registerForm= new FormGroup({
@@ -45,15 +45,10 @@ console.log(Nuser);
     this.authService.register(Nuser).subscribe(
       (user: UserModel) => {
         console.log(user);
-        if(user!=null){
-          this.userExiste=true;
-          return;
+        if(user===null){
+          this.userExiste=false;
         }else {
-          this.authService.login(Nuser.email, Nuser.pwd).subscribe(
-            (data: any) => {
-              console.log(data);
-          }
-          );
+          console.log(user);
         }
     }
     );

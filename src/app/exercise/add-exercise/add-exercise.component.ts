@@ -52,7 +52,7 @@ export class AddExerciseComponent implements OnInit {
     this.loadName = '';
     this.exerciseAdded = false;
     this.exerciseService.onExerciseAdded.next(exercise);
-    this.router.navigate(['/program', this.idProgram]);
+    this.router.navigate(['/program']);
   }
 
   ngOnInit() {

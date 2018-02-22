@@ -47,15 +47,7 @@
         <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
         Cancel
       </a>
-      <!--<a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">-->
-        <!--<span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>-->
-        <!--Option-->
-      <!--</a>-->
-      <!--<a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">-->
-        <!--<span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>-->
-        <!--Options-->
-      <!--</a>-->
-<!--<a class="glyphicon glyphicon-list" (click)="onShowForm()">  Add Program</a>-->
+
       <app-add-program *ngIf="showForm"></app-add-program>
 
     </div>
@@ -64,7 +56,7 @@
 
 
     <!-- Modal -->
-    <div *ngIf="programToDelete!=null" class="modal fade" id="myModalP" role="dialog">
+    <div *ngIf="programToDelete!=null" class="modal" id="myModalP" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->

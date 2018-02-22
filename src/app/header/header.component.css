@@ -1,10 +1,24 @@
 .backgroundTransparent{
-  background-color: rgba(96, 108, 132,0.7);
+  background-color: rgba(96, 108, 132,0.8);
 }
 .navStyle{
   background-color: whitesmoke;
   font: normal 13px Arial, sans-serif;
-  color: #333;
+  color: #210c0c;
   text-shadow: 1px 1px 1px #ccc;
   font-weight: bold;
 }
+
+.btn-glyphicon {
+  padding:8px;
+  background:#ffffff;
+  margin-right:4px;
+}
+.icon-btn {
+  /*padding: 1px 15px 3px 2px;*/
+  border-radius:90px;
+  background-color: rgba(214,214,214,0.7);
+
+}
+
+

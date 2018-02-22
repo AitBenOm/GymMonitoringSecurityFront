@@ -12,15 +12,17 @@
     <label class="control-label" for="exerciseName">Loads / Duration</label>
     <br>
     <label class="radio-inline">
-      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min)"> Time (min)
+      <input type="radio" [(ngModel)]="loadType" name="loadType" id="loadType" value="(min:sec)"> Time (min:sec)
     </label>
     <label class="radio-inline">
       <input type="radio" [(ngModel)]="loadType"  name="loadType" id="loadType" value="(kg)"> Weight (kg)
     </label>
-    <input type="text" [(ngModel)]="loadName"  name="loadName" class="form-control" placeholder="Load / Duration ...." required>
+    <div style="padding-top: 3mm">
+      <input *ngIf="loadType==='(kg)'" type="number"  [(ngModel)]="loadName"  name="loadName" class="form-control" placeholder="Load ...." required>
+      <input *ngIf="loadType==='(min:sec)'" type="time"   [(ngModel)]="loadName"  name="loadName" class="form-control small" placeholder="Load ...." required>
+    </div>
 
   </div>
-
   <div class="input-group  col-md-5">
     <button [disabled]="exerciseName==='' || loadName==='' "  (click)="onSaveExercise()" class="btn btn-info" type="button">Add Program</button>
 
@@ -39,5 +41,4 @@
 
   </div>
 </form>
-
 

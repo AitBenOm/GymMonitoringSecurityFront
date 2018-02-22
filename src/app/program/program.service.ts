@@ -17,7 +17,7 @@ export class ProgramService {
   }
 
   onProgramAdded = new Subject<ProgramModel>();
-  onProgramDeleted = new Subject<ProgramModel>();
+  onProgramsLoaded = new Subject<ProgramModel[]>();
   onProgramChosen = new Subject<ProgramModel>();
   onProgramChanged = new Subject<ProgramModel>();
   onProgramUpdated = new Subject<ProgramModel>();

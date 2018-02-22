@@ -1,15 +1,33 @@
 <div class="wrapper">
   <nav class="navbar navbar-default backgroundTransparent">
     <div class="container-fluid navStyle">
+
+      <div *ngIf="authServise.isAuthenticated()"  class="col-md-4 pull-right" style="padding-top: 2mm">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button style=" background-color: rgba(214,214,214,0.7);" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search by {{searchTopic}} <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+
+              <li style="cursor: pointer" (click)="onSearchByProgram()">Program</li>
+              <li role="separator" class="divider"></li>
+              <li style="cursor: pointer" (click)="onSearchByExercise()">Exercise</li>
+            </ul>
+          </div><!-- /btn-group -->
+          <input type="text" name="keyWord" #keyword class="form-control" aria-label="..." placeholder="Keyword..." ngModel>
+
+
+          <span class="input-group-btn">
+        <button class="btn  glyphicon glyphicon-search" type="button" (click)="onSearch(keyword.value)"></button>
+      </span>
+        </div><!-- /input-group -->
+        <div class="row col-md-7">
+          <span *ngIf="errors" class="help-block alert-danger">Pleas select a Topic and a key word !</span>
+          <span *ngIf="programFounded" class="help-block alert-danger">Program not founded</span>
+          <!--<span *ngIf="!programFounded" class="help-block alert-danger">Exercise not founded</span>-->
+        </div>
+      </div>
       <div class="navbar-header">
-        <a routerLink="/program" class="navbar-brand">GymMonitor</a>
-
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hide" aria-expanded="false" aria-controls="hide">
-
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+               <a routerLink="/program" class="navbar-brand">GymMonitor</a>
       </div>
       <div   id="hide" class="navbar-collapse collapse in" aria-expanded="false" style>
         <ul class="nav navbar-nav navbar-right">
@@ -17,17 +35,20 @@
             <li><a style="cursor: pointer;" routerLink="/register"  ><span class="glyphicon glyphicon-floppy-save"></span> Register</a></li>
             <li><a style="cursor: pointer;" routerLink="/login"  ><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
           </ng-template>
-
         </ul>
         <ul class="nav navbar-nav navbar-left">
           <ng-template [ngIf]="authServise.isAuthenticated()">
-            <li class="dropdown" appDropdown  >
 
-              <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage<span class="caret"></span></a>
-              <ul class="dropdown-menu" >
-                <li><a style="cursor: pointer;"  ><span class="glyphicon glyphicon-user"></span> Profil </a></li>
-                <li><a style="cursor: pointer;"  routerLink="/program"><span class="glyphicon glyphicon-th-list" ></span> Program </a></li>
-                <li><a style="cursor: pointer;" (click)="onLogout()"><span class="glyphicon glyphicon-log-out" ></span> Logout </a></li>
+            <li class="dropdown" appDropdown  >
+              <a style="cursor: pointer; font-size: larger; " class="dropdown-toggle img-circle pull-right icon-btn" role="button">{{currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }}<span class="caret"></span></a>
+              <ul class="dropdown-menu" style="color: rgba(28,29,34,0.91)">
+               <li>Mon compte</li>
+
+                <!--<li style="cursor: pointer;" class="dropdown-toggle" role="button">{{currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }} {{currentUser.firstName+' '+currentUser.lastName}}</li>-->
+                <br>
+                <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  ><span class="glyphicon glyphicon-user"></span> Profil </a></li>
+                <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  routerLink="/program"><span class="glyphicon glyphicon-th-list" ></span> Program </a></li>
+                <li><a style="cursor: pointer;color: rgba(28,29,34,0.91); font: normal 15px Arial, sans-serif;" (click)="onLogout()"><span class="glyphicon glyphicon-log-out" ></span> Logout </a></li>
               </ul>
             </li>
           </ng-template>

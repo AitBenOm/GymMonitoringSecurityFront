@@ -2,8 +2,8 @@
   height: 40em;
   background-size: cover;
   width: auto;
-  background-image: url('images/gym3.jpg');
-  opacity: 0.8;
+  background-image: url('../assets/images/Gym1.png');
 
-  background-position: 50% 50%;
+
+  background-position: 100% 100%;
 }
