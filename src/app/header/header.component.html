@@ -6,8 +6,10 @@
 
           </div>
           <div class="col-md-4">
+<div style="background-color: rgba(96, 108, 132,0.85)">
+  <a routerLink="/program" class="navbar-brand" style="color: white;">GymMonitor</a>
+</div>
 
-            <a routerLink="/program" class="navbar-brand" style="color: white;">GymMonitor</a>
             <div *ngIf="authServise.isAuthenticated()"  class="col-md-2 pull-left" style="padding-top: 2mm">
               <div class="input-group">
                 <div class="input-group-btn">
@@ -17,7 +19,9 @@
                     {{ currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }}
                   </button>
                   <ul class="dropdown-menu">
-                    <li style="color: #333333; font-weight: bolder;"> Mon compte :  {{ currentUser.firstName |uppercase }} {{currentUser.lastName |uppercase }} </li>
+
+                    <li style="color: #333333; font-weight: bolder;"> Mon Compte : </li>
+                    <li style=" font-weight: bolder;"> <span class="badge" style="background-color: rgba(200,200,200,0.4);color: #333333;">{{ currentUser.firstName |uppercase }} {{currentUser.lastName |uppercase }}</span>  </li>
                     <li role="separator" class="divider"></li>
                     <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  ><span class="glyphicon glyphicon-user"></span> Profil </a></li>
                     <li role="separator" class="divider"></li>
@@ -36,7 +40,7 @@
           <div class="col-md-6" *ngIf="authServise.isAuthenticated()"  style="padding-top: 2mm">
             <div class="input-group">
               <div class="input-group-btn">
-                <button style=" background-color: rgba(200,200,200,0.7); color: white; font-weight: bolder"
+                <button style=" background-color: rgba(96, 108, 132,0.85); color: white; font-weight: bolder"
                         type="button" class="btn btn-default dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Search by {{searchTopic}} <span class="caret"></span></button>
