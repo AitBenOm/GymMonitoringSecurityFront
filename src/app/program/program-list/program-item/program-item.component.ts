@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ProgramModel} from "../../program-model";
 import {ProgramService} from "../../program.service";
 import {AuthService} from "../../../Auth/auth.service";
+import {HeaderService} from "../../../header/header.service";
 
 @Component({
   selector: 'app-program-item',
@@ -12,11 +13,18 @@ export class ProgramItemComponent implements OnInit {
   @Input() programs: ProgramModel[];
 
 
-  constructor(private authService: AuthService, private programService:ProgramService) { }
+
+  searchableField: string;
 showForm: boolean=false;
-  showOption: boolean = false;
+  programFounded: boolean = false;
   sorted: boolean;
   programToDelete: ProgramModel;
+  keyWord: string;
+  programsFounded: ProgramModel[];
+
+  constructor(private authService: AuthService, private programService:ProgramService,private headerService: HeaderService) {
+    this.searchableField = 'programName';
+  }
   onShowForm() {
     if (this.showForm === false ) {
       this.showForm = true;
@@ -38,21 +46,25 @@ sort(order: string){
   }
 }
   ngOnInit(){
-   /* this.programService.exerciseToShow.emit(null);*/
-console.log(this.programs);
+
 this.programService.onProgramAdded.subscribe(
   (data:any) =>{
     this.showForm = false;
   }
 );
+ this.headerService.onKewWordProgramChanged.subscribe(
+  (data: string) => {
+    this.keyWord=data;
+  }
+);
   }
 
   deleteProgram(){
-    console.log(this.programToDelete.programName);
+    //console.log(this.programToDelete.programName);
 this.programService.deleteProgram(this.programToDelete).subscribe(
   (data) => {
     let n = 0;
-    console.log("*************************");
+    //console.log("*************************");
     for ( const program of this.programs){
       if ( program.idProgram === this.programToDelete.idProgram){
         break;
@@ -60,10 +72,21 @@ this.programService.deleteProgram(this.programToDelete).subscribe(
       n++;
     }
     this.programs.splice(n,1);
-    console.log(data);
+    //console.log(data);
   }
 );
   }
+onSearch(){
 
-
+console.log(this.keyWord);
+  for (let program of this.programs) {
+    console.log(program.programName.toLocaleLowerCase().startsWith(this.keyWord.toLocaleLowerCase()));
+    if (program.programName.toLocaleLowerCase().startsWith(this.keyWord.toLocaleLowerCase())) {
+     this.programsFounded.push(program);
+    } else {
+      this.programFounded = false;
+    }
+  }
+  this.programs=this.programsFounded;
+}
 }

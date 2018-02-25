@@ -7,6 +7,11 @@ import {ProgramService} from "../program/program.service";
 import {ProgramModel} from "../program/program-model";
 import {RouterConfigLoader} from "@angular/router/src/router_config_loader";
 import {Router} from "@angular/router";
+import {ExerciseModel} from "../exercise/exercise-model";
+import {ExerciseService} from "../exercise/exercise.service";
+import {LoadsModel} from "../exercise/loads-model";
+import {log} from "util";
+import {HeaderService} from "./header.service";
 
 @Component({
   selector: 'app-header',
@@ -15,64 +20,83 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( private authServise: AuthService, private programService: ProgramService,private router: Router) { }
-isAuthenticated: boolean;
+  constructor(private authServise: AuthService, private programService: ProgramService, private router: Router,private exerciseService: ExerciseService, private headerService: HeaderService) {
+  }
+
+  isAuthenticated: boolean;
   token: string;
-  jwtHelper: JwtHelper= new JwtHelper();
+  jwtHelper: JwtHelper = new JwtHelper();
   currentUser: UserModel;
-  imagePath: string =' assets/muscles.png';
-  searchTopic: string='';
-  errors: boolean=false;
-  programFounded: boolean=false;
+    searchTopic: string = '';
+  keyWord: string = '';
+  errors: boolean = false;
   programs: ProgramModel[];
+  exercises: ExerciseModel[];
+  showDropDown:boolean=false;
+
 
 
   ngOnInit() {
-this.token= this.authServise.getToken();
-if(this.token!=null){
-  this.currentUser= this.jwtHelper.decodeToken(this.token).myUser;
-}
-this.programService.onProgramsLoaded.subscribe(
-  (programs: ProgramModel[]) => {
-    this.programs=programs;
-    console.log("Programs "+ this.programs.length);
-  }
-);
+    let id: number=0;
+    this.token = this.authServise.getToken();
+    if (this.token != null) {
+      this.currentUser = this.jwtHelper.decodeToken(this.token).myUser;
+      id=this.currentUser.idUser;
+    }
+    this.programService.onProgramsLoaded.subscribe(
+      (programs: ProgramModel[]) => {
+        this.programs = programs;
+       // console.log("Programs " + this.programs.length);
+      }
+    );
+
+    this.exerciseService.gerMyExercisesByUser(id).subscribe(
+      (exercises: ExerciseModel[]) => {
+       // console.log("Exercise by User "+exercises.length);
+        this.exercises=exercises;
+
+      }
+    );
 
   }
-  onLogout(){
+
+  onLogout() {
     this.authServise.logout();
   }
 
-  onSearchByExercise(){
-    console.log("exercise");
-    this.searchTopic='Exercise';
+  onSearchByExercise() {
+   // console.log("exercise");
+    this.errors=false;
+    this.searchTopic = 'Exercise';
+    this.headerService.onKewWordProgramChanged.emit('');
   }
-  onSearchByProgram(){
-    console.log("program");
-    this.searchTopic='Program';
+  onShowDropDown(){
+    if(!this.showDropDown){
+      this.showDropDown=true;
+    }else{
+      this.showDropDown=true;
+    }
   }
-onSearch(keyWord: string){
-    let idProgrme: number=0;
-  console.log(keyWord);
-  console.log(this.searchTopic);
-    if(this.searchTopic==='' || keyWord===''){
-     this.errors=true;
-    }else {
-      this.errors=false;
-      for ( const program of this.programs){
-        if ( program.programName === keyWord){
 
-          this.router.navigate(['/program',program.idProgram]);
-          keyWord='';
-          this.searchTopic='';
-          break;
-        }else{
-          this.programFounded=false;
-        }
+  onSearchByProgram() {
+    this.errors=false;
+    this.searchTopic = 'Program';
+    this.headerService.onKewWordExerciseChanged.emit('');
+  }
 
+  onSearch() {
+    if (this.searchTopic === '') {
+      this.errors = true;
+    } else {
+      this.errors = false;
+      if (this.searchTopic === 'Program') {
+
+        this.headerService.onKewWordProgramChanged.emit(this.keyWord);
+
+      } else {
+
+        this.headerService.onKewWordExerciseChanged.emit(this.keyWord);
       }
     }
-
-}
+  }
 }

@@ -1,14 +1,11 @@
-.backgroundTransparent{
-  background-color: rgba(96, 108, 132,0.8);
-}
+
 .navStyle{
-  background-color: whitesmoke;
+ background-color: rgba(118, 132, 160,0.7);
   font: normal 13px Arial, sans-serif;
-  color: #210c0c;
+  color: whitesmoke;
   text-shadow: 1px 1px 1px #ccc;
   font-weight: bold;
 }
-
 .btn-glyphicon {
   padding:8px;
   background:#ffffff;
@@ -19,6 +16,38 @@
   border-radius:90px;
   background-color: rgba(214,214,214,0.7);
 
+}
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+
+
+.btn-glyphicon {
+  padding:8px;
+  background:#ffffff;
+  margin-right:4px;
+}
+.icon-btn {
+  padding: 1px 15px 3px 2px;
+  border-radius:50px;
+}
+
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
 }
 
 

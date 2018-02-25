@@ -6,6 +6,7 @@
           <span class="pull-right badge"
                 style="background-color:lightblue; color:  #635d5d;">
             {{program.programName| uppercase}}</span></h2>
+
         <br>
         <table class="table gym-table gym-table-rounded">
           <thead>
@@ -19,7 +20,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr   *ngFor="let exercise of exercises">
+          <tr   *ngFor="let exercise of exercises | filterByName : keyWord : searchableField">
 
 
             <td>{{exercise.exerciseName}}</td>

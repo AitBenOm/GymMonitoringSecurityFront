@@ -3,6 +3,7 @@ import {ProgramService} from "../program.service";
 import {ProgramModel} from "../program-model";
 import {UserService} from "../../user/user.service";
 import {UserModel} from "../../user/user.model";
+import {HeaderService} from "../../header/header.service";
 
 @Component({
   selector: 'app-program-list',
@@ -14,18 +15,18 @@ export class ProgramListComponent implements OnInit {
 
   programs: ProgramModel[];
   user: UserModel;
-  constructor(private programService: ProgramService, private userService:UserService) {
+  constructor(private programService: ProgramService, private userService:UserService, private headerService: HeaderService) {
     this.user=(this.userService.getUserFromToken());
   }
 
   ngOnInit() {
-console.log(this.user.email);
+//console.log(this.user.email);
     this.programService.getMyPrograms(this.user.idUser.toString()).subscribe(
       (data: ProgramModel[]) =>{
-        console.log(this.programService.sortProgramsByLastModification(data, ''));
-        console.log("************************");
+        //console.log(this.programService.sortProgramsByLastModification(data, ''));
+        //console.log("************************");
         data.sort();
-        console.log(data);
+        //console.log(data);
      this.programs = data;
      this.programService.onProgramsLoaded.next(this.programs);
    }
@@ -39,19 +40,19 @@ console.log(this.user.email);
     this.programService.onProgramUpdated.subscribe(
       (programData) =>{
         let n = 0;
-        console.log("*************************");
+        //console.log("*************************");
         for ( const program of this.programs){
             if ( program.idProgram === programData.idProgram){
               break;
             }
             n++;
         }
-        console.log(this.programs);
+        //console.log(this.programs);
         this.programs.splice(n,1);
         this.programs.push(programData);
         this.programs=this.programService.sortProgramsByLastModification(this.programs, '');
-        console.log(programData);
-        console.log(programData + " Index " + n);
+        //console.log(programData);
+        //console.log(programData + " Index " + n);
       }
     );
   /* this.programs=this.programService.onProgramAdded.subscribe(
@@ -63,7 +64,7 @@ console.log(this.user.email);
   }
 
   onShowDetail(id: number){
-    console.log(id)
+    //console.log(id)
   }
 
 }

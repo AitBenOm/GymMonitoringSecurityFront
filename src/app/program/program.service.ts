@@ -9,11 +9,12 @@ import {headersToString} from "selenium-webdriver/http";
 import {AuthService} from "../Auth/auth.service";
 import {log} from "util";
 import {UserService} from "../user/user.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class ProgramService {
 
-  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService) {
+  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService, private router: Router) {
   }
 
   onProgramAdded = new Subject<ProgramModel>();
@@ -25,8 +26,14 @@ export class ProgramService {
 
 
 
-
   showDetailExercise(exercise: ExerciseModel) {
+    console.log("ProgramService "+exercise.exerciseName );
+    this.exerciseToShow.next(exercise);
+  }
+  showDetailExercise2(exercise: ExerciseModel, idProgram:number) {
+    console.log("ProgramService "+exercise.exerciseName );
+
+    this.router.navigate(['/program',idProgram]);
     this.exerciseToShow.next(exercise);
   }
 addProgram(program: ProgramModel) {
@@ -55,6 +62,13 @@ return this.http.delete('http://localhost:8080/Programs/MyProgram/'+program.idPr
 
 getProgramById(idProgram: number) {
   return this.http.get('http://localhost:8080/Programs/MyProgram?idProgram=' + idProgram, {
+    headers: this.authService.getHeaders()
+  });
+}
+
+
+getProgramByExercise(idExercise: number) {
+  return this.http.get('http://localhost:8080/Programs/MyProgram/exercise?idExercise=' + idExercise, {
     headers: this.authService.getHeaders()
   });
 }

@@ -3,8 +3,12 @@
     <div class="panel-heading">
       <h3 class="panel-title title">My Programs</h3>
       <br>
+      <!--<div class="row col-md-7 pull-left paddingSearchBar" >-->
+        <!--<input type="text" [(ngModel)]="keyWord"  class="form-control"  placeholder="Keyword...">-->
+      <!--</div>-->
       <table class="table gym-table gym-table-rounded">
         <thead class="">
+
         <tr>
 
           <th scope="col">Progrm  <span  class="glyphicon glyphicon-sort"
@@ -24,7 +28,7 @@
         </thead>
         <tbody>
 
-        <tr  *ngFor="let program of programs " >
+        <tr  *ngFor="let program of programs | filterByName : keyWord : searchableField"  >
           <td  style="cursor: pointer;" [routerLink]="[program.idProgram]" width="100px">{{program.programName}} <a data-toggle="popover" title="Created at {{program.dateOfCreation | date:'MM/dd/yy HH:mm'}} " class="glyphicon glyphicon-info-sign pull-right active"></a></td>
           <!--<td>{{program.dateOfCreation | date:'MM/dd/yy HH:mm'}}  </td>-->
           <td >{{program.lastModification  | date:'MM/dd/yy HH:mm'}}</td>

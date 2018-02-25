@@ -1,62 +1,85 @@
-<div class="wrapper">
-  <nav class="navbar navbar-default backgroundTransparent">
-    <div class="container-fluid navStyle">
+<div class="" style=" ">
+  <nav class="navbar">
+    <div class="container-fluid navStyle ">
+        <div class="col-md-6">
+          <div class="col-md-2">
 
-      <div *ngIf="authServise.isAuthenticated()"  class="col-md-4 pull-right" style="padding-top: 2mm">
-        <div class="input-group">
-          <div class="input-group-btn">
-            <button style=" background-color: rgba(214,214,214,0.7);" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search by {{searchTopic}} <span class="caret"></span></button>
-            <ul class="dropdown-menu">
+          </div>
+          <div class="col-md-4">
 
-              <li style="cursor: pointer" (click)="onSearchByProgram()">Program</li>
-              <li role="separator" class="divider"></li>
-              <li style="cursor: pointer" (click)="onSearchByExercise()">Exercise</li>
-            </ul>
-          </div><!-- /btn-group -->
-          <input type="text" name="keyWord" #keyword class="form-control" aria-label="..." placeholder="Keyword..." ngModel>
+            <a routerLink="/program" class="navbar-brand" style="color: white;">GymMonitor</a>
+            <div *ngIf="authServise.isAuthenticated()"  class="col-md-2 pull-left" style="padding-top: 2mm">
+              <div class="input-group">
+                <div class="input-group-btn">
+                  <button  type="button" *ngIf="!showForm" class=" btn " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           style="padding: 1px 15px 3px 2px;  border-radius:50px; font-weight: bolder;background-color: rgba(96, 108, 132,0.85)">
+                    <span class="glyphicon glyphicon-option-vertical img-circle text-info" style="padding:8px;  background-color: rgba(200,200,200,0.7); color: whitesmoke; font-weight: bolder"></span>
+                    {{ currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }}
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li style="color: #333333; font-weight: bolder;"> Mon compte :  {{ currentUser.firstName |uppercase }} {{currentUser.lastName |uppercase }} </li>
+                    <li role="separator" class="divider"></li>
+                    <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  ><span class="glyphicon glyphicon-user"></span> Profil </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  routerLink="/program"><span class="glyphicon glyphicon-th-list" ></span> Program </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a style="cursor: pointer;color: rgba(28,29,34,0.91); font: normal 15px Arial, sans-serif;" (click)="onLogout()"><span class="glyphicon glyphicon-log-out" ></span> Logout </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
 
-
-          <span class="input-group-btn">
-        <button class="btn  glyphicon glyphicon-search" type="button" (click)="onSearch(keyword.value)"></button>
-      </span>
-        </div><!-- /input-group -->
-        <div class="row col-md-7">
-          <span *ngIf="errors" class="help-block alert-danger">Pleas select a Topic and a key word !</span>
-          <span *ngIf="programFounded" class="help-block alert-danger">Program not founded</span>
-          <!--<span *ngIf="!programFounded" class="help-block alert-danger">Exercise not founded</span>-->
         </div>
-      </div>
-      <div class="navbar-header">
-               <a routerLink="/program" class="navbar-brand">GymMonitor</a>
-      </div>
-      <div   id="hide" class="navbar-collapse collapse in" aria-expanded="false" style>
+        <div class="col-md-6">
+
+          <div class="col-md-6" *ngIf="authServise.isAuthenticated()"  style="padding-top: 2mm">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button style=" background-color: rgba(200,200,200,0.7); color: white; font-weight: bolder"
+                        type="button" class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Search by {{searchTopic}} <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+
+                  <li style="cursor: pointer; color: #333333" (click)="onSearchByProgram()">Program</li>
+                  <li role="separator" class="divider"></li>
+                  <li style="cursor: pointer ; color: #333333" (click)="onSearchByExercise()">Exercise</li>
+                </ul>
+              </div><!-- /btn-group -->
+              <input type="text" name="keyWord"  [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword class="form-control" aria-label="..." placeholder="Keyword...">
+
+
+              <!--<span class="input-group-btn">-->
+              <!--<button class="btn  glyphicon glyphicon-search" type="button" (click)="onSearch()"></button>-->
+              <!--</span>-->
+            </div><!-- /input-group -->
+            <div class="row col-md-7">
+
+              <span *ngIf="errors" class="badge" style=" background-color: rgba(211, 8, 8,0.3); margin-top: 1mm" >Pleas select a Topic!</span>
+
+              <!--<span *ngIf="!programFounded" class="help-block alert-danger">Exercise not founded</span>-->
+            </div>
+          </div>
+
+        </div>
+
+      <div class="col-md-7">
         <ul class="nav navbar-nav navbar-right">
           <ng-template [ngIf]="!authServise.isAuthenticated()">
             <li><a style="cursor: pointer;" routerLink="/register"  ><span class="glyphicon glyphicon-floppy-save"></span> Register</a></li>
             <li><a style="cursor: pointer;" routerLink="/login"  ><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
           </ng-template>
         </ul>
-        <ul class="nav navbar-nav navbar-left">
-          <ng-template [ngIf]="authServise.isAuthenticated()">
 
-            <li class="dropdown" appDropdown  >
-              <a style="cursor: pointer; font-size: larger; " class="dropdown-toggle img-circle pull-right icon-btn" role="button">{{currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }}<span class="caret"></span></a>
-              <ul class="dropdown-menu" style="color: rgba(28,29,34,0.91)">
-               <li>Mon compte</li>
-
-                <!--<li style="cursor: pointer;" class="dropdown-toggle" role="button">{{currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }} {{currentUser.firstName+' '+currentUser.lastName}}</li>-->
-                <br>
-                <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  ><span class="glyphicon glyphicon-user"></span> Profil </a></li>
-                <li><a style="cursor: pointer;color: rgba(28,29,34,0.91);font: normal 15px Arial, sans-serif;"  routerLink="/program"><span class="glyphicon glyphicon-th-list" ></span> Program </a></li>
-                <li><a style="cursor: pointer;color: rgba(28,29,34,0.91); font: normal 15px Arial, sans-serif;" (click)="onLogout()"><span class="glyphicon glyphicon-log-out" ></span> Logout </a></li>
-              </ul>
-            </li>
-          </ng-template>
-
-
-        </ul>
       </div>
-    </div>
+
+
+      </div>
+
+
+
   </nav>
 </div>
+
 

@@ -57,10 +57,16 @@ margin-right:4px;
 }
 
 .backgroundTransparent{
-  background-color: rgba(96, 108, 132,0.85);
+  /*background-color: rgba(96, 108, 132,0.85);*/
+  background-color: rgba(118, 132, 160,0.75);
 }
 .title{
   font: normal 20px Arial, sans-serif;
   color: whitesmoke;
   text-shadow: 1px 1px 1px #ccc;
+}
+
+.paddingSearchBar{
+  padding-top: 3mm;
+  padding-bottom: 3mm;
 }

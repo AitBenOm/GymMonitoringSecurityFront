@@ -28,7 +28,10 @@ import {AuthService} from "./Auth/auth.service";
 import {AuthGuard} from "./Auth/auth.guard";
 import { HomeComponent } from './home/home.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { FirstLettreUpperPipePipe } from './shared/first-lettre-upper-pipe.pipe';
+
+import {HeaderService} from "./header/header.service";
+import { FilterByNamePipe } from './shared/filter-by-name.pipe';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -55,7 +58,8 @@ import { FirstLettreUpperPipePipe } from './shared/first-lettre-upper-pipe.pipe'
     AddExerciseComponent,
     AddLoadComponent,
     HomeComponent,
-    FirstLettreUpperPipePipe
+    FilterByNamePipe,
+    TestComponent
 
 
   ],
@@ -66,7 +70,7 @@ import { FirstLettreUpperPipePipe } from './shared/first-lettre-upper-pipe.pipe'
     AppRoutingModule,
    HttpClientModule
   ],
-  providers: [UserService,ProgramService,ExerciseService,AuthService, AuthGuard],
+  providers: [UserService,ProgramService,ExerciseService,AuthService, AuthGuard,HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

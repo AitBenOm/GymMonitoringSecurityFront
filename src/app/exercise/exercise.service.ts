@@ -25,6 +25,12 @@ return this.http.get("http://localhost:8080/Exercises/MyExercises?idProgram="+id
   headers: this.authService.getHeaders()
 });
 }
+
+gerMyExercisesByUser(idUser: number){
+return this.http.get("http://localhost:8080/Exercises/MyExercises/user?idUser="+idUser, {
+  headers: this.authService.getHeaders()
+});
+}
 gerMyLoads(idExercise: number){
 return this.http.get("http://localhost:8080/Loads/MyLoads?idExercise="+idExercise, {
   headers: this.authService.getHeaders()
@@ -36,7 +42,13 @@ return this.http.get("http://localhost:8080/Exercises/MyExercises/"+idExercise, 
 });
 }
 gerLoadById(idLoad: number){
-return this.http.get("http://localhost:8080/Loads/MyLoad/"+idLoad, {
+return this.http.get("http://localhost:8080/Loads/MyLoads/"+idLoad, {
+  headers: this.authService.getHeaders()
+});
+}
+
+gerLoadsByUser(idUser: number){
+return this.http.get("http://localhost:8080/Loads/MyLoads/user?idUser="+idUser, {
   headers: this.authService.getHeaders()
 });
 }

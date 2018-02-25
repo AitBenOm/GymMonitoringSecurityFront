@@ -31,18 +31,20 @@ export class ExerciseComponent implements OnInit {
         this.loadToUpdate=null;
       }
     );
+    // this.programService.exerciseToShow.subscribe(
+    //   (exercise: ExerciseModel) =>{
+    //     console.log("Constructor "+exercise);
+    //     //console.log(exercise);
+    //     this.exercise = exercise;
+    //
+    //   }
+    // );
   }
 
 
 
   ngOnInit() {
-    this.programService.exerciseToShow.subscribe(
-      (exercise: ExerciseModel) =>{
-// console.log(exercise);
-        this.exercise = exercise;
 
-      }
-    );
     this.exerciseService.onExerciseAdded.subscribe(
       (data: ExerciseModel) => {
         // console.log(data);
@@ -87,6 +89,15 @@ this.exerciseService.onProgramLoaded.subscribe(
     this.exercise=null;
     }
 );
+this.programService.exerciseToShow.subscribe(
+      (exercise: ExerciseModel) =>{
+        console.log("Constructor "+exercise);
+        //console.log(exercise);
+        this.exercise = exercise;
+
+      }
+    );
+
   }
 
 
@@ -127,5 +138,6 @@ this.exerciseService.onProgramLoaded.subscribe(
   onShowModal(load: LoadsModel){
   this.loadToDelete=load;
   }
+
 
 }

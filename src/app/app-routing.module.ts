@@ -11,6 +11,7 @@ import {ProgramDetailComponent} from "./program/program-detail/program-detail.co
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {AuthGuard} from "./Auth/auth.guard";
 import {HomeComponent} from "./home/home.component";
+import {TestComponent} from "./test/test.component";
 
 
 
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   // { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   //{ path: 'recipes', loadChildren: './recipes/recipes.module.ts#RecipesModule'},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path: 'test', component: TestComponent },
   {path: 'program', component: ProgramComponent, children: [
     { path: ':id', component: ProgramDetailComponent },
   ], canActivate : [AuthGuard]},

@@ -7,6 +7,7 @@ import {ExerciseService} from '../../exercise/exercise.service';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {LoadsModel} from "../../exercise/loads-model";
+import {HeaderService} from "../../header/header.service";
 
 @Component({
   selector: 'app-program-detail',
@@ -24,6 +25,8 @@ export class ProgramDetailComponent implements OnInit {
   exerciseToUpdate: ExerciseModel=null;
   exerciseToDelete: ExerciseModel=null;
   updateMode: boolean;
+  keyWord: string;
+  searchableField='exerciseName';
 
 
 
@@ -33,28 +36,34 @@ export class ProgramDetailComponent implements OnInit {
               private router: Router,
               private exerciseService: ExerciseService,
               private route: ActivatedRoute,
-
+              private headerService: HeaderService
              ) {}
 
   ngOnInit() {
 
+    this.headerService.onKewWordExerciseChanged.subscribe(
+      (data: string) => {
+        this.keyWord=data;
+      }
+    );
+
 
     this.exerciseService.onExerciseAdded.subscribe(
       (data: ExerciseModel) => {
-     //   console.log(data);
+     //   //console.log(data);
        this.exercises.push(data);
-      // console.log(data.charges[data.charges.length-1]);
+      // //console.log(data.charges[data.charges.length-1]);
       }
     );
     this.route.params
       .subscribe(
         (params: Params) => {
-          console.log("Details Changed");
+          //console.log("Details Changed");
           this.programService.onProgramChanged.next(null);
           this.id = +params['id'];
            this.programService.getProgramById(this.id).subscribe(
             (data: ProgramModel)=> {
-           //   console.log(data);
+           //   //console.log(data);
               this.programService.onProgramChosen.next(data);
               this.program = data;
             }
@@ -77,7 +86,7 @@ export class ProgramDetailComponent implements OnInit {
 
         }
       );
-    console.log(this.exercises);
+    //console.log(this.exercises);
 
     this.exerciseService.onExerciseUpdated.subscribe(
       (data: ExerciseModel) => {
@@ -90,19 +99,18 @@ export class ProgramDetailComponent implements OnInit {
 //
   }
   onShowDetail(exercise: ExerciseModel) {
- //   console.log('program-detail ' + exercise.exerciseName);
+  // //console.log('program-detail ' + exercise.exerciseName);
     this.showOption=false;
    this.programService.showDetailExercise(exercise);
   }
 
-
   onEditExercise(idExercise: number){
-    console.log(idExercise);
+    //console.log(idExercise);
 
     this.exerciseService.getExerciseById(idExercise).subscribe(
       (data: ExerciseModel) =>{
         this.exerciseToUpdate=data;
-        console.log(this.exerciseToUpdate);
+        //console.log(this.exerciseToUpdate);
         this.showForm=true;
         this.updateMode=true;
         this.showOption=false;
@@ -114,7 +122,7 @@ export class ProgramDetailComponent implements OnInit {
     this.exerciseService.deleteExercise(this.exerciseToDelete).subscribe(
       (data) => {
         let n = 0;
-        console.log("*************************");
+        //console.log("*************************");
         for ( const exercise of this.exercises){
           if ( exercise.idExercise === this.exerciseToDelete.idExercise){
             break;
@@ -122,7 +130,7 @@ export class ProgramDetailComponent implements OnInit {
           n++;
         }
         this.exercises.splice(n,1);
-        console.log(data);
+        //console.log(data);
       }
       );
   }
