@@ -1,0 +1,6 @@
+<input type="text" [(ngModel)]="queryString" id="search" placeholder="Search to type">
+<ul>
+  <li *ngFor="let n of list | filterByName: queryString : searchableList ">
+    {{n.name}} ({{n.age}})
+  </li>
+</ul>
