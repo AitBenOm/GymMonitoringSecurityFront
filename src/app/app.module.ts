@@ -32,6 +32,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HeaderService} from "./header/header.service";
 import { FilterByNamePipe } from './shared/filter-by-name.pipe';
 import { TestComponent } from './test/test.component';
+import { UserStatsComponent } from './user/user-stats/user-stats.component';
 
 
 
@@ -59,7 +60,8 @@ import { TestComponent } from './test/test.component';
     AddLoadComponent,
     HomeComponent,
     FilterByNamePipe,
-    TestComponent
+    TestComponent,
+    UserStatsComponent
 
 
   ],

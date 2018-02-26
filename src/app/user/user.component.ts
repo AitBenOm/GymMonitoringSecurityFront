@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserModel} from './user.model';
+import {UserService} from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private userService: UserService) { }
+user: UserModel;
   ngOnInit() {
+    this.user=this.userService.getUserFromToken();
   }
 
 }

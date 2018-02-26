@@ -1,3 +1,45 @@
-<p>
-  user works!
-</p>
+<div class="col-md-2"></div>
+<div class="col-md-7">
+  <div class="wrapper"  style="border-radius: 25px;">
+    <div id="tasksPanel" class="panel backgroundTransparent " style="color: whitesmoke;">
+      <div class="panel-heading">
+        <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: whitesmoke; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">
+          <span class="glyphicon glyphicon-user" style="color: #d3d3d3"></span> My Profil  </h3>
+        <nav class="nav nav-tabs">
+         <a role="presentation"  routerLinkActive="active" class="pointer" routerLink="/profil" >My Profil</a>
+         <a role="presentation"  routerLinkActive="active" class="pointer" routerLink="/stats" >Stats</a>
+       <a role="presentation"  routerLinkActive="active" class="pointer" routerLink="/profil" >Credentials</a>
+        </nav>
+
+        <br>
+        <div >
+          <ul class="list-group ">
+            <li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">
+              {{user.firstName}}
+            </li>
+            <!--<li role="separator" class="divider"></li>-->
+            <br>
+            <li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">
+              {{user.lastName}}
+            </li>
+            <br>
+            <li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">
+              {{user.email}}
+            </li>
+            <app-user-stats></app-user-stats>
+            <router-outlet></router-outlet>
+
+          </ul>
+
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="col-md-3"></div>
+

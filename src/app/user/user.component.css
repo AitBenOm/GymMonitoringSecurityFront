@@ -1,0 +1,13 @@
+.borderTop{
+  border: none;
+  border-top: solid 0.5mm #114584;
+
+}
+
+.backgroundTransparent{
+  /*background-color: rgba(96, 108, 132,0.85);*/
+  background-color: rgba(118, 132, 160,0.75);
+}
+.pointer{
+  cursor: pointer;
+}
