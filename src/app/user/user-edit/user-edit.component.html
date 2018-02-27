@@ -1,3 +1,83 @@
-<p>
-  user-edit works!
-</p>
+
+<!--<div >-->
+<!--<div class="col-md-3"></div>-->
+<!--<div class="col-md-6">-->
+<!--<ul class="list-group ">-->
+<!---->
+<!--<li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">-->
+<!--{{user.firstName}}-->
+<!--</li>-->
+<!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
+
+<!--<li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">-->
+<!--{{user.lastName}}-->
+<!--</li>-->
+
+<!--<li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">-->
+<!--{{user.email}}-->
+<!--</li>-->
+<!--</ul>-->
+
+<!--</div>-->
+
+<!--</div>-->
+<div class="container">
+  <br>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      <div class="text-center">
+        <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+      </div>
+      <div class="row text-center">
+        <button class="btn btn-primary " style="margin-top: 2mm">Edit Photo</button>
+      </div>
+    </div>
+
+    <!-- edit form column -->
+    <div class="col-md-6 personal-info">
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-md-3 control-label">First name:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" value="{{user.firstName}}" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Last name:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" value="{{user.lastName}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Email:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" value="{{user.email}}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="password" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="password" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-6">
+            <input type="button" class="btn btn-primary pull-right" value="Update">
+            <span></span>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<hr>
