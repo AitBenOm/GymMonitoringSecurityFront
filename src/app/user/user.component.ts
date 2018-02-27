@@ -9,10 +9,8 @@ import {UserService} from './user.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
-user: UserModel;
-  ngOnInit() {
-    this.user=this.userService.getUserFromToken();
-  }
+  constructor() { }
+
+  ngOnInit() {}
 
 }

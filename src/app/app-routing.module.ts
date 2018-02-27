@@ -14,6 +14,8 @@ import {HomeComponent} from "./home/home.component";
 import {TestComponent} from "./test/test.component";
 import {UserComponent} from './user/user.component';
 import {UserStatsComponent} from './user/user-stats/user-stats.component';
+import {UserProfilComponent} from './user/user-profil/user-profil.component';
+import {UserEditComponent} from './user/user-edit/user-edit.component';
 
 
 
@@ -22,8 +24,12 @@ const appRoutes: Routes = [
   // { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   //{ path: 'recipes', loadChildren: './recipes/recipes.module.ts#RecipesModule'},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path: 'profil', component: UserComponent },
-  {path: 'stats', component: UserStatsComponent },
+  {path: 'user', component: UserComponent, children: [
+      {path: 'stats', component: UserStatsComponent },
+      {path: 'profil', component: UserProfilComponent },
+      {path: 'edit', component: UserEditComponent }
+    ] },
+
   {path: 'program', component: ProgramComponent, children: [
     { path: ':id', component: ProgramDetailComponent },
   ], canActivate : [AuthGuard]},

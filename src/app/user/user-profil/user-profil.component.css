@@ -1,0 +1,37 @@
+.btn-glyphicon {
+  padding:8px;
+  background:#ffffff;
+  margin-right:4px;
+}
+.icon-btn {
+  padding: 1px 15px 3px 2px;
+  border-radius:50px;
+}
+
+.rcorners{
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}
+
+.backgroundTransparent{
+  /*background-color: rgba(96, 108, 132,0.85);*/
+  background-color: rgba(118, 132, 160,0.75);
+}
+.title{
+  font: normal 20px Arial, sans-serif;
+  color: whitesmoke;
+  text-shadow: 1px 1px 1px #ccc;
+}
+
+.borderTop{
+  border: none;
+  margin-top: 3mm;
+  border-top: solid 0.5mm #114584;
+
+}
+.addingMode{
+  color: whitesmoke; font: normal 13px Arial, sans-serif;
+}
