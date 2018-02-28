@@ -10,8 +10,12 @@ import {UserModel} from '../user.model';
 export class UserEditComponent implements OnInit {
   constructor(private userService: UserService) { }
   user: UserModel;
+  imageProfil: Blob;
   ngOnInit() {
     this.user=this.userService.getUserFromToken();
+  }
+  show(){
+    console.log(this.imageProfil);
   }
 
 }

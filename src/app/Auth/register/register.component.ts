@@ -47,6 +47,7 @@ console.log(Nuser);
         console.log(user);
         if(user===null){
           this.userExiste=false;
+
         }else {
           console.log(user);
         }

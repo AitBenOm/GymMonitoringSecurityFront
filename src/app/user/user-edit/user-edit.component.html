@@ -30,7 +30,9 @@
         <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
       </div>
       <div class="row text-center">
-        <button class="btn btn-primary " style="margin-top: 2mm">Edit Photo</button>
+        <input class="form-control" type="file" name="imageProfil" [(ngModel)]="imageProfil">
+        <button class="btn btn-primary " style="margin-top: 2mm" (click)="show()">Edit Photo</button>
+
       </div>
     </div>
 
