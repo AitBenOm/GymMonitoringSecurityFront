@@ -3,6 +3,7 @@ import {ProgramModel} from "../../program-model";
 import {ProgramService} from "../../program.service";
 import {AuthService} from "../../../Auth/auth.service";
 import {HeaderService} from "../../../header/header.service";
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-program-item',

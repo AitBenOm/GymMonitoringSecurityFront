@@ -56,8 +56,9 @@
   border-radius: 0 0 10px 0;
 }
 .backgroundTransparent{
-  background-color: rgba(118, 132, 160,0.75);
+  background-color: rgba(232, 235, 239,0.8);
   /*background-color: rgba(96, 108, 132,0.85);*/
+
 }
 .title{
   font: normal 20px Arial, sans-serif;

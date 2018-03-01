@@ -4,12 +4,28 @@ import {AuthService} from "./Auth/auth.service";
 import {JsonAstString} from '../../node_modules_old/@angular-devkit/core/src/json';
 import {DomSanitizer} from '@angular/platform-browser';
 import {UserService} from './user/user.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('listShow',[
+      state('in',style({
+        opacity:1,
+        transform: 'translateX(0)'
+      })),
+      transition('void =>*',[
+        style({
+          opacity:0,
+          transform: 'translateX(-100px)'
+        }),
+        animate(300)
+      ]),
+    ]),
+  ]
 })
 export class AppComponent implements OnInit{
 

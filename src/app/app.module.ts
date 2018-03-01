@@ -35,6 +35,7 @@ import { TestComponent } from './test/test.component';
 import { UserStatsComponent } from './user/user-stats/user-stats.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserProfilComponent } from './user/user-profil/user-profil.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -74,7 +75,8 @@ import { UserProfilComponent } from './user/user-profil/user-profil.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-   HttpClientModule
+   HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [UserService,ProgramService,ExerciseService,AuthService, AuthGuard,HeaderService],
   bootstrap: [AppComponent]
