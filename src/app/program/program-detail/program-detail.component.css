@@ -47,7 +47,7 @@ margin-right:4px;
 .gym-table-rounded tbody td {
   border: none;
   border-top: solid 2px #114584;
-  background-color: lightgray;
+  background-color: white;
 }
 .gym-table-rounded tbody tr:last-child td:first-child {
   border-radius: 0 0 0 10px;

@@ -1,6 +1,18 @@
 .bas{
   margin-bottom: 5px;
 }
+
+.title{
+  font: normal 20px Arial, sans-serif;
+  color: whitesmoke;
+  text-shadow: 1px 1px 1px #ccc;
+}
 .addingMode{
   color: whitesmoke; font: normal 13px Arial, sans-serif;
+}
+
+.backgroundTransparent{
+  /*background-color: rgba(232, 235, 239,0.1);*/
+  background-color: rgba(96, 108, 132,0.2);
+
 }

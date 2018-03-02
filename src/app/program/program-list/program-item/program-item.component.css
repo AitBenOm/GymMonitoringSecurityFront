@@ -47,7 +47,7 @@
 .gym-table-rounded tbody td {
   border: none;
   border-top: solid 2px #114584;
-  background-color: lightgray;
+  background-color: white;
 }
 .gym-table-rounded tbody tr:last-child td:first-child {
   border-radius: 0 0 0 10px;
@@ -56,14 +56,14 @@
   border-radius: 0 0 10px 0;
 }
 .backgroundTransparent{
-  background-color: rgba(232, 235, 239,0.8);
-  /*background-color: rgba(96, 108, 132,0.85);*/
+  /*background-color: rgba(232, 235, 239,0.1);*/
+  background-color: rgba(96, 108, 132,0.2);
 
 }
 .title{
   font: normal 20px Arial, sans-serif;
-  color: whitesmoke;
-  text-shadow: 1px 1px 1px #ccc;
+  color: #333333;
+  text-shadow: 1px 1px 1px whitesmoke;
 }
 .paddingSearchBar{
   padding-top: 3mm;

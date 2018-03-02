@@ -1,13 +1,16 @@
-
+<div id="tasksPanel" class="panel backgroundTransparent " style="color: whitesmoke;" [@exerciseShow]>
+  <div class="panel-heading">
+    <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: whitesmoke; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">Adding Programm</h3>
+    <div >
 
 <form class="addingMode" >
-  <div class="input-group col-md-6 bas form-group " >
+  <div class="input-group bas form-group " >
 
     <label class="control-label" for="programName">Program Name</label>
     <input type="text" [(ngModel)]="programName" id="programName" name="programName" class="form-control" placeholder="New Program..." required>
 
   </div>
-  <div class="input-group  col-md-6 bas form-group" >
+  <div class="input-group   bas form-group" >
     <label class="control-label" for="exerciseName">Exercise Name</label>
     <input type="text" [(ngModel)]="exerciseName" id="exerciseName" name="exerciseName" class="form-control" placeholder="New Exercise..." required>
     <!-- <span class="input-group-btn">
@@ -35,3 +38,4 @@
 
   </div>
 </form>
+    </div>
