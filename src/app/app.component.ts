@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JwtHelper} from "angular2-jwt";
 import {AuthService} from "./Auth/auth.service";
-import {JsonAstString} from '../../node_modules_old/@angular-devkit/core/src/json';
+
 import {DomSanitizer} from '@angular/platform-browser';
 import {UserService} from './user/user.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';

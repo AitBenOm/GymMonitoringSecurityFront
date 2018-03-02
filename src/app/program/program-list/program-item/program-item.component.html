@@ -52,9 +52,13 @@
         Cancel
       </a>
 
-      <app-add-program *ngIf="showForm"></app-add-program>
+
 
     </div>
+  </div>
+
+  <div *ngIf="showForm" [@addProgram] class="backgroundTransparent">
+    <app-add-program  ></app-add-program>
   </div>
   <div class="container">
 

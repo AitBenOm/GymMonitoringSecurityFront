@@ -8,7 +8,53 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 @Component({
   selector: 'app-program-item',
   templateUrl: './program-item.component.html',
-  styleUrls: ['./program-item.component.css']
+  styleUrls: ['./program-item.component.css'],
+  animations: [
+    trigger('listShow', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0) '
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateX(-100px)'
+        }),
+        animate(300),
+      ] ),
+      transition('* => void', [
+        animate(300, style({
+          transform: 'translateX(100px) ',
+          opacity:0
+
+        })),
+      ] )
+
+
+    ]),
+    trigger('addProgram', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateY(0) '
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateY(100px)'
+        }),
+        animate(500),
+      ] ),
+      transition('* => void', [
+        animate(500, style({
+          transform: 'translateX(-100px) ',
+          opacity:0
+
+        })),
+      ] )
+
+
+    ])
+  ]
 })
 export class ProgramItemComponent implements OnInit {
   @Input() programs: ProgramModel[];

@@ -5,11 +5,36 @@ import {ExerciseModel} from '../../exercise/exercise-model';
 import {LoadsModel} from '../../exercise/loads-model';
 import {isNull} from 'util';
 import {ExerciseService} from "../../exercise/exercise.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-add-program',
   templateUrl: './add-program.component.html',
-  styleUrls: ['./add-program.component.css']
+  styleUrls: ['./add-program.component.css'],
+  animations: [
+    trigger('addProgram', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateY(0) '
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateY(100px)'
+        }),
+        animate(400),
+      ] ),
+      transition('* => void', [
+        animate(400, style({
+          transform: 'translateX(-100px) ',
+          opacity:0
+
+        })),
+      ] )
+
+
+    ])
+  ]
 })
 export class AddProgramComponent implements OnInit {
 

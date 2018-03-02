@@ -8,11 +8,59 @@ import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {LoadsModel} from "../../exercise/loads-model";
 import {HeaderService} from "../../header/header.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-program-detail',
   templateUrl: './program-detail.component.html',
-  styleUrls: ['./program-detail.component.css']
+  styleUrls: ['./program-detail.component.css'],
+  animations: [
+    trigger('detailShow', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0) '
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateX(-100px)'
+        }),
+        animate(300),
+      ] ),
+      transition('* => void', [
+        animate(300, style({
+          transform: 'translateX(100px) ',
+          opacity:0
+
+        })),
+      ] )
+
+
+    ]),
+    trigger('addExercise', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateY(0) '
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateY(100px)'
+        }),
+        animate(500),
+      ] ),
+      transition('* => void', [
+        animate(500, style({
+          transform: 'translateX(-100px) ',
+          opacity:0
+
+        })),
+      ] )
+
+
+    ])
+  ]
+
 })
 export class ProgramDetailComponent implements OnInit {
 
@@ -41,29 +89,16 @@ export class ProgramDetailComponent implements OnInit {
 
   ngOnInit() {
 
-    this.headerService.onKewWordExerciseChanged.subscribe(
-      (data: string) => {
-        this.keyWord=data;
-      }
-    );
-
-
-    this.exerciseService.onExerciseAdded.subscribe(
-      (data: ExerciseModel) => {
-     //   //console.log(data);
-       this.exercises.push(data);
-      // //console.log(data.charges[data.charges.length-1]);
-      }
-    );
     this.route.params
       .subscribe(
         (params: Params) => {
-          //console.log("Details Changed");
+          console.log("Details Changed");
           this.programService.onProgramChanged.next(null);
           this.id = +params['id'];
+          console.log(this.id);
            this.programService.getProgramById(this.id).subscribe(
             (data: ProgramModel)=> {
-           //   //console.log(data);
+           console.log(data);
               this.programService.onProgramChosen.next(data);
               this.program = data;
             }
@@ -97,6 +132,21 @@ export class ProgramDetailComponent implements OnInit {
       }
     );
 //
+
+    this.headerService.onKewWordExerciseChanged.subscribe(
+      (data: string) => {
+        this.keyWord=data;
+      }
+    );
+
+
+    this.exerciseService.onExerciseAdded.subscribe(
+      (data: ExerciseModel) => {
+        //   //console.log(data);
+        this.exercises.push(data);
+        // //console.log(data.charges[data.charges.length-1]);
+      }
+    );
   }
   onShowDetail(exercise: ExerciseModel) {
   // //console.log('program-detail ' + exercise.exerciseName);

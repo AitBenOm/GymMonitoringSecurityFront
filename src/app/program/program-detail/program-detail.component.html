@@ -1,7 +1,8 @@
-<div class="col-md-6">
-  <div class="wrapper" >
+<div class="col-md-6" *ngIf="exercises!=null;">
+  <div class="wrapper"  [@detailShow]>
     <div id="tasksPanel" class="panel backgroundTransparent ">
-      <div class="panel-heading" *ngIf="exercises!=null;">
+      <div class="panel-heading">
+
         <h2 class="panel-title title">My Execrcises
           <span class="pull-right badge"
                 style="background-color:lightblue; color:  #635d5d;">
@@ -24,7 +25,7 @@
 
 
             <td>{{exercise.exerciseName}}</td>
-            <td>{{exercise.charges[exercise.charges.length-1].charge}}
+            <td *ngIf="exercise.charges!=null;">{{exercise.charges[exercise.charges.length-1].charge}}
 
             </td>
             <td >
@@ -56,11 +57,14 @@
            Options
         </a>
 
-        <app-add-exercise *ngIf="showForm" [updateMode]="updateMode" [exerciseToUpdate]="exerciseToUpdate"  [exercises]="exercises" [idProgram]="program.idProgram"></app-add-exercise>
+
 
       </div>
     </div>
 
+  </div>
+  <div *ngIf="showForm" class="backgroundTransparent" [@addExercise]>
+    <app-add-exercise  [updateMode]="updateMode" [exerciseToUpdate]="exerciseToUpdate"  [exercises]="exercises" [idProgram]="program.idProgram"></app-add-exercise>
   </div>
 </div>
 <div *ngIf="exerciseToDelete!=null" class="modal fade" id="myModalE" role="dialog">
@@ -85,7 +89,7 @@
 
   </div>
 </div>
-<div class="col-md-5">
+<div class="col-md-5" *ngIf="program !=null;">
   <app-exercise [idProgram]="program.idProgram"></app-exercise>
 
 </div>
