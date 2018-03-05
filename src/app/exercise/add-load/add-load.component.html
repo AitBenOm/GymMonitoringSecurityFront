@@ -1,4 +1,4 @@
-<form  *ngIf="!updateMode">
+<form  *ngIf="!updateMode" style="color: #333333; font-family: cursive">
   <div class="input-group    form-group" >
     <label class="control-label">Loads (kg) / Duration (min)</label>
     <br>
@@ -14,7 +14,9 @@
     </div>
   </div>
   <div class="input-group  col-md-5">
-    <button [disabled]="load==='' || loadType==='' "  (click)="onSaveLoad()" class="btn btn-info" type="button">Add Program</button>
+
+    <button [disabled]="load==='' || loadType==='' "  (click)="onSaveLoad()" class="btn btn-info icon-btn" style="background-color: rgba(30, 92, 149,0.4)" type="submit">
+      <span class="glyphicon btn-glyphicon glyphicon-saved img-circle text-info" ></span> Add Load</button>
 
   </div>
 </form>
@@ -35,7 +37,9 @@
 
   </div>
   <div class="input-group  col-md-5">
-    <button [disabled]="loadToUpdate.charge==='' || loadType==='' "  (click)="onUpdateLoad(loadToUpdate)" class="btn btn-info" type="button">Update</button>
+
+    <button [disabled]="loadToUpdate.charge==='' || loadType==='' " (click)="onUpdateLoad(loadToUpdate)" class="btn btn-info icon-btn" style="background-color: rgba(30, 92, 149,0.4)" type="submit">
+      <span class="glyphicon btn-glyphicon glyphicon-floppy-save img-circle text-info" ></span> Update</button>
 
   </div>
 </form>

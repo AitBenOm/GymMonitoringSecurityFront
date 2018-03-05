@@ -1,7 +1,7 @@
     <div class="wrapper" *ngIf="exercise!=null " style="border-radius: 25px;">
       <div id="tasksPanel" class="panel backgroundTransparent " style="color: whitesmoke;" [@exerciseShow]>
     <div class="panel-heading">
-      <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: whitesmoke; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">My progression </h3>
+      <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: #333333; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm; font-family: cursive">My progression </h3>
       <div >
         <h5 class="list-group-item disabled" style="background-color: whitesmoke; font: normal 13px Arial, sans-serif;  color: #333; text-shadow: 1px 1px 1px #ccc;font-weight: bold;">
           {{exercise.exerciseName}}
@@ -16,12 +16,14 @@
         </ul>
       </div>
 <div class="row">
-  <a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
-    <span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>
+  <a *ngIf="showOption" class="btn icon-btn btn-info pull-right"
+     (click)="onShowOption()" style="background-color: rgba(46, 142, 0,0.4)">
+    <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
     Options
   </a>
-  <a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
-    <span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>
+  <a *ngIf="!showOption" class="btn icon-btn btn-info pull-right"
+     (click)="onShowOption()" style="background-color: rgba(46, 140, 0,0.4)">
+    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info"></span>
     Options
   </a>
 

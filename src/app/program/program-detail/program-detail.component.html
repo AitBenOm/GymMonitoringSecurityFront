@@ -40,21 +40,24 @@
           </tr>
           </tbody>
         </table>
-        <a *ngIf="!showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
-          <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info"></span>
+        <a *ngIf="!showForm" class="btn icon-btn btn-info" (click)="onShowForm()" style="background-color: rgba(30, 92, 149,0.4)">
+          <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info" ></span>
           Add
         </a>
-        <a *ngIf="showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
+        <a *ngIf="showForm" class="btn icon-btn btn-info"
+           (click)="onShowForm()" style="background-color: rgba(30, 92, 149,0.4)">
           <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
           Cancel
         </a>
-        <a *ngIf="showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
-          <span class="glyphicon btn-glyphicon glyphicon-minus-sign img-circle text-success"></span>
-           Option
+        <a *ngIf="showOption" class="btn icon-btn btn-info pull-right"
+           (click)="onShowOption()" style="background-color: rgba(46, 142, 0,0.4)">
+          <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
+         Options
         </a>
-        <a *ngIf="!showOption" class="btn icon-btn btn-success pull-right" (click)="onShowOption()">
-          <span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-success"></span>
-           Options
+        <a *ngIf="!showOption" class="btn icon-btn btn-info pull-right"
+           (click)="onShowOption()" style="background-color: rgba(46, 140, 0,0.4)">
+          <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info"></span>
+          Options
         </a>
 
 

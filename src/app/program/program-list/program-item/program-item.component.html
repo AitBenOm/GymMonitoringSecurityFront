@@ -13,7 +13,7 @@
           <th scope="col">Progrm  <span  class="glyphicon glyphicon-sort"
                                          style="transform: rotate(180deg); cursor: pointer; color:#646568"
                                          (click)="sort('name')"></span> </th>
-          <th scope="col">Modificated
+          <th scope="col"> Date
               <span  class="glyphicon glyphicon-sort"
                      style="transform: rotate(180deg); cursor: pointer; color:#646568"
                      (click)="sort('modification')"></span>   </th>
@@ -42,7 +42,8 @@
         <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info" ></span>
         Add
       </a>
-      <a *ngIf="showForm" class="btn icon-btn btn-info" (click)="onShowForm()" style="background-color: rgba(30, 92, 149,0.4)">
+      <a *ngIf="showForm" class="btn icon-btn btn-info"
+         (click)="onShowForm()" style="background-color: rgba(30, 92, 149,0.4)">
         <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
         Cancel
       </a>

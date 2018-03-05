@@ -1,9 +1,9 @@
 <div id="tasksPanel" class="panel backgroundTransparent " style="color: whitesmoke;" [@exerciseShow]>
   <div class="panel-heading">
-    <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: whitesmoke; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">Adding Programm</h3>
+    <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: #333333; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm; font-family: cursive">Adding Programm</h3>
     <div >
 
-<form class="addingMode" >
+<form class="addingMode"  style="color: #333333; font-family: cursive">
   <div class="input-group bas form-group " >
 
     <label class="control-label" for="programName">Program Name</label>
@@ -34,7 +34,8 @@
   </div>
 
   <div class="input-group  col-md-5">
-    <button [disabled]="programName==='' || exerciseName==='' || loadName===''"  (click)="onSaveProgram()" class="btn btn-info" type="submit">Add Program</button>
+    <button [disabled]="programName==='' || exerciseName==='' || loadName===''"  (click)="onSaveProgram()" class="btn btn-info icon-btn" style="background-color: rgba(30, 92, 149,0.4)" type="submit">
+      <span class="glyphicon btn-glyphicon glyphicon-saved img-circle text-info" ></span> Add Program</button>
 
   </div>
 </form>
