@@ -1,4 +1,17 @@
-
+.nav-tabs > li.active > a:focus {
+ color: rgba(30, 92, 149,0.7);
+  cursor: default;
+  background-color:white ;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+.nav-tabs > li > a:hover {
+ color: rgba(30, 92, 149,0.7);
+  cursor: default;
+  background-color:white ;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
 .navStyle{
  background-color: rgba(118, 132, 160,0.7);
   font: normal 13px Arial, sans-serif;
@@ -39,7 +52,10 @@
   padding: 1px 15px 3px 2px;
   border-radius:50px;
 }
-
+a{
+  color: white;font-weight: bold;
+  font-family: cursive;
+}
 
 .btn-circle.btn-lg {
   width: 50px;

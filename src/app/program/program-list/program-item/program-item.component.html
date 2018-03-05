@@ -38,11 +38,11 @@
         </tbody>
       </table>
 
-      <a *ngIf="!showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
-        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info"></span>
+      <a *ngIf="!showForm" class="btn icon-btn btn-info" (click)="onShowForm()" style="background-color: rgba(30, 92, 149,0.4)">
+        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-info" ></span>
         Add
       </a>
-      <a *ngIf="showForm" class="btn icon-btn btn-info" (click)="onShowForm()">
+      <a *ngIf="showForm" class="btn icon-btn btn-info" (click)="onShowForm()" style="background-color: rgba(30, 92, 149,0.4)">
         <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-info"></span>
         Cancel
       </a>

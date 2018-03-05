@@ -12,11 +12,36 @@ import {ExerciseService} from "../exercise/exercise.service";
 import {LoadsModel} from "../exercise/loads-model";
 import {log} from "util";
 import {HeaderService} from "./header.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  animations:[
+    trigger('listShow', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0) '
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateY(-100px)'
+        }),
+        animate(500),
+      ] ),
+      transition('* => void', [
+        animate(500, style({
+          transform: 'translateY(100px) ',
+          opacity:0
+
+        })),
+      ] )
+
+
+    ]),
+  ]
 })
 export class HeaderComponent implements OnInit {
 
@@ -33,6 +58,8 @@ export class HeaderComponent implements OnInit {
   programs: ProgramModel[];
   exercises: ExerciseModel[];
   showDropDown:boolean=false;
+  state= 'hiden';
+  showOptions: boolean=false;
 
 
 
@@ -98,5 +125,15 @@ export class HeaderComponent implements OnInit {
         this.headerService.onKewWordExerciseChanged.emit(this.keyWord);
       }
     }
+  }
+
+  mouseIn(){
+    this.showOptions=true;
+    this.state = 'showen' ;
+  }
+  mouseOut(){
+
+    this.state = 'hiden';
+    this.showOptions=false;
   }
 }
