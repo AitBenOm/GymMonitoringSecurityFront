@@ -30,8 +30,8 @@
         <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
       </div>
       <div class="row text-center">
-        <input class="form-control" type="file" name="imageProfil" [(ngModel)]="imageProfil">
-        <button class="btn btn-primary " style="margin-top: 2mm" (click)="show()">Edit Photo</button>
+        <input class="form-control" type="file"   (change)="selectFile($event)" placeholder="Upload file">
+        <button class="btn btn-primary " style="margin-top: 2mm" (click)="upload()">Edit Photo</button>
 
       </div>
     </div>
