@@ -17,7 +17,8 @@
 }
 
 .backgroundTransparent{
-  background-color: rgba(209, 225, 235,0.7);
+  /*background-color: rgba(209, 225, 235,0.7);*/
+  background-color: rgba(230, 234, 242,0.75);
 }
 .title{
   font: normal 20px Arial, sans-serif;

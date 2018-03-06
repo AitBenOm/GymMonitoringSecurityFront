@@ -42,7 +42,7 @@ return this.http.get("http://localhost:8080/Exercises/MyExercises/"+idExercise, 
 });
 }
 gerLoadById(idLoad: number){
-return this.http.get("http://localhost:8080/Loads/MyLoads/"+idLoad, {
+return this.http.get("http://localhost:8080/Loads/MyLoad/"+idLoad, {
   headers: this.authService.getHeaders()
 });
 }

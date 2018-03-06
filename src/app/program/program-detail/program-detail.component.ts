@@ -8,7 +8,7 @@ import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {LoadsModel} from "../../exercise/loads-model";
 import {HeaderService} from "../../header/header.service";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, group, keyframes, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-program-detail',
@@ -58,7 +58,51 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       ] )
 
 
-    ])
+    ]),
+    trigger('exerciseList', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0) '
+      })),
+      transition('void => *', [
+        animate(1000, keyframes([
+          style({
+           // transform: 'translateY(-100px)',
+            opacity:0,
+            offset: 0
+          }),
+          style({
+           // transform: 'translateY(-50px)',
+            opacity:0.5,
+            offset: 0.3
+          }),
+          style({
+          //  transform: 'translateY(-20px)',
+            opacity:1,
+            offset: 0.8
+          }),
+          style({
+            // transform: 'translateY(0px)',
+            opacity:1,
+            offset: 1
+          }),
+        ]))
+      ] ),
+      transition('* => void', [
+        group([
+          animate(300, style({
+            color: 'red'
+          })),
+          animate(500, style({
+            transform: 'translateX(100px) ',
+            opacity:0
+
+          }))
+        ])
+
+      ] )
+
+    ]),
   ]
 
 })

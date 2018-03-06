@@ -6,10 +6,19 @@
 
 .backgroundTransparent{
   /*background-color: rgba(96, 108, 132,0.85);*/
-  background-color: rgba(118, 132, 160,0.75);
+  /*background-color: rgba(209, 225, 235,0.7);*/
+  background-color: rgba(139, 143, 149,0.6);
 }
 .NavStyle{
   color: whitesmoke;
   text-shadow: 1px 1px 1px #ccc;
 font-weight: bold;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #fff;
+  background-color: rgba(30, 92, 149,0.4);
+}
+.nav-tabs > li> a:hover {
+  color: #fff;
+  background-color: rgba(30, 92, 149,0.4);
 }

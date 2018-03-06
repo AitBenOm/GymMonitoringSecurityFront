@@ -22,8 +22,6 @@
           </thead>
           <tbody>
           <tr   *ngFor="let exercise of exercises | filterByName : keyWord : searchableField">
-
-
             <td>{{exercise.exerciseName}}</td>
             <td *ngIf="exercise.charges!=null;">{{exercise.charges[exercise.charges.length-1].charge}}
 

@@ -23,7 +23,7 @@
         </thead>
         <tbody>
 
-        <tr  *ngFor="let program of programs | filterByName : keyWord : searchableField"  >
+        <tr  *ngFor="let program of programs | filterByName : keyWord : searchableField" [@programList] >
           <td  style="cursor: pointer;" [routerLink]="[program.idProgram]" width="100px">{{program.programName}} <a data-toggle="popover" title="Created at {{program.dateOfCreation | date:'MM/dd/yy HH:mm'}} " class="glyphicon glyphicon-info-sign pull-right active"></a></td>
           <!--<td>{{program.dateOfCreation | date:'MM/dd/yy HH:mm'}}  </td>-->
           <td >{{program.lastModification  | date:'MM/dd/yy HH:mm'}}</td>
