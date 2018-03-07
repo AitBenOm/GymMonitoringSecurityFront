@@ -2,24 +2,38 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../user.service';
 import {UserModel} from '../user.model';
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-
+import {Observable} from "rxjs/Observable";
+import {DomSanitizer} from "@angular/platform-browser";
+interface JsonImage{
+  name: string;
+  content: string;
+}
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,  private sanitizer: DomSanitizer) {
   }
 
   user: UserModel;
   selectedFiles: FileList;
   currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
-  @ViewChild('fileInput') fileInput;
+  progress: { percentage: number } = {percentage: 0};
+
+  avatar: any;
+
+  private readonly imageType : string = 'data:image/PNG;base64,';
 
   ngOnInit() {
     this.user = this.userService.getUserFromToken();
+    this.userService.getFile().subscribe(
+      (data: JsonImage) => {
+      //  console.log(data.content);
+        this.avatar = this.sanitizer.bypassSecurityTrustUrl(this.imageType+data.content);
+      }
+    );
   }
 
   // upload1() {
@@ -45,17 +59,18 @@ export class UserEditComponent implements OnInit {
     this.progress.percentage = 0;
 
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.userService.pushFileToStorage(this.currentFileUpload).subscribe(
+    this.userService.saveFile(this.currentFileUpload).subscribe(
       (event: any) => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress.percentage = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        console.log('File is completely uploaded!');
-      }
-    });
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress.percentage = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          console.log('File is completely uploaded!');
+        }
+      });
 
     this.selectedFiles = undefined;
   }
+
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }

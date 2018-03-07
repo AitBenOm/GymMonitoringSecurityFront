@@ -37,6 +37,7 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserProfilComponent } from './user/user-profil/user-profil.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
+import { ProfilImagePipe } from './shared/profil-image.pipe';
 
 
 
@@ -68,7 +69,8 @@ import { SideBarComponent } from './shared/side-bar/side-bar.component';
     UserStatsComponent,
     UserEditComponent,
     UserProfilComponent,
-    SideBarComponent
+    SideBarComponent,
+    ProfilImagePipe
 
 
   ],
