@@ -1,35 +1,13 @@
 
-<!--<div >-->
-<!--<div class="col-md-3"></div>-->
-<!--<div class="col-md-6">-->
-<!--<ul class="list-group ">-->
-<!---->
-<!--<li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">-->
-<!--{{user.firstName}}-->
-<!--</li>-->
-<!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
-
-<!--<li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">-->
-<!--{{user.lastName}}-->
-<!--</li>-->
-
-<!--<li class="list-group-item borderTop"  style=" color: #333;font-weight: bold; background-color: whitesmoke">-->
-<!--{{user.email}}-->
-<!--</li>-->
-<!--</ul>-->
-
-<!--</div>-->
-
-<!--</div>-->
 <div class="container" style="border-radius: 25px;color: #333333; font-family:cursive">
   <br>
   <div class="row">
     <!-- left column -->
     <div class="col-md-3">
-      <div class="text-center">
-        <img [src]="avatar"  class="avatar img-circle" alt="avatar">
+      <div class="text-center" style="">
+        <img [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
       </div>
-      <div class="row text-center">
+      <br><div class="row text-center">
         <input class="form-control" type="file"   (change)="selectFile($event)" placeholder="Upload file">
         <button class="btn btn-primary " style="margin-top: 2mm" (click)="upload()">Edit Photo</button>
 
