@@ -13,7 +13,11 @@ import {LoadsModel} from "../exercise/loads-model";
 import {log} from "util";
 import {HeaderService} from "./header.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-
+import {DomSanitizer} from "@angular/platform-browser";
+interface JsonImage{
+  name: string;
+  content: string;
+}
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -45,7 +49,12 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authServise: AuthService, private programService: ProgramService, private router: Router,private exerciseService: ExerciseService, private headerService: HeaderService) {
+  constructor(private authServise: AuthService,
+              private programService: ProgramService,
+              private userService: UserService,
+              private exerciseService: ExerciseService,
+              private headerService: HeaderService,
+              private sanitizer: DomSanitizer) {
   }
 
   isAuthenticated: boolean;
@@ -60,10 +69,24 @@ export class HeaderComponent implements OnInit {
   showDropDown:boolean=false;
   state= 'hiden';
   showOptions: boolean=false;
+  avatar: any;
+  private readonly imageType : string = 'data:image/PNG;base64,';
 
 
 
   ngOnInit() {
+    this.userService.avatarChanged.subscribe(
+      (data:any) => {
+        this.avatar=data;
+        console.log(" avatar changed header");
+      }
+    );
+    this.userService.getFile().subscribe(
+      (data: JsonImage) => {
+        //  console.log(data.content);
+        this.avatar = this.sanitizer.bypassSecurityTrustUrl(this.imageType+data.content);
+      }
+    );
     let id: number=0;
     this.token = this.authServise.getToken();
     if (this.token != null) {

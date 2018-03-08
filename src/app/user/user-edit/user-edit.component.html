@@ -5,21 +5,23 @@
     <!-- left column -->
     <div class="col-md-3">
       <div class="text-center" style="">
-        <img [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
-      </div>
-      <br><div class="row text-center">
-        <input class="form-control" type="file"   (change)="selectFile($event)" placeholder="Upload file">
-        <button class="btn btn-primary " style="margin-top: 2mm" (click)="upload()">Edit Photo</button>
+        <label class="">
+          <img [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
+          <input type="file"  (change)="selectFile($event)" style="display: none"/>
+        </label>
 
       </div>
+      <div class="row text-center">
+          <button class="btn btn-primary " [disabled]="!editPhoto" style="margin-top: 3mm" (click)="upload()">Edit Photo</button>
+      </div>
     </div>
-    <div *ngIf="currentFileUpload" class="progress">
-      <div class="progress-bar progress-bar-info progress-bar-striped"
-           role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-           aria-valuemin="0" aria-valuemax="100"
-           [ngStyle]="{width:progress.percentage+'%'}">
-        {{progress.percentage}}%</div>
-    </div>
+    <!--<div *ngIf="currentFileUpload" class="progress">-->
+      <!--<div class="progress-bar progress-bar-info progress-bar-striped"-->
+           <!--role="progressbar" attr.aria-valuenow="{{progress.percentage}}"-->
+           <!--aria-valuemin="0" aria-valuemax="100"-->
+           <!--[ngStyle]="{width:progress.percentage+'%'}">-->
+        <!--{{progress.percentage}}%</div>-->
+    <!--</div>-->
     <!-- edit form column -->
     <div class="col-md-6 personal-info">
       <form class="form-horizontal" role="form">

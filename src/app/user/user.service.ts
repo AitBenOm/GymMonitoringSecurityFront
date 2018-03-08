@@ -5,13 +5,14 @@ import {AuthService} from "../Auth/auth.service";
 import {Router} from '@angular/router';
 import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class UserService {
 
   isAuthenticated: boolean = false;
-
   user: UserModel;
+  avatarChanged = new Subject<any>();
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
   }

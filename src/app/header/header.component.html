@@ -1,11 +1,11 @@
 <div class="col-md-12">
   <nav class="navbar navbar-default " (mouseleave)="mouseOut()" style=" background-color: rgba(139, 143, 149,0.6)">
     <div class="col-md-3 "><a style="color:white;font-size: x-large; font-style: italic; font-weight: bold; font-family: cursive" routerLink="/program" class="navbar-brand text-center" > WoM ! </a>
-      <button type="button" *ngIf="!showForm" class=" btn btn-info"
+      <button type="button" *ngIf="authServise.isAuthenticated()" class=" btn btn-info"
               style="padding: 1px 15px 3px 2px;  border-radius:50px; font-weight: bolder;background-color: rgba(30, 92, 149,0.4);font-family: cursive; margin-top:2.2mm"
               (mouseenter)="mouseIn()">
-                <span class="glyphicon glyphicon-option-vertical img-circle text-info"
-                      style="padding:8px;  background-color:white; font-weight: bolder" ></span>
+
+                     <img [src]="avatar"  class=" " style="height: 0.7cm; width: 0.7cm; border-radius: 50%" alt="avatar">
         {{ currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }}
       </button>
     </div>
@@ -37,23 +37,20 @@
 
     <!--menu-->
 
-
-<div class="col-md-10"  *ngIf="authServise.isAuthenticated()">
+<div class="col-md-8" >
   <ul class="nav navbar-nav navbar-right">
     <ng-template [ngIf]="!authServise.isAuthenticated()">
-      <li><a style="cursor: pointer;" routerLink="/register"><span class="glyphicon glyphicon-floppy-save"></span>
+      <li><a style="cursor: pointer; color: white" routerLink="/register"><span class="glyphicon glyphicon-floppy-save"></span>
         Register</a></li>
-      <li><a style="cursor: pointer;" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a>
+      <li><a style="cursor: pointer; color: white" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a>
       </li>
     </ng-template>
   </ul>
 </div>
     <div class="row" style="color: whitesmoke;box-shadow: 1px 1px 12px #555;" *ngIf="authServise.isAuthenticated()" >
 
-      <div class="col-md-4" >
-
-      </div>
-      <div class="col-md-3 col-sm-3 text-center" *ngIf="showOptions" [@listShow] >
+      <br>
+      <div class="col-md-3 col-sm-3 text-center" style="margin-top: 2mm" *ngIf="showOptions" [@listShow] >
         <!--<h3> <span class="badge" style="background-color: #dddddd"> {{ currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }} {{ currentUser.firstName |uppercase }}{{currentUser.lastName |uppercase }}</span> </h3>-->
         <ul class="nav nav-pills" >
           <li role="presentation"  routerLinkActive="active"><a  routerLink="/user/profil" ><span class=" glyphicon glyphicon-user"></span> Profil</a></li>
