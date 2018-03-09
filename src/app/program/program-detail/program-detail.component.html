@@ -4,7 +4,7 @@
       <div class="panel-heading">
 
         <h2 class="panel-title title">My Execrcises
-          <span class="pull-right badge"
+          <span *ngIf="program.programName!=null" class="pull-right badge"
                 style="background-color:lightblue; color:  #635d5d;">
             {{program.programName| uppercase}}</span></h2>
 
