@@ -1,12 +1,10 @@
 <div id="tasksPanel" class="panel backgroundTransparent " style="color: whitesmoke;" [@exerciseShow]>
   <div class="panel-heading">
-
+    <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: whitesmoke; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">Adding Exercise</h3>
     <div >
 
 <form *ngIf="!updateMode" class="addingMode" style="color: #333333; font-family: cursive">
-  <h3 class="panel-title "
-      style="font: normal 20px Arial, sans-serif;  color: #333333; font-family: cursive; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">
-    Adding Exercise</h3>
+
   <div class="input-group   form-group" >
     <label class="control-label" for="exerciseName">Exercise Name</label>
     <input type="text" [(ngModel)]="exerciseName" id="exerciseName" name="exerciseName" class="form-control" placeholder="New Exercise..." required>
@@ -41,9 +39,7 @@
 </form>
 
 <form *ngIf="updateMode" style="color: #333333; font-family: cursive">
-  <h3 class="panel-title "
-      style="font: normal 20px Arial, sans-serif;  color: #333333; font-family: cursive; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm;">
-    Updating Exercise</h3>
+
   <div class="input-group   form-group" >
     <label class="control-label" for="exerciseName">Exercise Name</label>
     <input type="text" [(ngModel)]="exerciseToUpdate.exerciseName" id="exerciseName" name="exerciseName" class="form-control" placeholder="New Exercise..." required>
@@ -52,9 +48,9 @@
   <div class="input-group  col-md-5">
     <button [disabled]="exerciseToUpdate.exerciseName===''"
             (click)="onUpdateExercise(exerciseToUpdate)"  style="background-color: rgba(30, 92, 149,0.4)" class="btn icon-btn btn-info " type="button">
-      <span class="glyphicon btn-glyphicon glyphicon-floppy-saved img-circle text-info" >
+      <span class="glyphicon btn-glyphicon glyphicon-saved img-circle text-info" >
 
-      </span> Update</button>
+      </span>  Exercise</button>
   </div>
 </form>
     </div>

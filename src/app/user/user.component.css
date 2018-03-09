@@ -3,11 +3,13 @@
   border-top: solid 0.5mm #114584;
 
 }
-
+hr {
+  background-color: #4c83b2;
+}
 .backgroundTransparent{
-  /*background-color: rgba(96, 108, 132,0.85);*/
+  background-color: rgba(230, 234, 242,0.75);
   /*background-color: rgba(209, 225, 235,0.7);*/
-  background-color: rgba(139, 143, 149,0.6);
+
 }
 .NavStyle{
   color: whitesmoke;

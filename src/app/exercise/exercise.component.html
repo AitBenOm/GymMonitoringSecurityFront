@@ -3,11 +3,11 @@
     <div class="panel-heading">
       <h3 class="panel-title " style="font: normal 20px Arial, sans-serif;  color: #333333; text-shadow: 1px 1px 1px #ccc; padding-bottom: 3mm; font-family: cursive">My progression </h3>
       <div >
-        <h5 class="list-group-item disabled" style="background-color: whitesmoke; font: normal 13px Arial, sans-serif;  color: #333; text-shadow: 1px 1px 1px #ccc;font-weight: bold;">
+        <h5 class="list-group-item disabled" style="background-color: whitesmoke; font-family: cursive;  color:#333333; text-shadow: 1px 1px 1px #ccc;font-weight: bold;">
           {{exercise.exerciseName}}
         </h5>
         <ul class="list-group">
-          <li class="list-group-item borderTop" *ngFor="let load of exercise.charges" style=" color: #333;font-weight: bold; background-color: lightgrey">
+          <li class="list-group-item borderTop" *ngFor="let load of exercise.charges" style="  color: #1e4568;;font-weight: bold; background-color: white; font-family: cursive">
             {{load.charge}} <span style="background-color: lightblue; color: #635d5d" class="badge ">{{load.lastModification |  date:'MM/dd/yy'  }} {{" "}}   <span *ngIf="showOption">
               <a style="cursor: pointer" data-toggle="modal" data-target="#myModalL" (click)="onShowModal(load)" class="glyphicon glyphicon-trash text-danger "></a>
             <a class="glyphicon glyphicon-edit text-primary "  (click)="onEditLoad(load.idLoad)" style="padding-left: 5px; cursor: pointer"> </a>

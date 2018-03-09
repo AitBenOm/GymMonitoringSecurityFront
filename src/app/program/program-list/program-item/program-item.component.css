@@ -12,20 +12,24 @@
   border: solid 2px #1a5093;
   border-collapse: collapse;
   border-spacing: 0;
-  font: normal 13px Arial, sans-serif;
+  font-family: cursive;
+  color: #4c83b2;
+  /*font: normal 13px Arial, sans-serif;*/
   font-weight: bold;
 }
 .gym-table thead th {
   background-color: lightgray;
   border: solid 2px #1a5093;
-  color: #336B6B;
+  color: #1e4568;
   padding: 10px;
   text-align: left;
   text-shadow: 1px 1px 1px #fff;
 }
 .gym-table tbody td {
   border: solid 2px #1a5093;
-  color: #333;
+  font-family: cursive;
+  color: #1e4568;
+
   padding: 10px;
   text-shadow: 1px 1px 1px #fff;
 }
