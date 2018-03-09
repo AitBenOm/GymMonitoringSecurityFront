@@ -13,6 +13,7 @@ export class UserService {
   isAuthenticated: boolean = false;
   user: UserModel;
   avatarChanged = new Subject<any>();
+  test: Observable<string>;
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
   }
@@ -21,10 +22,14 @@ export class UserService {
 
 
   getUserFromToken() {
+    if (this.authService.getToken() != null) {
+      this.user = this.jwtHelper.decodeToken(this.authService.getToken()).myUser;
+      console.log(this.user);
+      return this.user;
+    } else {
+      return null;
+    }
 
-    this.user = this.jwtHelper.decodeToken(this.authService.getToken()).myUser;
-    console.log(this.user);
-    return this.user;
   }
 
   getImage(idProgram: number) {
@@ -56,10 +61,13 @@ export class UserService {
 
   }
 
-getFile(){
-  const MyHeaders = new HttpHeaders();
-    return this.http.get("http://localhost:8080/Users/getImage/"+this.getUserFromToken().idUser, {
-      headers: MyHeaders.set('authorization', 'Bearer ' + this.authService.getToken()),
-    });
-}
+  getFile() {
+    if (this.getUserFromToken() != null) {
+      const MyHeaders = new HttpHeaders();
+      return this.http.get("http://localhost:8080/Users/getImage/" + this.getUserFromToken().idUser, {
+        headers: MyHeaders.set('authorization', 'Bearer ' + this.authService.getToken()),
+      });
+    }
+
+  }
 }

@@ -14,6 +14,7 @@ import {log} from "util";
 import {HeaderService} from "./header.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {DomSanitizer} from "@angular/platform-browser";
+import {Observable} from "rxjs/Observable";
 interface JsonImage{
   name: string;
   content: string;
@@ -70,46 +71,51 @@ export class HeaderComponent implements OnInit {
   state= 'hiden';
   showOptions: boolean=false;
   avatar: any;
+
   private readonly imageType : string = 'data:image/PNG;base64,';
 
 
 
   ngOnInit() {
-    this.userService.avatarChanged.subscribe(
-      (data:any) => {
-        this.avatar=data;
-        console.log(" avatar changed header");
+    if (this.authServise.isAuthenticated()) {
+      this.userService.avatarChanged.subscribe(
+        (data: any) => {
+          this.avatar = data;
+          console.log(" avatar changed header");
+        }
+      );
+
+      this.userService.getFile().subscribe(
+        (data: JsonImage) => {
+          //  console.log(data.content);
+          this.avatar = this.sanitizer.bypassSecurityTrustUrl(this.imageType + data.content);
+        }
+      );
+
+
+      let id: number = 0;
+      this.token = this.authServise.getToken();
+      if (this.token != null) {
+        this.currentUser = this.jwtHelper.decodeToken(this.token).myUser;
+        id = this.currentUser.idUser;
       }
-    );
-    this.userService.getFile().subscribe(
-      (data: JsonImage) => {
-        //  console.log(data.content);
-        this.avatar = this.sanitizer.bypassSecurityTrustUrl(this.imageType+data.content);
-      }
-    );
-    let id: number=0;
-    this.token = this.authServise.getToken();
-    if (this.token != null) {
-      this.currentUser = this.jwtHelper.decodeToken(this.token).myUser;
-      id=this.currentUser.idUser;
+      this.programService.onProgramsLoaded.subscribe(
+        (programs: ProgramModel[]) => {
+          this.programs = programs;
+          // console.log("Programs " + this.programs.length);
+        }
+      );
+
+      this.exerciseService.gerMyExercisesByUser(id).subscribe(
+        (exercises: ExerciseModel[]) => {
+          // console.log("Exercise by User "+exercises.length);
+          this.exercises = exercises;
+
+        }
+      );
+
     }
-    this.programService.onProgramsLoaded.subscribe(
-      (programs: ProgramModel[]) => {
-        this.programs = programs;
-       // console.log("Programs " + this.programs.length);
-      }
-    );
-
-    this.exerciseService.gerMyExercisesByUser(id).subscribe(
-      (exercises: ExerciseModel[]) => {
-       // console.log("Exercise by User "+exercises.length);
-        this.exercises=exercises;
-
-      }
-    );
-
   }
-
   onLogout() {
     this.authServise.logout();
   }

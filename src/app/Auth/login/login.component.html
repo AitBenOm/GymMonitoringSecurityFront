@@ -8,5 +8,7 @@
       <input type="checkbox" value="365" id="rememberMe" ngModel name="rememberMe"> Remember me
     </label>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+
+    <span *ngIf="!isRegistred" class="badge" style="background-color: rgba(183, 25, 25,0.6); margin-top: 3mm">Login or Email are not correct</span>
   </form>
 </div>
