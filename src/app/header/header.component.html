@@ -5,7 +5,8 @@
               style="padding: 1px 15px 3px 2px;  border-radius:50px; font-weight: bolder;background-color: rgba(30, 92, 149,0.4);font-family: cursive; margin-top:2.2mm"
               (mouseenter)="mouseIn()">
 
-                     <img [src]="avatar"  class=" " style="height: 0.7cm; width: 0.7cm; border-radius: 50%" alt="avatar">
+                     <img *ngIf="avatar!=null" [src]="avatar"  class=" " style="height: 0.7cm; width: 0.7cm; border-radius: 50%" alt="avatar">
+                     <img *ngIf="avatar==null" src="//placehold.it/100"  class=" " style="height: 0.7cm; width: 0.7cm; border-radius: 50%" alt="avatar">
         {{ currentUser.firstName.charAt(0) |uppercase }}{{currentUser.lastName.charAt(0) |uppercase }}
       </button>
     </div>

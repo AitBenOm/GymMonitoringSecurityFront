@@ -27,7 +27,9 @@
     <!-- left column -->
     <div class="col-md-2">
       <div class="text-center">
-        <img [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
+
+        <img *ngIf="avatar!=null" [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
+        <img *ngIf="avatar==null" src="//placehold.it/100"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
       </div>
       <div class="row text-center">
        <button class="btn btn-primary " style="margin-top: 2mm">Edit Photo</button>

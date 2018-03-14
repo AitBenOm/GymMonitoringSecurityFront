@@ -6,7 +6,8 @@
     <div class="col-md-3">
       <div class="text-center" style="">
         <label class="">
-          <img [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
+          <img *ngIf="avatar!=null" [src]="avatar"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
+          <img *ngIf="avatar==null" src="//placehold.it/100"  class=" " style="height: 3cm; width: 3cm; border-radius: 50%" alt="avatar">
           <input type="file"  (change)="selectFile($event)" style="display: none"/>
         </label>
 
