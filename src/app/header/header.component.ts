@@ -1,29 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from "../user/user.service";
-import {AuthService} from "../Auth/auth.service";
-import {JwtHelper} from "angular2-jwt";
-import {UserModel} from "../user/user.model";
-import {ProgramService} from "../program/program.service";
-import {ProgramModel} from "../program/program-model";
-import {RouterConfigLoader} from "@angular/router/src/router_config_loader";
-import {Router} from "@angular/router";
-import {ExerciseModel} from "../exercise/exercise-model";
-import {ExerciseService} from "../exercise/exercise.service";
-import {LoadsModel} from "../exercise/loads-model";
-import {log} from "util";
-import {HeaderService} from "./header.service";
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {DomSanitizer} from "@angular/platform-browser";
-import {Observable} from "rxjs/Observable";
-interface JsonImage{
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../user/user.service';
+import {AuthService} from '../Auth/auth.service';
+import {JwtHelper} from 'angular2-jwt';
+import {UserModel} from '../user/user.model';
+import {ProgramService} from '../program/program.service';
+import {ProgramModel} from '../program/program-model';
+import {RouterConfigLoader} from '@angular/router/src/router_config_loader';
+import {Router} from '@angular/router';
+import {ExerciseModel} from '../exercise/exercise-model';
+import {ExerciseService} from '../exercise/exercise.service';
+import {LoadsModel} from '../exercise/loads-model';
+import {log} from 'util';
+import {HeaderService} from './header.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Observable} from 'rxjs/Observable';
+
+interface JsonImage {
   name: string;
   content: string;
 }
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  animations:[
+  animations: [
     trigger('listShow', [
       state('in', style({
         opacity: 1,
@@ -31,18 +33,18 @@ interface JsonImage{
       })),
       transition('void => *', [
         style({
-          opacity:0,
+          opacity: 0,
           transform: 'translateY(-100px)'
         }),
         animate(500),
-      ] ),
+      ]),
       transition('* => void', [
         animate(500, style({
           transform: 'translateY(100px) ',
-          opacity:0
+          opacity: 0
 
         })),
-      ] )
+      ])
 
 
     ]),
@@ -62,26 +64,41 @@ export class HeaderComponent implements OnInit {
   token: string;
   jwtHelper: JwtHelper = new JwtHelper();
   currentUser: UserModel;
-    searchTopic: string = '';
+  searchTopic: string = '';
   keyWord: string = '';
   errors: boolean = false;
   programs: ProgramModel[];
   exercises: ExerciseModel[];
-  showDropDown:boolean=false;
-  state= 'hiden';
-  showOptions: boolean=false;
+  showDropDown: boolean = false;
+  state = 'hiden';
+  showOptions: boolean = false;
   avatar: any;
 
-  private readonly imageType : string = 'data:image/PNG;base64,';
-
+  private readonly imageType: string = 'data:image/PNG;base64,';
 
 
   ngOnInit() {
+    this.isAuthenticated = this.authServise.isAuthenticated();
+    this.authServise.userLoged.subscribe(
+      (userLoged: boolean) => {
+        this.userService.getFile().subscribe(
+          (data: JsonImage) => {
+            //  console.log(data.content);
+            this.avatar = this.sanitizer.bypassSecurityTrustUrl(this.imageType + data.content);
+            this.token = this.authServise.getToken();
+            if (this.token != null) {
+              this.currentUser = this.jwtHelper.decodeToken(this.token).myUser;
+            }
+          }
+        );
+      }
+    );
     if (this.authServise.isAuthenticated()) {
+      this.isAuthenticated = true;
       this.userService.avatarChanged.subscribe(
         (data: any) => {
           this.avatar = data;
-          console.log(" avatar changed header");
+          console.log(' avatar changed header');
         }
       );
 
@@ -116,26 +133,28 @@ export class HeaderComponent implements OnInit {
 
     }
   }
+
   onLogout() {
     this.authServise.logout();
   }
 
   onSearchByExercise() {
-   // console.log("exercise");
-    this.errors=false;
+    // console.log("exercise");
+    this.errors = false;
     this.searchTopic = 'Exercise';
     this.headerService.onKewWordProgramChanged.emit('');
   }
-  onShowDropDown(){
-    if(!this.showDropDown){
-      this.showDropDown=true;
-    }else{
-      this.showDropDown=true;
+
+  onShowDropDown() {
+    if (!this.showDropDown) {
+      this.showDropDown = true;
+    } else {
+      this.showDropDown = true;
     }
   }
 
   onSearchByProgram() {
-    this.errors=false;
+    this.errors = false;
     this.searchTopic = 'Program';
     this.headerService.onKewWordExerciseChanged.emit('');
   }
@@ -156,13 +175,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  mouseIn(){
-    this.showOptions=true;
-    this.state = 'showen' ;
+  mouseIn() {
+    this.showOptions = true;
+    this.state = 'showen';
   }
-  mouseOut(){
+
+  mouseOut() {
 
     this.state = 'hiden';
-    this.showOptions=false;
+    this.showOptions = false;
   }
 }

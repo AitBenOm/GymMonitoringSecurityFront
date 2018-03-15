@@ -40,6 +40,7 @@ isRegistred: boolean=true;
         localStorage.setItem('currentAthlete', token.token);
         this.authService.setToken(token.token);
         this.router.navigate(['../program']);
+        this.authService.userLoged.emit(true);
       }, error2 => {
         console.log('my error');
         this.isRegistred= false;

@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <nav class="navbar navbar-default " (mouseleave)="mouseOut()" style=" background-color: rgba(139, 143, 149,0.6)">
     <div class="col-md-3 "><a style="color:white;font-size: x-large; font-style: italic; font-weight: bold; font-family: cursive" routerLink="/program" class="navbar-brand text-center" > WoM ! </a>
-      <button type="button" *ngIf="authServise.isAuthenticated()" class=" btn btn-info"
+      <button type="button" *ngIf="isAuthenticated" class=" btn btn-info"
               style="padding: 1px 15px 3px 2px;  border-radius:50px; font-weight: bolder;background-color: rgba(30, 92, 149,0.4);font-family: cursive; margin-top:2.2mm"
               (mouseenter)="mouseIn()">
 
@@ -11,7 +11,7 @@
       </button>
     </div>
 <!--barre de recherche-->
-    <div class="col-md-4" *ngIf="authServise.isAuthenticated()">
+    <div class="col-md-4" *ngIf="isAuthenticated">
       <div class="input-group" style="margin-top:2.5mm">
         <div class="input-group-btn">
           <button style=" background-color: rgba(30, 92, 149,0.4); font-weight: bolder; font-family: cursive"
@@ -40,7 +40,7 @@
 
 <div class="col-md-8" >
   <ul class="nav navbar-nav navbar-right">
-    <ng-template [ngIf]="!authServise.isAuthenticated()">
+    <ng-template [ngIf]="!isAuthenticated">
       <li><a style="cursor: pointer; color: white" routerLink="/register"><span class="glyphicon glyphicon-floppy-save"></span>
         Register</a></li>
       <li><a style="cursor: pointer; color: white" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a>
@@ -48,7 +48,7 @@
     </ng-template>
   </ul>
 </div>
-    <div class="row" style="color: whitesmoke;box-shadow: 1px 1px 12px #555;" *ngIf="authServise.isAuthenticated()" >
+    <div class="row" style="color: whitesmoke;box-shadow: 1px 1px 12px #555;" *ngIf="isAuthenticated" >
 
       <br>
       <div class="col-md-3 col-sm-3 text-center" style="margin-top: 2mm" *ngIf="showOptions" [@listShow] >
